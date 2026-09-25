@@ -25,7 +25,7 @@ Contenido de la unidad 1: paradigmas, el salto de Swing a Compose y herramientas
 
 #### Unidad 1 - Introducción a la confección de interfaces
 
-* [DI-U1.1 - Introducción a la confección de interfaces](https://ismaelvelasco-star.github.io/slides/section1-di/DI-U1.1.-IntroduccionConfeccionInterfaces.html)
+* [DI-U1.1 - Introducción a la confección de interfaces](https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/slides/section1-di/DI-U1.1.-IntroduccionConfeccionInterfaces.html)
 
 ## Ejercicios
 
