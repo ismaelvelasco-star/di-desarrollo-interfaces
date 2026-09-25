@@ -1,7 +1,7 @@
 ---
 title: "UD 1 - Introducción a la confección de interfaces"
 description: "Introducción al módulo y al entorno de trabajo: paradigmas, herramientas de edición e instalación y primer contacto con Android Studio, Kotlin y Jetpack Compose."
-summary: "El entorno de desarrollo de interfaces hoy: instalación de Android Studio, la librería Jetpack Compose, el primer componible y análisis del entorno de diseño."
+summary: "El entorno de desarrollo de interfaces hoy: instalación de Android Studio, la librería Jetpack Compose, el primer composable y análisis del entorno de diseño."
 authors:
     - Ismael Velasco
 date: 2026-09-25
@@ -58,7 +58,7 @@ Encontramos otros modelos de programación que incluyen características propias
 - **Modelo basado en eventos**: su funcionamiento viene determinado por acciones externas, por ejemplo, la pulsación sobre un botón. Uno de los lenguajes típicos de este tipo de programación es JavaScript, que utiliza manejadores de eventos tanto en el lado del cliente como del servidor (Node.js).
 - **Modelo basado en componentes**: la clave de este último modelo es la **reutilización de módulos de software desarrollados previamente**. Para llevar a cabo esta tarea, la mayoría de los entornos de desarrollo integrados (IDE) permiten desarrollar componentes visuales, permitiendo empaquetar el código para reutilizarlo posteriormente.
 
-En Jetpack Compose los tres modelos se dan cita: los componibles son componentes reutilizables (que se definen una vez y se usan en cualquier pantalla), reaccionan a eventos (la pulsación de un botón) y se apoyan en objetos y clases de Kotlin.
+En Jetpack Compose los tres modelos se dan cita: los composables son componentes reutilizables (que se definen una vez y se usan en cualquier pantalla), reaccionan a eventos (la pulsación de un botón) y se apoyan en objetos y clases de Kotlin.
 
 ## 4. Herramientas propietarias y libres de edición de interfaces
 
@@ -123,18 +123,18 @@ Para la implementación de interfaces en Kotlin se va a utilizar **Android Studi
 
 Una vez completado este proceso, ya tendríamos instalado todo el entorno básico para el desarrollo de interfaces posterior.
 
-## 7. Primer proyecto con Kotlin. La función componible
+## 7. Primer proyecto con Kotlin. La función composable
 
 La importación de las librerías de Compose se realiza usando la sentencia `import androidx.compose...`, como vimos en el apartado anterior. Lo habitual es que el propio IDE añada estas importaciones automáticamente (con **Alt+Intro** sobre el elemento en rojo).
 
-Uno de los elementos más importantes de Compose es la **función de componibilidad**, llamada a menudo **componible** a secas: una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz. La documentación oficial en español utiliza ambas formas ("función que admite composición" es la más formal); en este módulo diremos **función componible** la primera vez y **componible** en adelante. Sobre ella se añaden el resto de elementos.
+Uno de los elementos más importantes de Compose es la **función composable** (así la llamaremos en este módulo, como hace la comunidad y la mayoría de materiales en vídeo): una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz. Sobre ella se añaden el resto de elementos.
 
-!!! note "Ojo con los vídeos"
-    En tutoriales de YouTube, foros y equipos de trabajo es muy habitual oír el término **en inglés**: *"un composable"*, *"composable function"*. Es exactamente el mismo concepto: la función anotada con `@Composable`. Aquí usaremos la forma oficial en español (componible) para la teoría y el examen, pero debes reconocer ambas cuando busques ayuda en internet.
+!!! note "Si lees la documentación oficial en español"
+    La documentación de Google traducida al español llama a esta función **"función de componibilidad"** (o "función que admite composición") y la abrevia como **"componible"**. Es exactamente el mismo concepto: la función anotada con `@Composable`. Nosotros diremos **composable**, que es como se oye en tutoriales, foros y equipos de trabajo.
 
 ```kotlin
 @Composable                  // <- la ANOTACIÓN: marca la función
-fun Saludo() {               // <- la FUNCIÓN componible en sí
+fun Saludo() {               // <- la FUNCIÓN composable en sí
     Text("Hola")
 }
 ```
@@ -144,16 +144,16 @@ Es importante distinguir los dos términos para no mezclarlos:
 | Término | Qué es | Ejemplo |
 |---------|--------|---------|
 | `@Composable` | La **anotación** que se escribe delante de la función | `@Composable fun Saludo()` |
-| Función componible (o componible) | La **función** marcada con esa anotación, que describe la interfaz | `Saludo()`, `Text()`, `Button()` |
+| Función composable (o composable) | La **función** marcada con esa anotación, que describe la interfaz | `Saludo()`, `Text()`, `Button()` |
 
-Se puede confundir el componible raíz con la **actividad** (`ComponentActivity`), pero mientras que la primera define la interfaz como tal, la segunda es la pantalla del sistema que la aloja: dentro de una actividad encontramos el `setContent { }` que "monta" nuestros componibles.
+Se puede confundir el composable raíz con la **actividad** (`ComponentActivity`), pero mientras que la primera define la interfaz como tal, la segunda es la pantalla del sistema que la aloja: dentro de una actividad encontramos el `setContent { }` que "monta" nuestros composables.
 
 La creación de nuestro primer proyecto se realiza en dos sencillos pasos:
 
 - Desde la pantalla de bienvenida (o desde *File → New*) seleccionamos **New Project**.
 - En la galería de plantillas elegimos **Empty Activity** (la plantilla básica con Compose), damos nombre al proyecto (por ejemplo `MiPrimeraInterfaz`), y pulsamos **Finish**.
 
-Android Studio genera el proyecto con una actividad y su primer componible de ejemplo (`Greeting`). El resultado sería el mismo programándolo a mano, pero se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose. La vista de diseño (Split/Design) estará disponible desde el primer momento.
+Android Studio genera el proyecto con una actividad y su primer composable de ejemplo (`Greeting`). El resultado sería el mismo programándolo a mano, pero se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose. La vista de diseño (Split/Design) estará disponible desde el primer momento.
 
 ### 7.1. La estructura del proyecto: qué es cada carpeta y para qué sirve
 
@@ -168,7 +168,7 @@ Al crear el proyecto, la vista **Android** del panel *Project* (a la izquierda d
 MiPrimeraInterfaz/
 ├── app/                          <- el módulo principal de la app
 │   ├── manifests/                <- AndroidManifest.xml
-│   ├── java/ y kotlin+java/      <- el código Kotlin (MainActivity.kt, componibles)
+│   ├── java/ y kotlin+java/      <- el código Kotlin (MainActivity.kt, composables)
 │   └── res/                      <- recursos no-código
 │       ├── drawable/             <- imágenes e iconos
 │       ├── values/               <- strings.xml (textos), themes.xml (tema), colores
@@ -184,7 +184,7 @@ MiPrimeraInterfaz/
 | Elemento | Qué guarda | Para qué sirve |
 |----------|-----------|----------------|
 | `app/manifests/AndroidManifest.xml` | La "carta de identidad" de la app | Declara el nombre, el icono, las actividades (pantallas) y los permisos que necesita |
-| `app/java` + `kotlin+java/` | El **código fuente Kotlin** | Aquí viven `MainActivity.kt` y todos los componibles: la lógica y la interfaz |
+| `app/java` + `kotlin+java/` | El **código fuente Kotlin** | Aquí viven `MainActivity.kt` y todos los composables: la lógica y la interfaz |
 | `app/res/drawable/` | Imágenes e iconos | Fondos, logos, gráficos que usa la interfaz |
 | `app/res/values/strings.xml` | Los **textos** separados del código | Permiten traducir la app cambiando un solo archivo (buena práctica: nunca textos "duros" en Kotlin) |
 | `app/res/values/themes.xml` | El tema de la app | Colores y tipografía de Material que heredan todas las pantallas |
@@ -214,18 +214,18 @@ A continuación se describen los diferentes grupos de herramientas que podemos e
 <figcaption>Fig. 7. La vista Split: el código Kotlin a la izquierda y la preview de la interfaz renderizándose en vivo a la derecha (indicador "Up-to-date"). Fuente: developer.android.com.</figcaption>
 </figure>
 
-**8.3. Vista de diseño. Palette.** En la vista *Design* aparece la paleta de componibles, que recoge todos los componentes, contenedores y propiedades que se utilizan en la creación de una interfaz Compose. Desde ella se realiza todo el diseño, ya que incorpora los elementos habituales: textos y botones, campos de texto, casillas de verificación, contenedores de disposición (columnas, filas, cajas), etc. Los componentes gráficos son los elementos que permiten al usuario interaccionar con la aplicación; cada uno corresponde con una función de Kotlin con sus propios parámetros. Para insertarlos en la zona de diseño basta con hacer clic sobre el componente y arrastrarlo hasta el punto exacto en el que se va a ubicar.
+**8.3. Vista de diseño. Palette.** En la vista *Design* aparece la paleta de composables, que recoge todos los componentes, contenedores y propiedades que se utilizan en la creación de una interfaz Compose. Desde ella se realiza todo el diseño, ya que incorpora los elementos habituales: textos y botones, campos de texto, casillas de verificación, contenedores de disposición (columnas, filas, cajas), etc. Los componentes gráficos son los elementos que permiten al usuario interaccionar con la aplicación; cada uno corresponde con una función de Kotlin con sus propios parámetros. Para insertarlos en la zona de diseño basta con hacer clic sobre el componente y arrastrarlo hasta el punto exacto en el que se va a ubicar.
 
 **8.4. Vista de diseño. Structure.** La última sección del entorno está formada por el árbol de componentes y el panel de propiedades (*Attributes*).
 
-- **Component Tree**: muestra un resumen de todos los componentes colocados en el diseño, como si de un explorador de carpetas se tratase, pero con los elementos de la interfaz. Aparece el nombre de la función componible (por ejemplo `Button` o `Text`), que es el nombre del componente; el texto que se muestra al usuario puede ser diferente y, en la mayor parte de los casos, lo será.
+- **Component Tree**: muestra un resumen de todos los componentes colocados en el diseño, como si de un explorador de carpetas se tratase, pero con los elementos de la interfaz. Aparece el nombre de la función composable (por ejemplo `Button` o `Text`), que es el nombre del componente; el texto que se muestra al usuario puede ser diferente y, en la mayor parte de los casos, lo será.
 - **Attributes**: cada componente dispone de diferentes propiedades modificables desde este panel, entre ellas el texto mostrado, la alineación o el color de fondo. Propiedades típicas de un botón son su `text` (el contenido que ve el usuario) y `enabled`, que permite habilitar o deshabilitar su funcionalidad, entre otras de aspecto.
 
 **8.5. Tipos de proyecto nuevos.** Al crear un *New Project*, la galería de plantillas de Android Studio ofrece varios puntos de partida. Conviene saber qué es cada uno y en qué se diferencia de los demás:
 
 | Plantilla | Qué genera | Cuándo usarla | Diferencia con las demás |
 |-----------|-----------|---------------|--------------------------|
-| **Empty Activity** | Una actividad con un componible vacío y Compose ya configurado | La de este módulo: partir de cero con la interfaz limpia | Es la más mínima: sin navegación ni componentes precolocados |
+| **Empty Activity** | Una actividad con un composable vacío y Compose ya configurado | La de este módulo: partir de cero con la interfaz limpia | Es la más mínima: sin navegación ni componentes precolocados |
 | **Empty Views Activity** | Una actividad con layout XML (sistema clásico de vistas) | Solo para mantener apps antiguas que usan Views | La contraria a la anterior: UI imperativa con XML, sin Compose |
 | **Compose Activity** (Basic /_variantes de material) | Actividad con estructura Material ya montada (Scaffold, tema) | Cuando quieres arrancar con el esqueleto Material listo | Igual que Empty pero con más piezas preconstruidas |
 | **Bottom Navigation / Navigation Drawer / Navigation Views** | Actividad con menú de navegación inferior/lateral y varias pantallas ya conectadas | Apps con varias secciones (Inicio, Perfil, Ajustes...) | Incluye *navigation* ya montado: cambiar de pantalla sin escribirlo |
@@ -237,9 +237,9 @@ Todas comparten la misma estructura de carpetas que vimos en el apartado 7.1; lo
 
 ## 9. Caso práctico 1: "Creación de una pantalla"
 
-**Planteamiento.** Los pasos imprescindibles para la creación de una pantalla con Compose son: declarar la función componible, describir su contenido y asignarla a la actividad con `setContent`. Implementa una pantalla desde cero utilizando solo el código de programación, es decir, sin utilizar la vista *Design*. Tras realizar este desarrollo, ¿cuál es una de las grandes diferencias que puedes observar entre las dos formas de creación descritas?
+**Planteamiento.** Los pasos imprescindibles para la creación de una pantalla con Compose son: declarar la función composable, describir su contenido y asignarla a la actividad con `setContent`. Implementa una pantalla desde cero utilizando solo el código de programación, es decir, sin utilizar la vista *Design*. Tras realizar este desarrollo, ¿cuál es una de las grandes diferencias que puedes observar entre las dos formas de creación descritas?
 
-**Nudo.** En el siguiente código se muestra cada uno de los pasos descritos en el planteamiento: la actividad monta el contenido con `setContent` y la función componible `MiPrimeraInterfaz` describe lo que se ve en pantalla (un texto centrado).
+**Nudo.** En el siguiente código se muestra cada uno de los pasos descritos en el planteamiento: la actividad monta el contenido con `setContent` y la función composable `MiPrimeraInterfaz` describe lo que se ve en pantalla (un texto centrado).
 
 ```kotlin
 class MainActivity : ComponentActivity() {
@@ -251,7 +251,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable                                  // paso 1: declarar el componible
+@Composable                                  // paso 1: declarar el composable
 fun MiPrimeraInterfaz() {                    // paso 3: describir el contenido
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -283,7 +283,7 @@ Es importante destacar que una de las principales diferencias a la hora de crear
 
 **Planteamiento.** A lo largo del tema hemos analizado que la vista en modo *Design/Split* permite colocar elementos en la interfaz mientras se muestra una previsualización del resultado final. Utilizando esta vista, crea dos botones que muestren las opciones **Aceptar** y **Cancelar**.
 
-**Nudo.** Partiendo del proyecto del caso práctico anterior, sustituimos el contenido del componible por una fila (`Row`) con dos botones. Podemos escribirlos directamente en la vista *Code* o arrastrarlos desde la paleta en la vista *Design*; en ambos casos el resultado es el mismo código Kotlin:
+**Nudo.** Partiendo del proyecto del caso práctico anterior, sustituimos el contenido del composable por una fila (`Row`) con dos botones. Podemos escribirlos directamente en la vista *Code* o arrastrarlos desde la paleta en la vista *Design*; en ambos casos el resultado es el mismo código Kotlin:
 
 ```kotlin
 @Composable
@@ -319,7 +319,7 @@ Código 3. Dos botones en una fila.
 
 ## 11. Resumen y resolución del caso práctico de la unidad
 
-En este tema hemos visto que la librería **Jetpack Compose** contiene todas las funciones necesarias para programar todo tipo de componentes visuales como botones, textos, campos de edición o casillas de verificación, entre muchos otros. Para lograr una interfaz básica, será necesario hacer uso de al menos una **función componible** que describa la pantalla y poder añadirle objetos que sirvan para interactuar entre el usuario y la aplicación.
+En este tema hemos visto que la librería **Jetpack Compose** contiene todas las funciones necesarias para programar todo tipo de componentes visuales como botones, textos, campos de edición o casillas de verificación, entre muchos otros. Para lograr una interfaz básica, será necesario hacer uso de al menos una **función composable** que describa la pantalla y poder añadirle objetos que sirvan para interactuar entre el usuario y la aplicación.
 
 Hemos comprobado también que, durante el desarrollo de una interfaz, podemos servirnos de dos modos de diseño: el **código** (vista *Code*) y la **vista de diseño** (*Split/Design*), que contiene una previsualización del resultado final de la interfaz y todos los elementos que se le pueden añadir, así como los contenedores donde se colocan dichos elementos.
 

@@ -52,7 +52,7 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 
 **B2.** En el análisis del entorno de diseño (apartado 8 del tema), explica para qué sirven: la *Toolbar*, la vista *Split*, la *Palette* y el *Component Tree*.
 
-**B3.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función componible**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
+**B3.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función composable**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
 
 **B4.** ¿Qué hay que escribir para importar en Kotlin solo el componente `Button` de Material 3? ¿Y para importar toda la librería Material 3?
 
@@ -62,11 +62,11 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 
 **C2.** Localiza en el proyecto generado el archivo donde vive la interfaz (`MainActivity.kt`) y las tres vistas del editor (*Code*, *Split*, *Design*). Haz una captura de cada modo.
 
-**C3.** Modifica el componible de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
+**C3.** Modifica el composable de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
 
 **C4.** Sustituye el contenido por una fila con dos botones **Aceptar** y **Cancelar** (como el caso práctico 2 del tema). Hazlo primero desde la vista *Code* y luego prueba a arrastrar un componente desde la paleta en la vista *Design*. Comenta qué observas.
 
-**C5.** Añade una función `@Preview` a tu componible y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
+**C5.** Añade una función `@Preview` a tu composable y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
 
 ## Entrega
 

@@ -66,7 +66,7 @@ Note: Sin interfaz, para usar cualquier aplicación habría que ser programador 
 - Declarativo: el resultado (HTML, CSS, SQL)
 - POO + eventos + componentes: el trío de las interfaces
 
-Note: Repaso rápido: imperativo dice CÓMO, declarativo dice QUÉ. Y los tres modelos cuya combinación es clave para interfaces: objetos, eventos y componentes. En Compose los tres se dan cita: componibles reutilizables que reaccionan a eventos, apoyados en clases Kotlin.
+Note: Repaso rápido: imperativo dice CÓMO, declarativo dice QUÉ. Y los tres modelos cuya combinación es clave para interfaces: objetos, eventos y componentes. En Compose los tres se dan cita: composables reutilizables que reaccionan a eventos, apoyados en clases Kotlin.
 
 ---
 
@@ -114,19 +114,19 @@ Note: La parte práctica: crear el proyecto y entender qué se ha generado.
 
 - New Project → Empty Activity
 - Nombre: MiPrimeraInterfaz
-- Genera actividad + componible de ejemplo
+- Genera actividad + composable de ejemplo
 
-Note: Dos sencillos pasos: New Project y elegir la plantilla Empty Activity (la básica con Compose). El IDE genera MainActivity.kt con una actividad y un componible de ejemplo. Se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose.
+Note: Dos sencillos pasos: New Project y elegir la plantilla Empty Activity (la básica con Compose). El IDE genera MainActivity.kt con una actividad y un composable de ejemplo. Se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose.
 
 
-### Actividad y función componible
+### Actividad y función composable
 
 - Actividad: la pantalla del sistema
 - `@Composable`: la ANOTACIÓN que marca la función
-- Función componible: la función que describe la interfaz
+- Función composable: la función que describe la interfaz
 - setContent monta una dentro de la otra
 
-Note: Doble distinción importante del tema. Primera: @Composable es la ANOTACIÓN (lo que escribes delante), y la función marcada es la función componible o componible a secas, como la llama la documentación oficial en español. Segunda: la actividad aloja, el componible describe. La conexión es setContent dentro de onCreate: el equivalente funcional de "crear la ventana y añadirle el contenido".
+Note: Doble distinción importante del tema. Primera: @Composable es la ANOTACIÓN (lo que escribes delante), y la función marcada es la función composable o composable a secas, como la llama la documentación oficial en español. Segunda: la actividad aloja, el composable describe. La conexión es setContent dentro de onCreate: el equivalente funcional de "crear la ventana y añadirle el contenido".
 
 
 ### Importar la librería
@@ -166,7 +166,7 @@ Note: Las tres pestañas del editor. Split es la joya: escribes Kotlin y ves la 
 
 ### Palette y Component Tree
 
-- Palette: componibles para arrastrar (texto, botones, contenedores...)
+- Palette: composables para arrastrar (texto, botones, contenedores...)
 - Component Tree: jerarquía de lo colocado
 - Attributes: propiedades del componente
 
@@ -182,7 +182,7 @@ Note: Los dos casos prácticos del tema, que luego son los ejercicios del bloque
 
 ### Caso 1: primera pantalla
 
-- Declarar el componible
+- Declarar el composable
 - Describir el contenido (Column + Text)
 - setContent lo asigna a la actividad
 
@@ -204,7 +204,7 @@ Note: Una fila con dos botones. Puedes escribirlos en Code o arrastrarlos desde 
 - Componible: la pieza que describe la pantalla
 - Dos modos: código y diseño, espejos del mismo archivo
 
-Note: Las ideas del tema: Compose trae todos los componentes visuales (botones, textos, casillas...), el componible es la unidad básica que describe la pantalla, y trabajamos con dos modos de diseño que son dos vistas del mismo código.
+Note: Las ideas del tema: Compose trae todos los componentes visuales (botones, textos, casillas...), el composable es la unidad básica que describe la pantalla, y trabajamos con dos modos de diseño que son dos vistas del mismo código.
 
 ---
 

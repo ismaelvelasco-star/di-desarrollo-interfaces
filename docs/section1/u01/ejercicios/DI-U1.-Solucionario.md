@@ -92,14 +92,14 @@ Componentes que NO hay que instalar aparte: el **JDK** (Android Studio incluye u
 
 - **Toolbar**: barra de herramientas con las acciones genéricas: crear proyectos y archivos, sincronizar Gradle, gestor de SDK, emulador y, especialmente, el botón **Run** (▶) para ejecutar la app en el dispositivo elegido.
 - **Vista *Split***: muestra a la vez el código Kotlin y la previsualización en vivo de la interfaz (`@Preview`), permitiendo diseñar viendo el resultado sin ejecutar la app.
-- ***Palette***: paleta de componibles en la vista *Design* de la que se arrastran los componentes (textos, botones, campos, contenedores) hasta el lienzo.
+- ***Palette***: paleta de composables en la vista *Design* de la que se arrastran los componentes (textos, botones, campos, contenedores) hasta el lienzo.
 - ***Component Tree***: árbol que resume todos los componentes colocados en el diseño, como un explorador de la jerarquía de la interfaz.
 
 ### B3
 
-> **Enunciado.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función componible**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
+> **Enunciado.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función composable**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
 
-**Solución.** La **actividad** es la pantalla del sistema operativo que aloja la interfaz; la **función componible** es la que describe el contenido de esa interfaz. La actividad "monta" al componible mediante la sentencia **`setContent { ... }`** dentro de `onCreate`, como una ventana que contiene el diseño.
+**Solución.** La **actividad** es la pantalla del sistema operativo que aloja la interfaz; la **función composable** es la que describe el contenido de esa interfaz. La actividad "monta" al composable mediante la sentencia **`setContent { ... }`** dentro de `onCreate`, como una ventana que contiene el diseño.
 
 ### B4
 
@@ -126,11 +126,11 @@ La importación se escribe justo después de la declaración del paquete (si exi
 
 > **Enunciado.** Localiza en el proyecto generado el archivo donde vive la interfaz (`MainActivity.kt`) y las tres vistas del editor (*Code*, *Split*, *Design*). Haz una captura de cada modo.
 
-**Solución.** El archivo está en `app/src/main/java/<paquete>/MainActivity.kt`. Arriba a la derecha del editor aparecen las tres pestañas: **Code** (solo código Kotlin), **Split** (código + previsualización) y **Design** (solo previsualización). Las capturas deben mostrar la misma función `Greeting` renderizada en los tres modos. Es normal que en *Code* no haya nada visual: la previsualización aparece en cuanto el editor detecta funciones componibles (o al añadir `@Preview`, ver C5).
+**Solución.** El archivo está en `app/src/main/java/<paquete>/MainActivity.kt`. Arriba a la derecha del editor aparecen las tres pestañas: **Code** (solo código Kotlin), **Split** (código + previsualización) y **Design** (solo previsualización). Las capturas deben mostrar la misma función `Greeting` renderizada en los tres modos. Es normal que en *Code* no haya nada visual: la previsualización aparece en cuanto el editor detecta funciones composables (o al añadir `@Preview`, ver C5).
 
 ### C3
 
-> **Enunciado.** Modifica el componible de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
+> **Enunciado.** Modifica el composable de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
 
 **Solución.**
 
@@ -187,7 +187,7 @@ fun MiPrimeraInterfaz() {
 
 ### C5
 
-> **Enunciado.** Añade una función `@Preview` a tu componible y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
+> **Enunciado.** Añade una función `@Preview` a tu composable y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
 
 **Solución.**
 
