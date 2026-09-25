@@ -72,7 +72,7 @@ Cada solución va precedida de su **enunciado** (en cita) para que el documento 
 
 > **Enunciado.** Según la tabla comparativa del tema (apartado 4), indica la licencia de Visual Studio, Glade y Android Studio, y el enlace de descarga de Android Studio.
 
-**Solución.** Visual Studio: **propietaria** (con edición *Community* libre). Glade: **libre**. Android Studio: **libre**. Descarga de Android Studio: <https://developer.android.com/studio>.
+**Solución.** MonoDevelop: **libre**. Glade: **libre**. Android Studio: **libre**. Descarga de Android Studio: <https://developer.android.com/studio>.
 
 ## Bloque B — El entorno
 

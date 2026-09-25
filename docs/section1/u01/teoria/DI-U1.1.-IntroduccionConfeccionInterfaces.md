@@ -16,7 +16,7 @@ tags:
     - Jetpack Compose
 ---
 
-# 1. Introducción a la confección de interfaces
+# Introducción a la confección de interfaces
 
 !!! abstract "Idea principal"
     Este tema presenta el terreno de juego: qué es una interfaz, qué paradigmas hay detrás y, sobre todo, **el entorno donde vamos a trabajar todo el módulo: Android Studio con Kotlin y Jetpack Compose**. Al terminar tendremos el IDE instalado, creada la primera interfaz y conocidas las zonas del entorno de diseño.
@@ -68,36 +68,27 @@ Destacamos a continuación las principales herramientas de desarrollo software:
 
 | Nombre | Licencia | Lenguajes soportados | Enlace |
 |--------|----------|----------------------|--------|
-| Visual Studio | Propietaria (*Community* libre) | C#, HTML, JavaScript, XML | visualstudio.microsoft.com/es/ |
 | MonoDevelop | Libre | C#, Java, .NET, Python | monodevelop.com |
 | Glade | Libre | C++, C#, Java, Python | glade.gnome.org |
-| NetBeans | Libre | Java, HTML, PHP, Python | netbeans.org |
-| Eclipse | Libre | Java, C++, PHP | eclipse.org |
 | **Android Studio** | Libre | **Kotlin, Java** | developer.android.com/studio |
 
-Tabla 1. Tabla comparativa de las herramientas de edición de interfaces.
+Tabla 1. Tabla comparativa de las herramientas de edición de interfaces (selección).
 
-**4.1. Visual Studio.** Entre sus fortalezas más importantes se encuentra el uso de lenguajes multiplataforma (C#, F#, Razor, HTML5, CSS, JavaScript, TypeScript, XAML y XML). Incorpora autocompletado de código con detección de problemas en tiempo real (líneas rojas y onduladas bajo el código sospechoso), depuración paso a paso con puntos de interrupción y administración del código en Git, GitHub y Azure DevOps.
-
-**4.2. MonoDevelop.** Este IDE libre y gratuito proporciona las funcionalidades propias de un editor de texto, además de las propias de un entorno para depurar y gestionar proyectos. Pertenece al ecosistema de Unity (motor de videojuegos multiplataforma), lo que resulta interesante porque permite desarrollar para Windows, macOS y Linux.
+**4.1. MonoDevelop.** Este IDE libre y gratuito proporciona las funcionalidades propias de un editor de texto, además de las propias de un entorno para depurar y gestionar proyectos. Pertenece al ecosistema de Unity (motor de videojuegos multiplataforma), lo que resulta interesante porque permite desarrollar para Windows, macOS y Linux.
 
 <figure markdown>
 ![Interfaz de la aplicación MonoDevelop con su diseñador visual.](assets/monodevelop.png)
 <figcaption>Fig. 2. Interfaz de la aplicación MonoDevelop. Fuente: temario del módulo.</figcaption>
 </figure>
 
-**4.3. Glade.** Este programa ayuda a la creación de interfaces gráficas de usuario y es muy utilizado en entornos XML, también para interfaces basadas en C, C++, C#, Java o Python. Su interfaz es bastante intuitiva y se domina invirtiendo poco tiempo. La principal diferencia respecto a las demás propuestas es que está diseñada pensando especialmente en GNU/Linux.
+**4.2. Glade.** Este programa ayuda a la creación de interfaces gráficas de usuario y es muy utilizado en entornos XML, también para interfaces basadas en C, C++, C#, Java o Python. Su interfaz es bastante intuitiva y se domina invirtiendo poco tiempo. La principal diferencia respecto a las demás propuestas es que está diseñada pensando especialmente en GNU/Linux.
 
 <figure markdown>
 ![Interfaz de la aplicación Glade con su paleta de componentes y propiedades.](assets/glade.png)
 <figcaption>Fig. 3. Interfaz de la aplicación Glade. Fuente: temario del módulo.</figcaption>
 </figure>
 
-**4.4. NetBeans.** Herramienta gratuita y de código abierto, uno de los entornos más utilizados para el desarrollo con Java (también PHP o Python). Permite extender el entorno con módulos que agrupan clases y que permiten interactuar con las APIs de NetBeans.
-
-**4.5. Eclipse.** IDE de código abierto y multiplataforma. Dispone de la funcionalidad Graphical Layout, que permite visualizar el contenido en vista de diseño y desarrollar componentes visuales de forma rápida e intuitiva, con su panel Palette para crear botones, cuadros de texto, cuadrículas o insertar imágenes.
-
-**4.6. Android Studio.** Es el IDE oficial para el desarrollo Android: gratuito, libre y multiplataforma, basado en IntelliJ IDEA. Ofrece todo lo anterior y además lo que da nombre al módulo moderno: la vista de diseño en vivo para **Jetpack Compose** (previsualización sin ejecutar la app), el emulador de dispositivos Android integrado y el soporte completo de **Kotlin**. Para completar esta asignatura vamos a utilizar **Android Studio**, puesto que su uso es el estándar profesional actual en el desarrollo de interfaces móviles.
+**4.3. Android Studio.** Es el IDE oficial para el desarrollo Android: gratuito, libre y multiplataforma, basado en IntelliJ IDEA. Reúne las virtudes de los anteriores (editor con autocompletado y detección de errores en tiempo real, depuración paso a paso, integración con Git/GitHub) y añade lo que da nombre al módulo moderno: la vista de diseño en vivo para **Jetpack Compose** (previsualización sin ejecutar la app), el emulador de dispositivos Android integrado y el soporte completo de **Kotlin**. Para completar esta asignatura vamos a utilizar **Android Studio**, puesto que su uso es el estándar profesional actual en el desarrollo de interfaces móviles.
 
 <figure markdown>
 ![Burbujas con lenguajes de programación de alto nivel, entre ellos Kotlin.](assets/lenguajes.png)
@@ -145,32 +136,85 @@ La creación de nuestro primer proyecto se realiza en dos sencillos pasos:
 
 Android Studio genera el proyecto con una actividad y su primer componible de ejemplo (`Greeting`). El resultado sería el mismo programándolo a mano, pero se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose. La vista de diseño (Split/Design) estará disponible desde el primer momento.
 
+### 7.1. La estructura del proyecto: qué es cada carpeta y para qué sirve
+
+Al crear el proyecto, la vista **Android** del panel *Project* (a la izquierda del IDE) organiza los archivos de forma lógica en grupos que conviene dominar desde el primer día:
+
+<figure markdown>
+![Vista Android del panel Project de Android Studio con los módulos y los Gradle Scripts.](assets/vista-android-project.png)
+<figcaption>Fig. 5. La vista Android del panel Project agrupa el código por módulos y reúne todos los Gradle Scripts. Fuente: developer.android.com.</figcaption>
+</figure>
+
+```text
+MiPrimeraInterfaz/
+├── app/                          <- el módulo principal de la app
+│   ├── manifests/                <- AndroidManifest.xml
+│   ├── java/ y kotlin+java/      <- el código Kotlin (MainActivity.kt, componibles)
+│   └── res/                      <- recursos no-código
+│       ├── drawable/             <- imágenes e iconos
+│       ├── values/               <- strings.xml (textos), themes.xml (tema), colores
+│       └── ...
+├── Gradle Scripts/
+│   ├── build.gradle.kts (Project)   <- config del proyecto entero
+│   ├── build.gradle.kts (Module:app)<- config del módulo app (dependencias Compose)
+│   ├── settings.gradle.kts          <- qué módulos forman el proyecto
+│   └── gradle.properties            <- propiedades de la construcción
+└── ...
+```
+
+| Elemento | Qué guarda | Para qué sirve |
+|----------|-----------|----------------|
+| `app/manifests/AndroidManifest.xml` | La "carta de identidad" de la app | Declara el nombre, el icono, las actividades (pantallas) y los permisos que necesita |
+| `app/java` + `kotlin+java/` | El **código fuente Kotlin** | Aquí viven `MainActivity.kt` y todos los componibles: la lógica y la interfaz |
+| `app/res/drawable/` | Imágenes e iconos | Fondos, logos, gráficos que usa la interfaz |
+| `app/res/values/strings.xml` | Los **textos** separados del código | Permiten traducir la app cambiando un solo archivo (buena práctica: nunca textos "duros" en Kotlin) |
+| `app/res/values/themes.xml` | El tema de la app | Colores y tipografía de Material que heredan todas las pantallas |
+| `build.gradle.kts (Project)` | La configuración global | Versión de las herramientas de compilación y repositorios de descarga |
+| `build.gradle.kts (Module :app)` | Dependencias y versión de la app | Aquí está la lista de librerías: es donde vive **Jetpack Compose** |
+| `settings.gradle.kts` | La lista de módulos | Define qué módulos (app, librerías propias...) forman el proyecto |
+
+**Gradle** es el sistema de construcción: la herramienta que descarga las librerías, compila el código y genera el APK instalable. Cuando añadas una dependencia nueva, Android Studio te pedirá *Sync* (sincronizar): es Gradle descargándola y dejándola lista.
+
 ## 8. Análisis del entorno de diseño en Android Studio
 
 El área de diseño para desarrolladores en Android Studio permite desarrollar interfaces añadiendo componentes gráficos directamente, sin necesidad de programar líneas de código: estos se generan automáticamente y pueden consultarse en la pestaña *Code*. Es decir, desde *Design* es posible añadir todos los elementos que se quieran incluir en la aplicación, y desde la vista de código se ajusta el comportamiento exacto de cada objeto insertado.
 
-```mermaid
-flowchart LR
-    P["Palette<br/>(componentes)"] --> L["Lienzo / Preview<br/>(zona de diseño)"]
-    L --> C["Code<br/>(Kotlin generado)"]
-    C -.->|"edición manual"| L
-    style P fill:#e8d5f2
-    style L fill:#d5e8d4
-    style C fill:#dae8fc
-```
-
 A continuación se describen los diferentes grupos de herramientas que podemos encontrar, tanto los de tipo general como los específicos del área de diseño.
 
-**8.1. Toolbar.** En la barra de herramientas se encuentran los iconos relativos a las acciones genéricas: creación de proyectos y archivos, sincronización de Gradle, gestor de SDK, emulador... Uno de los botones más importantes es el encargado de la ejecución de la app (**Run** ▶). Al hacer clic sobre la flecha que se encuentra a su derecha se podrá seleccionar el dispositivo (emulador o físico) sobre el que ejecutar.
+**8.1. Toolbar.** En la barra de herramientas se encuentran los iconos relativos a las acciones genéricas: creación de proyectos y archivos, sincronización de Gradle, gestor de SDK, emulador... Uno de los botones más importantes es el encargado de la ejecución de la app (**Run** ▶). Al hacer clic sobre la flecha que se encuentra a su derecha (en realidad sobre el selector de dispositivo) se podrá seleccionar el emulador o dispositivo físico sobre el que ejecutar:
 
-**8.2. Vista de diseño. General.** La zona de diseño es la ventana principal del entorno con Compose: en ella se colocan los elementos de la interfaz. Android Studio ofrece tres modos combinables mediante pestañas: **Code** (solo código), **Split** (código y previsualización al mismo tiempo) y **Design** (solo previsualización). En la zona de previsualización se muestra el aspecto de la aplicación que se está implementando: podríamos decir que es el lienzo sobre el que dibujar la interfaz. Las funciones anotadas con `@Preview` se renderizan aquí en vivo, sin ejecutar la app.
+<figure markdown>
+![Selector de dispositivos de la toolbar de Android Studio con el desplegable Available devices abierto.](assets/toolbar-dispositivos.png)
+<figcaption>Fig. 6. El selector de dispositivos de la toolbar: emuladores disponibles (Pixel, Wear OS...), emparejar por Wi-Fi y acceso al Device Manager. Fuente: developer.android.com.</figcaption>
+</figure>
+
+**8.2. Vista de diseño. General.** La zona de diseño es la ventana principal del entorno con Compose: en ella se colocan los elementos de la interfaz. Android Studio ofrece tres modos combinables mediante pestañas: **Code** (solo código), **Split** (código y previsualización al mismo tiempo) y **Design** (solo previsualización). En la zona de previsualización se muestra el aspecto de la aplicación que se está implementando: podríamos decir que es el lienzo sobre el que dibujar la interfaz. Las funciones anotadas con `@Preview` se renderizan aquí en vivo, sin ejecutar la app:
+
+<figure markdown>
+![Vista Split de Android Studio: código Kotlin a la izquierda y preview de Compose renderizada a la derecha.](assets/vista-split.png)
+<figcaption>Fig. 7. La vista Split: el código Kotlin a la izquierda y la preview de la interfaz renderizándose en vivo a la derecha (indicador "Up-to-date"). Fuente: developer.android.com.</figcaption>
+</figure>
 
 **8.3. Vista de diseño. Palette.** En la vista *Design* aparece la paleta de componibles, que recoge todos los componentes, contenedores y propiedades que se utilizan en la creación de una interfaz Compose. Desde ella se realiza todo el diseño, ya que incorpora los elementos habituales: textos y botones, campos de texto, casillas de verificación, contenedores de disposición (columnas, filas, cajas), etc. Los componentes gráficos son los elementos que permiten al usuario interaccionar con la aplicación; cada uno corresponde con una función de Kotlin con sus propios parámetros. Para insertarlos en la zona de diseño basta con hacer clic sobre el componente y arrastrarlo hasta el punto exacto en el que se va a ubicar.
 
-**8.4. Vista de diseño. Structure.** La última sección del entorno recibe el nombre de *Component Tree/Structure* y está formada por dos partes claramente diferenciadas: el árbol de componentes y el panel de propiedades (*Attributes*).
+**8.4. Vista de diseño. Structure.** La última sección del entorno está formada por el árbol de componentes y el panel de propiedades (*Attributes*).
 
 - **Component Tree**: muestra un resumen de todos los componentes colocados en el diseño, como si de un explorador de carpetas se tratase, pero con los elementos de la interfaz. Aparece el nombre de la función componible (por ejemplo `Button` o `Text`), que es el nombre del componente; el texto que se muestra al usuario puede ser diferente y, en la mayor parte de los casos, lo será.
 - **Attributes**: cada componente dispone de diferentes propiedades modificables desde este panel, entre ellas el texto mostrado, la alineación o el color de fondo. Propiedades típicas de un botón son su `text` (el contenido que ve el usuario) y `enabled`, que permite habilitar o deshabilitar su funcionalidad, entre otras de aspecto.
+
+**8.5. Tipos de proyecto nuevos.** Al crear un *New Project*, la galería de plantillas de Android Studio ofrece varios puntos de partida. Conviene saber qué es cada uno y en qué se diferencia de los demás:
+
+| Plantilla | Qué genera | Cuándo usarla | Diferencia con las demás |
+|-----------|-----------|---------------|--------------------------|
+| **Empty Activity** | Una actividad con un componible vacío y Compose ya configurado | La de este módulo: partir de cero con la interfaz limpia | Es la más mínima: sin navegación ni componentes precolocados |
+| **Empty Views Activity** | Una actividad con layout XML (sistema clásico de vistas) | Solo para mantener apps antiguas que usan Views | La contraria a la anterior: UI imperativa con XML, sin Compose |
+| **Compose Activity** (Basic /_variantes de material) | Actividad con estructura Material ya montada (Scaffold, tema) | Cuando quieres arrancar con el esqueleto Material listo | Igual que Empty pero con más piezas preconstruidas |
+| **Bottom Navigation / Navigation Drawer / Navigation Views** | Actividad con menú de navegación inferior/lateral y varias pantallas ya conectadas | Apps con varias secciones (Inicio, Perfil, Ajustes...) | Incluye *navigation* ya montado: cambiar de pantalla sin escribirlo |
+| **Phone/Tablet, Wear OS, TV, Auto, Glass** | Proyectos para el factor de forma elegido | Apps para reloj, televisión, coche... | Cambia el tipo de dispositivo objetivo (y las librerías de UI asociadas) |
+
+Tabla 2. Tipos de plantilla de proyecto nuevo y sus diferencias.
+
+Todas comparten la misma estructura de carpetas que vimos en el apartado 7.1; lo que cambia es el contenido inicial generado y las librerías incluidas. En este módulo usaremos **Empty Activity**, que nos deja el lienzo limpio para construir la interfaz desde cero.
 
 ## 9. Caso práctico 1: "Creación de una pantalla"
 

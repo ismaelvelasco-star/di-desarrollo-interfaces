@@ -44,7 +44,7 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 | Librería de interfaces que usamos | |
 | IDE que usamos en el módulo | |
 
-**A5.** Según la tabla comparativa del tema (apartado 4), indica la licencia de Visual Studio, Glade y Android Studio, y el enlace de descarga de Android Studio.
+**A5.** Según la tabla comparativa del tema (apartado 4), indica la licencia de MonoDevelop, Glade y Android Studio, y el enlace de descarga de Android Studio.
 
 ## Bloque B — El entorno (nivel: medio-bajo)
 
