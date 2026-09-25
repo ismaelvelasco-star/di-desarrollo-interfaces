@@ -1,0 +1,74 @@
+site_name: 'DI — Desarrollo de Interfaces'
+site_url: 'https://ismaelvelasco-star.github.io/di-desarrollo-interfaces'
+repo_url: 'https://github.com/ismaelvelasco-star/di-desarrollo-interfaces'
+repo_name: 'ismaelvelasco-star/di-desarrollo-interfaces'
+edit_uri: edit/main/docs/
+site_author: 'Ismael Velasco'
+site_description: 'Temario de Desarrollo de Interfaces (2º DAM) con Kotlin y Jetpack Compose'
+
+nav:
+  - 'Principal': 'index.md'
+  - 'Desarrollo de Interfaces':
+    - 'section1/index.md'
+    - 'U1: Introducción a la confección de interfaces':
+        - 'section1/u01/index.md'
+        - '1.1.-Paradigmas y modelos de programación': 'section1/u01/teoria/DI-U1.1.-ParadigmasModelosProgramacion.md'
+        - '1.2.-Kotlin y Jetpack Compose: el salto a la UI declarativa': 'section1/u01/teoria/DI-U1.2.-KotlinJetpackCompose.md'
+        - '1.3.-Herramientas de edición de interfaces': 'section1/u01/teoria/DI-U1.3.-HerramientasEdicionInterfaces.md'
+        - 'Ejercicios U1 (de menor a mayor)': 'section1/u01/ejercicios/DI-U1.-Ejercicios.md'
+        - 'Solucionario U1': 'section1/u01/ejercicios/DI-U1.-Solucionario.md'
+  - 'Acerca de': 'about.md'
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  font:
+    text: Roboto
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      lang: es
