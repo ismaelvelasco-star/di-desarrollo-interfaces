@@ -1,0 +1,1325 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Temario de Desarrollo de Interfaces (2º DAM) con Kotlin y Jetpack Compose">
+      
+      
+        <meta name="author" content="Ismael Velasco">
+      
+      
+        <link rel="canonical" href="https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/section1/u01/teoria/DI-U1.3.-HerramientasEdicionInterfaces/">
+      
+      
+        <link rel="prev" href="../DI-U1.2.-KotlinJetpackCompose/">
+      
+      
+        <link rel="next" href="../../ejercicios/DI-U1.-Ejercicios/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>1.3.-Herramientas de edición de interfaces - DI — Desarrollo de Interfaces</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#relacionado-con-la-tabla-de-contenidos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../../.." title="DI — Desarrollo de Interfaces" class="md-header__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DI — Desarrollo de Interfaces
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.3.-Herramientas de edición de interfaces
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ismaelvelasco-star/di-desarrollo-interfaces" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ismaelvelasco-star/di-desarrollo-interfaces
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    
+  
+  Principal
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+  Desarrollo de Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acerca de
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="DI — Desarrollo de Interfaces" class="md-nav__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DI — Desarrollo de Interfaces
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ismaelvelasco-star/di-desarrollo-interfaces" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ismaelvelasco-star/di-desarrollo-interfaces
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Principal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de Interfaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de Interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    DI — Desarrollo de Interfaces (2º DAM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    U1: Introducción a la confección de interfaces
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    U1: Introducción a la confección de interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.5c-1.35-.85-3.8-1.5-5.5-1.5-1.65 0-3.35.3-4.75 1.05-.1.05-.15.05-.25.05-.25 0-.5-.25-.5-.5V6c.6-.45 1.25-.75 2-1 1.11-.35 2.33-.5 3.5-.5 1.95 0 4.05.4 5.5 1.5 1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5.75.25 1.4.55 2 1v14.6c0 .25-.25.5-.5.5-.1 0-.15 0-.25-.05-1.4-.75-3.1-1.05-4.75-1.05-1.7 0-4.15.65-5.5 1.5M12 8v11.5c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5V7c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5m1 3.5c1.11-.68 2.6-1 4.5-1 .91 0 1.76.09 2.5.28V9.23c-.87-.15-1.71-.23-2.5-.23q-2.655 0-4.5.84zm4.5.17c-1.71 0-3.21.26-4.5.79v1.69c1.11-.65 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24v-1.5c-.87-.16-1.71-.23-2.5-.23m2.5 2.9c-.87-.16-1.71-.24-2.5-.24-1.83 0-3.33.27-4.5.8v1.69c1.11-.66 2.6-.99 4.5-.99 1.04 0 1.88.08 2.5.24z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    UD 1 - Introducción a la confección de interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DI-U1.1.-ParadigmasModelosProgramacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1.-Paradigmas y modelos de programación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DI-U1.2.-KotlinJetpackCompose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2.-Kotlin y Jetpack Compose: el salto a la UI declarativa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.-Herramientas de edición de interfaces
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3.-Herramientas de edición de interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#13-herramientas-de-edicion-de-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. Herramientas de edición de interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. Herramientas de edición de interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-panorama-clasico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El panorama clásico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-panorama-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El panorama actual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-eleccion-de-herramienta-criterios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Elección de herramienta: criterios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Buenas prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-para-seguir-praticando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Para seguir praticando
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliografia-y-fuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliografía y fuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/DI-U1.-Ejercicios/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h4v-1.91L12.09 18H6v-2h8.09l2-2H6v-2h12.09L20 10.09V8l-6-6zm7 1.5L18.5 9H13zm7.15 9.5a.55.55 0 0 0-.4.16l-1.02 1.02 2.09 2.08 1.02-1.01c.21-.22.21-.58 0-.79l-1.3-1.3a.54.54 0 0 0-.39-.16m-2.01 1.77L12 20.92V23h2.08l6.15-6.15z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios U1 (de menor a mayor)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicios/DI-U1.-Solucionario/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h4v-1.91L12.09 18H6v-2h8.09l2-2H6v-2h12.09L20 10.09V8l-6-6zm7 1.5L18.5 9H13zm7.15 9.5a.55.55 0 0 0-.4.16l-1.02 1.02 2.09 2.08 1.02-1.01c.21-.22.21-.58 0-.79l-1.3-1.3a.54.54 0 0 0-.39-.16m-2.01 1.77L12 20.92V23h2.08l6.15-6.15z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Solucionario U1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Acerca de
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#13-herramientas-de-edicion-de-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. Herramientas de edición de interfaces
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. Herramientas de edición de interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-panorama-clasico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El panorama clásico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-panorama-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. El panorama actual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-eleccion-de-herramienta-criterios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Elección de herramienta: criterios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Buenas prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-errores-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Errores frecuentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-para-seguir-praticando" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Para seguir praticando
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliografia-y-fuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliografía y fuentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<hr />
+<p>title: "UD 1 - 1.3 Herramientas de edición de interfaces"
+description: Editores visuales e IDEs para construir interfaces: del panorama clásico (Visual Studio, Eclipse, Glade) a Android Studio, Compose Multiplatform y Figma.
+summary: Panorámica de herramientas propietarias y libres para editar interfaces, con la comparativa clásica actualizada y el flujo de trabajo moderno de diseño a código.
+authors:
+    - Ismael Velasco
+date: 2026-09-23
+icon: "material/file-document-outline"
+permalink: /di/unidad1/1.3
+categories:
+    - DI
+tags:
+    - DI
+    - IDE
+    - Herramientas
+    - Android Studio
+    - Figma</p>
+<h1 id="relacionado-con-la-tabla-de-contenidos">Relacionado con la tabla de contenidos</h1>
+<p>toc: true
+toc_label: "Contenido"
+toc_icon: "file-code"</p>
+<hr />
+<h2 id="13-herramientas-de-edicion-de-interfaces">1.3. Herramientas de edición de interfaces</h2>
+<div class="admonition abstract">
+<p class="admonition-title">Idea principal</p>
+<p>La motivación principal para utilizar herramientas de desarrollo basado en componentes visuales es la reutilización: una vez empaquetados, los componentes se comparten con otros desarrolladores. Un buen editor de interfaces acelera el ciclo diseñar → previsualizar → generar código → depurar. Repasamos el panorama clásico y el actual, porque seguirán apareciendo en proyectos heredados y en el mercado laboral.</p>
+</div>
+<p>Si no se desarrolla utilizando componentes y se realiza de manera directa, se producirá un incremento de tiempo y costes asociados al proyecto.</p>
+<div class="admonition info">
+<p class="admonition-title">Qué deberías saber al terminar</p>
+<p>Al acabar este tema deberías poder:</p>
+<ul>
+<li>comparar los IDE clásicos de edición de interfaces y sus licencias;</li>
+<li>justificar la elección de Android Studio para este módulo;</li>
+<li>conocer herramientas complementarias actuales (Figma, Compose Multiplatform, Compose Preview).</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RA 1</td>
+<td>Genera interfaces gráficos de usuario mediante editores visuales utilizando las funcionalidades del editor y adaptando el código generado.</td>
+</tr>
+<tr>
+<td>CE 1.a</td>
+<td>Se ha creado un interfaz gráfico utilizando los asistentes de un editor visual.</td>
+</tr>
+<tr>
+<td>CE 1.b</td>
+<td>Se han utilizado las funciones del editor para ubicar los componentes del interfaz.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-el-panorama-clasico">1. El panorama clásico</h3>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Licencia</th>
+<th>Lenguajes soportados</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visual Studio</td>
+<td>Propietaria (Community libre)</td>
+<td>C#, HTML, JavaScript, XML, F#</td>
+<td>visualstudio.microsoft.com/es/</td>
+</tr>
+<tr>
+<td>MonoDevelop</td>
+<td>Libre</td>
+<td>C#, Java, .NET, Python</td>
+<td>monodevelop.com</td>
+</tr>
+<tr>
+<td>Glade</td>
+<td>Libre</td>
+<td>C, C++, C#, Java, Python (GTK)</td>
+<td>glade.gnome.org</td>
+</tr>
+<tr>
+<td>NetBeans</td>
+<td>Libre</td>
+<td>Java, HTML, PHP, Python</td>
+<td>netbeans.org</td>
+</tr>
+<tr>
+<td>Eclipse</td>
+<td>Libre</td>
+<td>Java, C++, PHP</td>
+<td>eclipse.org</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visual Studio.</strong> Entre sus fortalezas: lenguajes multiplataforma (C#, F#, Razor, HTML5, CSS, JavaScript, TypeScript, XAML, XML), autocompletado con detección de errores en tiempo real (líneas rojas onduladas), depuración paso a paso con puntos de interrupción y administración de código en Git, GitHub y Azure DevOps.</p>
+<p><strong>MonoDevelop.</strong> IDE libre y gratuito con editor, depurador y gestión de proyectos. Perteneció al ecosistema de Unity (motor de videojuegos multiplataforma) e interesa porque permitía desarrollar para Windows, macOS y Linux.</p>
+<p><strong>Glade.</strong> Ayuda a la creación de interfaces GTK y está muy ligado a entornos XML. Es intuitiva y rápida de aprender, y su diferencia principal es que está diseñada para GNU/Linux.</p>
+<p><strong>NetBeans.</strong> Gratuito y de código abierto; junto a Eclipse, de los más usados para interfaces Java. Se extiende con módulos que agrupan clases y permiten interactuar con sus APIs.</p>
+<p><strong>Eclipse.</strong> De código abierto y multiplataforma. Su Graphical Layout permitía visualizar el diseño y crear componentes visuales de forma rápida con su panel Palette (botones, cuadros de texto, cuadrículas, imágenes...). El temario clásico lo elegía como entorno de trabajo con el plugin WindowBuilder.</p>
+<div class="admonition note">
+<p class="admonition-title">Aclaración</p>
+<p>En su momento, Eclipse se justificaba así: <em>"su uso es cada vez más frecuente en lo que respecta al desarrollo de interfaces de forma profesional"</em>. Hoy ese argumento lo cumple <strong>Android Studio</strong> para interfaces móviles: es el estándar de facto del desarrollo Android, con el mismo tipo de ventajas (gratuito, multiplataforma, editor visual, palette, control de versiones integrado).</p>
+</div>
+<h3 id="2-el-panorama-actual">2. El panorama actual</h3>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Licencia</th>
+<th>Enfoque</th>
+<th>Papel hoy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android Studio</td>
+<td>Libre (IntelliJ)</td>
+<td>Kotlin/Java + Compose, XML</td>
+<td>El IDE de este módulo</td>
+</tr>
+<tr>
+<td>IntelliJ IDEA</td>
+<td>Community libre / Ultimate propietaria</td>
+<td>Kotlin, Java, JVM</td>
+<td>Base de Android Studio; apps de escritorio con Compose Multiplatform</td>
+</tr>
+<tr>
+<td>Visual Studio / VS Code</td>
+<td>Propietaria / MIT</td>
+<td>.NET / multilenguaje</td>
+<td>Escritorio (WPF, WinUI), web y multiplataforma</td>
+</tr>
+<tr>
+<td>Figma</td>
+<td>Freemium (proprietaria)</td>
+<td>Diseño de interfaces</td>
+<td>Estándar de diseño previo a codificar</td>
+</tr>
+<tr>
+<td>Flutter / React Native</td>
+<td>Open source</td>
+<td>Multiplataforma móvil</td>
+<td>Alternativas a Compose</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Android Studio</strong> reúne todo lo que pedíamos a los clásicos y más: editor visual (Design/Split + paleta arrastrable), <code>@Preview</code> en vivo, emulador integrado, Layout Inspector, profiler de rendimiento y Git/GitHub integrados.</p>
+<p><strong>Figma</strong> ocupa un lugar nuevo en el flujo: <strong>diseñar antes de programar</strong>. El prototipo se comparte con el cliente y luego se traduce a Compose (incluso hay plugins que generan código Compose desde el diseño). Es el estándar de la industria para pasar de la idea al mockup.</p>
+<p><strong>Compose Multiplatform</strong> extiende Compose más allá de Android: la misma UI declarativa para escritorio (Windows/macOS/Linux), iOS y web. Kotlin demuestra así que el paradigma aprendido en este módulo no se queda en el móvil.</p>
+<div class="admonition example">
+<p class="admonition-title">Ejemplo: flujo de trabajo real 2026</p>
+<ol>
+<li>La diseñadora monta el prototipo en Figma y lo comparte con el equipo.</li>
+<li>El equipo de desarrollo lo traduce a componibles en Android Studio (a veces con ayuda de plugins de generación).</li>
+<li>Cada componente se valida con <code>@Preview</code> y en el emulador.</li>
+<li>El código vive en GitHub; cada pull request revisa el diseño y la lógica.
+Comparado con el flujo clásico (diseño en papel o mockup estático → WindowBuilder → Java), el ciclo es más corto y colaborativo.</li>
+</ol>
+</div>
+<h3 id="3-eleccion-de-herramienta-criterios">3. Elección de herramienta: criterios</h3>
+<p>A la hora de elegir entorno se sigue el mismo razonamiento del temario clásico: depende del lenguaje y del tipo de interfaz. En nuestro caso:</p>
+<ul>
+<li><strong>Lenguaje</strong>: Kotlin (moderno, seguro, soportado por Google como principal para Android).</li>
+<li><strong>Plataforma</strong>: Android en primer lugar (móvil), con salida natural a escritorio vía Compose Multiplatform.</li>
+<li><strong>Ecosistema</strong>: Jetpack Compose, Material 3, AndroidX.</li>
+<li>Por tanto: <strong>Android Studio</strong> como IDE principal del módulo, con Figma como herramienta de diseño previo cuando el proyecto lo pida.</li>
+</ul>
+<h3 id="4-buenas-practicas">4. Buenas prácticas</h3>
+<ul>
+<li><strong>No cambies de IDE a mitad de proyecto</strong>: cada uno genera su propia configuración y formateo; migrar a mitad de sprint cuesta más de lo que aporta.</li>
+<li><strong>Aprende los atajos del editor</strong>: Alt+Intro (importar), Shift+F10 (ejecutar), Ctrl+B (ir a declaración). El ratón es el enemigo de la velocidad.</li>
+<li><strong>Usa el control de versiones desde el minuto 1</strong>: Android Studio lo trae integrado; crear el repo al crear el proyecto.</li>
+<li><strong>Diseña antes de codificar</strong>: aunque sea un boceto en papel o Figma, decidir la jerarquía de componentes antes de escribirlos evita reescrituras.</li>
+</ul>
+<h3 id="5-errores-frecuentes">5. Errores frecuentes</h3>
+<table>
+<thead>
+<tr>
+<th>Error frecuente</th>
+<th>Por qué ocurre</th>
+<th>Cómo evitarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instalar plugins clásicos (WindowBuilder) por inercia</td>
+<td>El material antiguo lo menciona</td>
+<td>Para Kotlin/Compose el "editor visual" ya viene integrado en Android Studio</td>
+</tr>
+<tr>
+<td>Empezar a codificar sin decidir la plataforma</td>
+<td>Cada plataforma condiciona lenguaje y herramientas</td>
+<td>Decidir primero: ¿escritorio, móvil, web? y luego cadena de herramientas</td>
+</tr>
+<tr>
+<td>Ignorar Figma y diseñar en la cabeza</td>
+<td>"Total, es una app pequeña"</td>
+<td>El mockup previo detecta problemas de flujo antes de escribir código</td>
+</tr>
+<tr>
+<td>Duplicar proyectos para "probar cosas" sin control de versiones</td>
+<td>Prisas</td>
+<td>Un solo repo, ramas para experimentos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-resumen">6. Resumen</h3>
+<p>En este tema has aprendido que:</p>
+<ul>
+<li>el panorama clásico (Visual Studio, MonoDevelop, Glade, NetBeans, Eclipse) sigue existiendo en proyectos heredados y comparte conceptos: palette, vista diseño/código, depuración;</li>
+<li>hoy el estándar para interfaces móviles Kotlin es Android Studio, heredero directo de IntelliJ/Eclipse en cuanto a funcionalidades;</li>
+<li>Figma añade la fase de diseño colaborativo previa al código;</li>
+<li>Compose Multiplatform lleva la UI declarativa a escritorio, iOS y web con el mismo conocimiento.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Idea clave</p>
+<p>Las herramientas cambian (Eclipse → Android Studio, Palette → Compose Preview), pero el concepto de editor visual con generación de código y previsualización en vivo es el mismo desde hace 20 años. Aprende el concepto y sobrevivirás a cualquier herramienta.</p>
+</div>
+<h3 id="7-para-seguir-praticando">7. Para seguir praticando</h3>
+<ul>
+<li>Ejercicios de la unidad: <code>DI-U1.-Ejercicios.md</code> (bloque A, ejercicio de comparativa).</li>
+<li>Explora el catálogo de Figma (figma.com/community) buscando "material 3 ui kit".</li>
+</ul>
+<h2 id="bibliografia-y-fuentes">Bibliografía y fuentes</h2>
+<ul>
+<li>Android Studio. <a href="https://developer.android.com/studio">https://developer.android.com/studio</a></li>
+<li>JetBrains, Compose Multiplatform. <a href="https://www.jetbrains.com/lp/compose-multiplatform/">https://www.jetbrains.com/lp/compose-multiplatform/</a></li>
+<li>Figma. <a href="https://figma.com">https://figma.com</a></li>
+<li>Temario clásico del módulo (material Java Swing) como base conceptual de la adaptación.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
