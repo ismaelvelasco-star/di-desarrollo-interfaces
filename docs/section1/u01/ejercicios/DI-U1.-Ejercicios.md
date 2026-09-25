@@ -1,7 +1,7 @@
 ---
 title: "UD 1 - Ejercicios: Introducción a la confección de interfaces"
-description: Ejercicios graduados de menor a mayor dificultad sobre paradigmas, Kotlin, Jetpack Compose y herramientas.
-summary: Lista de ejercicios de la unidad 1 ordenados por dificultad, del paradigma conceptual a una mini-app completa con estado.
+description: Ejercicios graduados de menor a mayor dificultad sobre el entorno Android Studio, Kotlin y Jetpack Compose.
+summary: Lista de ejercicios de la unidad 1 ordenados por dificultad, de los conceptos del tema a la primera interfaz propia.
 authors:
     - Ismael Velasco
 date: 2026-09-25
@@ -12,15 +12,16 @@ categories:
 tags:
     - DI
     - Ejercicios
+    - Android Studio
     - Kotlin
     - Jetpack Compose
 ---
 
 # Ejercicios de la Unidad 1
 
-Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son individuales y cortos; el C requiere montar proyecto; el D es de integración. El solucionario está en [`DI-U1.-Solucionario.md`](DI-U1.-Solucionario.md) — intenta cada ejercicio antes de mirarlo.
+Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son individuales y cortos; el C monta el primer proyecto. El solucionario está en [`DI-U1.-Solucionario.md`](DI-U1.-Solucionario.md) — intenta cada ejercicio antes de mirarlo.
 
-## Bloque A — Conceptos (nivel: calentamiento)
+## Bloque A — Conceptos del tema (nivel: calentamiento)
 
 **A1.** Clasifica los siguientes lenguajes en imperativo o declarativo: SQL, Kotlin, HTML, CSS, Java, Python.
 
@@ -28,67 +29,47 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 
 **A3.** Di si cada afirmación es verdadera o falsa, corrigiendo las falsas:
 
-1. En Jetpack Compose, la interfaz se describe como funciones de Kotlin.
-2. La recomposición es el proceso automático de redibujar la UI cuando cambia el estado.
-3. `onClick` es una propiedad más del botón, sin relación con eventos.
-4. Una función `@Composable` puede reutilizarse como componente en cualquier pantalla.
+1. Kotlin es un lenguaje de bajo nivel porque controla el hardware directamente.
+2. En el modelo declarativo se describe el problema (el resultado), no los pasos.
+3. Una función `@Composable` es un componente reutilizable que describe un trozo de interfaz.
+4. En Jetpack Compose, la vista *Design* genera código que no se puede editar a mano.
 
-**A4.** Completa la tabla con el componente de Compose adecuado:
+**A4.** Completa la tabla con el elemento adecuado de nuestro entorno de trabajo:
 
-| Necesidad | Componente |
-|-----------|------------|
-| Mostrar un texto | |
-| Botón relleno con acción | |
-| Campo para escribir el email | |
-| Colocar elementos en vertical | |
-| Espacio en blanco entre elementos | |
+| Necesidad | Elemento |
+|-----------|----------|
+| Mostrar un texto en pantalla | |
+| Botón con acción al pulsarlo | |
+| Colocar elementos en horizontal | |
+| Librería de interfaces que usamos | |
+| IDE que usamos en el módulo | |
 
-**A5.** Busca en la tabla comparativa del tema 1.3 dos IDEs libres que soporten Java y explica cuál elegirías hoy para una app Android y por qué.
+**A5.** Según la tabla comparativa del tema (apartado 4), indica la licencia de Visual Studio, Glade y Android Studio, y el enlace de descarga de Android Studio.
 
-## Bloque B — Kotlin de andadura (nivel: medio-bajo)
+## Bloque B — El entorno (nivel: medio-bajo)
 
-**B1.** Escribe en estilo imperativo y luego en estilo declarativo/funcional (Kotlin) un programa que obtenga la cantidad de números positivos de la lista `val muestras = listOf(3, -1, 7, 0, -5, 12)`.
+**B1.** Enumera los tres pasos imprescindibles de la instalación de Android Studio según el tema y di qué dos componentes NO hay que instalar aparte (a diferencia de lo que ocurría con Eclipse y el JDK).
 
-**B2.** La siguiente clase Kotlin tiene un fallo de diseño y un error de sintaxis. Encuéntralos y corrígelo:
+**B2.** En el análisis del entorno de diseño (apartado 8 del tema), explica para qué sirven: la *Toolbar*, la vista *Split*, la *Palette* y el *Component Tree*.
 
-```kotlin
-class Termometro(max: Int) {
-    var actual = 0
-    fun subir() { if (actual < max) actual++ }
-```
+**B3.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función componible**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
 
-**B3.** Escribe una data class `Alumno` con nombre y grupo, y una función que reciba una lista de alumnos y devuelva los del grupo "2DAM" (una línea con `filter`).
+**B4.** ¿Qué hay que escribir para importar en Kotlin solo el componente `Button` de Material 3? ¿Y para importar toda la librería Material 3?
 
-**B4.** Convierte este manejador de evento JavaScript a la lambda Kotlin que iría en un `onClick` de Compose:
+## Bloque C — Primer proyecto (nivel: medio)
 
-```javascript
-boton.onclick = function() { contador = contador + 1; actualizarEtiqueta(); }
-```
+**C1.** Instala Android Studio (si no lo tienes ya) siguiendo los pasos del apartado 6 del tema, captura la pantalla de bienvenida y crea un proyecto nuevo *Empty Activity* llamado `MiPrimeraInterfaz`.
 
-## Bloque C — Primer proyecto Compose (nivel: medio)
+**C2.** Localiza en el proyecto generado el archivo donde vive la interfaz (`MainActivity.kt`) y las tres vistas del editor (*Code*, *Split*, *Design*). Haz una captura de cada modo.
 
-Para C1-C5, crea **un** proyecto *Empty Activity* llamado `DIUnidad1` y ve añadiendo cada ejercicio como un componible. Ejecuta en emulador tras cada uno.
+**C3.** Modifica el componible de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
 
-**C1 (primer pantallazo).** Sustituye el `Greeting` de la plantilla por un componible `Presentacion` que muestre tu nombre y tu ciclo en dos `Text` (uno con `displaySmall` y otro con `bodyLarge`), centrados.
+**C4.** Sustituye el contenido por una fila con dos botones **Aceptar** y **Cancelar** (como el caso práctico 2 del tema). Hazlo primero desde la vista *Code* y luego prueba a arrastrar un componente desde la paleta en la vista *Design*. Comenta qué observas.
 
-**C2 (dos botones).** Añade una fila con dos botones, "Aceptar" (relleno, color primario) y "Cancelar" (delineado, `OutlinedButton`). Debajo, un `Text` que empiece mostrando "Sin acción".
-
-**C3 (estado).** Haz que los botones de C2 actualicen el `Text` inferior: aceptar → "Has aceptado", cancelar → "Has cancelado". No puedes usar ninguna variable "normal": obligatorio `remember { mutableStateOf(...) }`.
-
-**C4 (contador con límite).** Un `Text` con "Pulsaciones: X", un botón "Sumar" y un botón "Reset". Cuando X llegue a 10, el botón Sumar debe deshabilitarse (`enabled`). Pista: la condición es estado derivado, no hace falta variable aparte.
-
-**C5 (preview).** Añade `@Preview(showBackground = true)` para `Presentacion` y otra preview para el contador en su estado inicial. Comprueba que se renderizan sin ejecutar la app.
-
-## Bloque D — Integración (nivel: medio-alto)
-
-**D1 (calculadora de interface).** Construye solo la **interfaz** de una calculadora: un `Text` grande como visor (estado), y una cuadrícula de botones para dígitos 0-9, coma, y operaciones +, −, ×, ÷, =, C. Usa `Column` con `Row`s; los botones actualizan el visor concatenando texto (sin calcular nada aún). Pregunta de reflexión al final del código en comentario: ¿por qué no guardamos "el resultado" todavía?
-
-**D2 (componente reutilizable).** Refactoriza D1: crea un componible `Tecla(etiqueta: String, onPulsar: (String) -> Unit, ancho: Float = 1f)` y haz que la calculadora lo use con `Modifier.weight(ancho)`. La tecla "=" debe ocupar el doble de ancho que una normal. Comenta qué ventaja tiene frente a copiar/pegar botones.
-
-**D3 (cito los tres modelos).** En un comentario al final de tu `MainActivity.kt` de D2, señala con precisión: (1) dónde hay POO, (2) dónde un evento, (3) dónde un componente reutilizable, y (4) qué parte de tu código es declarativa. Es el cierre conceptual de la unidad.
+**C5.** Añade una función `@Preview` a tu componible y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
 
 ## Entrega
 
 - Bloques A y B: respuestas en un documento.
-- Bloques C y D: proyecto Android Studio comprimido (sin carpetas `build/` ni `.gradle/`) o enlace al repositorio de GitHub.
+- Bloque C: capturas y proyecto Android Studio comprimido (sin carpetas `build/` ni `.gradle/`) o enlace al repositorio de GitHub.
 - Plazo y canal: el que indique la programación de aula.

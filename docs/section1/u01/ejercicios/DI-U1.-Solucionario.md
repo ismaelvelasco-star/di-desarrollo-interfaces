@@ -1,7 +1,7 @@
 ---
 title: "UD 1 - Solucionario: Introducción a la confección de interfaces"
-description: Soluciones comentadas de los ejercicios de la unidad 1.
-summary: Solucionario completo de los ejercicios de la unidad 1, con explicación didáctica de cada respuesta.
+description: Soluciones comentadas de los ejercicios de la unidad 1, con el enunciado de cada ejercicio.
+summary: Solucionario completo de los ejercicios de la unidad 1: cada solución va precedida de su enunciado y seguida de un comentario didáctico.
 authors:
     - Ismael Velasco
 date: 2026-09-25
@@ -12,310 +12,191 @@ categories:
 tags:
     - DI
     - Solucionario
+    - Android Studio
     - Kotlin
     - Jetpack Compose
 ---
 
 # Solucionario de la Unidad 1
 
-Soluciones con comentario didáctico. Si tu solución difiere pero funciona y está razonada, también vale: en interfaces casi siempre hay varios caminos correctos.
+Cada solución va precedida de su **enunciado** (en cita) para que el documento se pueda leer solo. Si tu solución difiere pero funciona y está razonada, también vale.
 
-## Bloque A — Conceptos
+## Bloque A — Conceptos del tema
 
-**A1.** Imperativos: **Kotlin, Java, Python** (describen pasos, tienen estructuras de control y asignaciones). Declarativos: **SQL, HTML, CSS** (describen el resultado: "qué datos quiero", "cómo se ve", no cómo conseguirlo).
+### A1
 
-**A2.**
+> **Enunciado.** Clasifica los siguientes lenguajes en imperativo o declarativo: SQL, Kotlin, HTML, CSS, Java, Python.
 
-- **POO**: el programa se estructura en objetos con atributos, propiedades y métodos que interactúan entre sí.
-- **Eventos**: el flujo del programa lo disparan acciones externas (un clic, un giro de pantalla); el código responde mediante manejadores.
-- **Componentes**: se construye reutilizando módulos visuales empaquetados y compartibles, en lugar de programar cada pantalla desde cero.
+**Solución.** Imperativos: **Kotlin, Java, Python** (describen pasos: estructuras de control, asignaciones, bucles). Declarativos: **SQL, HTML, CSS** (describen el resultado: "qué datos quiero", "cómo se ve", sin indicar cómo conseguirlo).
 
-**A3.**
+### A2
 
-1. **Verdadera.** Un componible es una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz.
-2. **Verdadera.** La recomposición es el redibujado automático de las funciones que leen el estado que cambió.
-3. **Falsa.** `onClick` ES el manejador del evento de pulsación: la lambda que recibe se ejecuta como respuesta a la acción externa. No es una propiedad "decorativa".
-4. **Verdadera.** Ese es el modelo basado en componentes: definir una vez, reutilizar en todas partes.
+> **Enunciado.** Explica con una frase cada uno de los tres modelos clave para interfaces: orientado a objetos, basado en eventos y basado en componentes.
 
-**A4.**
+**Solución.**
 
-| Necesidad | Componente |
-|-----------|------------|
-| Mostrar un texto | `Text` |
-| Botón relleno con acción | `Button` |
-| Campo para escribir el email | `TextField` / `OutlinedTextField` |
-| Colocar elementos en vertical | `Column` |
-| Espacio en blanco entre elementos | `Spacer` |
+- **POO**: el programa se estructura en objetos (entidades con atributos, propiedades y métodos) que interactúan entre sí.
+- **Eventos**: el flujo del programa lo determinan acciones externas (como la pulsación de un botón), a las que el código responde con manejadores.
+- **Componentes**: se construye reutilizando módulos de software visuales ya desarrollados y empaquetados, en lugar de programar cada pantalla desde cero.
 
-**A5.** NetBeans y Eclipse (además de MonoDevelop y Glade). Para una app Android hoy: **Android Studio**, porque es el IDE oficial (basado en IntelliJ), gratuito, con editor visual integrado para Compose, emulador y control de versiones.
+### A3
 
-## Bloque B — Kotlin
+> **Enunciado.** Di si cada afirmación es verdadera o falsa, corrigiendo las falsas:
+> 1. Kotlin es un lenguaje de bajo nivel porque controla el hardware directamente.
+> 2. En el modelo declarativo se describe el problema (el resultado), no los pasos.
+> 3. Una función `@Composable` es un componente reutilizable que describe un trozo de interfaz.
+> 4. En Jetpack Compose, la vista *Design* genera código que no se puede editar a mano.
 
-**B1.**
+**Solución.**
+
+1. **Falsa.** Kotlin es de **alto nivel**: se escribe con reglas cercanas al lenguaje natural y es el compilador quien lo traduce a bytecode (bajo nivel) ejecutable por la máquina.
+2. **Verdadera.** Es la definición del modelo declarativo.
+3. **Verdadera.** Se define una vez y se reutiliza en cualquier pantalla: el modelo de componentes aplicado a la UI.
+4. **Falsa.** El código generado sí se puede editar a mano: es Kotlin normal. De hecho, las dos vistas (*Code* y *Design/Split*) son dos espejos del mismo código, y editarlo directamente es la práctica habitual.
+
+### A4
+
+> **Enunciado.** Completa la tabla con el elemento adecuado de nuestro entorno de trabajo.
+
+**Solución.**
+
+| Necesidad | Elemento |
+|-----------|----------|
+| Mostrar un texto en pantalla | `Text` |
+| Botón con acción al pulsarlo | `Button` |
+| Colocar elementos en horizontal | `Row` |
+| Librería de interfaces que usamos | Jetpack Compose (Material 3) |
+| IDE que usamos en el módulo | Android Studio |
+
+### A5
+
+> **Enunciado.** Según la tabla comparativa del tema (apartado 4), indica la licencia de Visual Studio, Glade y Android Studio, y el enlace de descarga de Android Studio.
+
+**Solución.** Visual Studio: **propietaria** (con edición *Community* libre). Glade: **libre**. Android Studio: **libre**. Descarga de Android Studio: <https://developer.android.com/studio>.
+
+## Bloque B — El entorno
+
+### B1
+
+> **Enunciado.** Enumera los tres pasos imprescindibles de la instalación de Android Studio según el tema y di qué dos componentes NO hay que instalar aparte (a diferencia de lo que ocurría con Eclipse y el JDK).
+
+**Solución.** Pasos: (1) descargar el instalador desde <https://developer.android.com/studio> según el sistema operativo y ejecutarlo; (2) seguir el asistente con las opciones por defecto (instalación *Standard*, que instala el SDK de Android y las herramientas de emulador); (3) en el primer arranque, dejar que el asistente de configuración descargue los componentes restantes.
+
+Componentes que NO hay que instalar aparte: el **JDK** (Android Studio incluye uno embebido) y la **librería de interfaces** (el asistente de proyectos añade Jetpack Compose automáticamente). Con Eclipse, en cambio, había que instalar el JDK desde la web de Oracle y el diseñador de interfaces vía *Install New Software*.
+
+### B2
+
+> **Enunciado.** En el análisis del entorno de diseño (apartado 8 del tema), explica para qué sirven: la *Toolbar*, la vista *Split*, la *Palette* y el *Component Tree*.
+
+**Solución.**
+
+- **Toolbar**: barra de herramientas con las acciones genéricas: crear proyectos y archivos, sincronizar Gradle, gestor de SDK, emulador y, especialmente, el botón **Run** (▶) para ejecutar la app en el dispositivo elegido.
+- **Vista *Split***: muestra a la vez el código Kotlin y la previsualización en vivo de la interfaz (`@Preview`), permitiendo diseñar viendo el resultado sin ejecutar la app.
+- ***Palette***: paleta de componibles en la vista *Design* de la que se arrastran los componentes (textos, botones, campos, contenedores) hasta el lienzo.
+- ***Component Tree***: árbol que resume todos los componentes colocados en el diseño, como un explorador de la jerarquía de la interfaz.
+
+### B3
+
+> **Enunciado.** ¿Qué diferencia hay entre una **actividad** (`ComponentActivity`) y una **función componible**? ¿Cuál de las dos "monta" a la otra y con qué sentencia?
+
+**Solución.** La **actividad** es la pantalla del sistema operativo que aloja la interfaz; la **función componible** es la que describe el contenido de esa interfaz. La actividad "monta" al componible mediante la sentencia **`setContent { ... }`** dentro de `onCreate`, como una ventana que contiene el diseño.
+
+### B4
+
+> **Enunciado.** ¿Qué hay que escribir para importar en Kotlin solo el componente `Button` de Material 3? ¿Y para importar toda la librería Material 3?
+
+**Solución.**
 
 ```kotlin
-val muestras = listOf(3, -1, 7, 0, -5, 12)
-
-// Imperativo: paso a paso
-var contador = 0
-for (n in muestras) {
-    if (n > 0) contador++
-}
-println(contador)
-
-// Declarativo/funcional: describes qué quieres
-val positivos = muestras.count { it > 0 }
-println(positivos)
+import androidx.compose.material3.Button   // solo Button
+import androidx.compose.material3.*        // toda la librería Material 3
 ```
 
-Ambos imprimen `4`. El segundo dice *qué* se calcula; el primero dice *cómo* recorrer y acumular.
-
-**B2.** El error de diseño: `max` es un parámetro del constructor que no se guarda como propiedad; en cuanto termina el constructor desaparece y `subir()` no podrá leerlo. Corrección: `private val max: Int`. El error de sintaxis: falta la llave de cierre de la clase.
-
-```kotlin
-class Termometro(private val max: Int) {
-    var actual = 0
-    fun subir() {
-        if (actual < max) actual++
-    }
-}
-```
-
-**B3.**
-
-```kotlin
-data class Alumno(val nombre: String, val grupo: String)
-
-fun delGrupo(alumnado: List<Alumno>): List<Alumno> = alumnado.filter { it.grupo == "2DAM" }
-```
-
-**B4.**
-
-```kotlin
-onClick = { contador = contador + 1 }   // o, más idiomático: { contador++ }
-```
-
-En Compose no existe `actualizarEtiqueta()`: al ser el contador estado observable, la etiqueta se redibuja sola. Ese es precisamente el punto del ejercicio.
+La importación se escribe justo después de la declaración del paquete (si existe), y en la práctica el IDE la añade automáticamente con Alt+Intro sobre el elemento en rojo.
 
 ## Bloque C — Primer proyecto
 
-**C1.**
+### C1
+
+> **Enunciado.** Instala Android Studio (si no lo tienes ya) siguiendo los pasos del apartado 6 del tema, captura la pantalla de bienvenida y crea un proyecto nuevo *Empty Activity* llamado `MiPrimeraInterfaz`.
+
+**Solución.** Tras completar el asistente de instalación y el primer arranque, la pantalla de bienvenida ofrece *New Project* / *Open*. Se elige **New Project → Empty Activity (Compose)**, se escribe el nombre `MiPrimeraInterfaz` y se deja el resto por defecto. La captura debe mostrar el asistente con el nombre escrito y, si se quiere, el proyecto ya abierto con el archivo `MainActivity.kt` visible.
+
+### C2
+
+> **Enunciado.** Localiza en el proyecto generado el archivo donde vive la interfaz (`MainActivity.kt`) y las tres vistas del editor (*Code*, *Split*, *Design*). Haz una captura de cada modo.
+
+**Solución.** El archivo está en `app/src/main/java/<paquete>/MainActivity.kt`. Arriba a la derecha del editor aparecen las tres pestañas: **Code** (solo código Kotlin), **Split** (código + previsualización) y **Design** (solo previsualización). Las capturas deben mostrar la misma función `Greeting` renderizada en los tres modos. Es normal que en *Code* no haya nada visual: la previsualización aparece en cuanto el editor detecta funciones componibles (o al añadir `@Preview`, ver C5).
+
+### C3
+
+> **Enunciado.** Modifica el componible de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos `Text`, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.
+
+**Solución.**
 
 ```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MiPrimeraInterfaz()
+        }
+    }
+}
+
 @Composable
-fun Presentacion(modifier: Modifier = Modifier) {
+fun MiPrimeraInterfaz() {
     Column(
-        modifier = modifier.fillMaxSize().padding(32.dp),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Tu Nombre", style = MaterialTheme.typography.displaySmall)
-        Spacer(Modifier.height(8.dp))
-        Text("2º DAM · Desarrollo de Interfaces", style = MaterialTheme.typography.bodyLarge)
+        Text("Tu Nombre")
+        Text("2º DAM · Desarrollo de Interfaces")
     }
 }
 ```
 
-Los tamaños `displaySmall` y `bodyLarge` vienen del tema Material 3; centrar es tarea de los *arrangement* del contenedor, no del texto.
+El centrado lo hace el contenedor `Column` con sus parámetros de disposición (`verticalArrangement` y `horizontalAlignment`), no el texto. Al ejecutar (Run ▶ con el emulador arrancado) debe verse la pantalla con los dos textos centrados, ocupando toda la pantalla del dispositivo virtual.
 
-**C2 y C3.**
+### C4
+
+> **Enunciado.** Sustituye el contenido por una fila con dos botones **Aceptar** y **Cancelar** (como el caso práctico 2 del tema). Hazlo primero desde la vista *Code* y luego prueba a arrastrar un componente desde la paleta en la vista *Design*. Comentario: ¿qué observas?
+
+**Solución.**
 
 ```kotlin
 @Composable
-fun AceptarCancelar(modifier: Modifier = Modifier) {
-    var estado by remember { mutableStateOf("Sin acción") }
-
-    Column(
-        modifier = modifier.fillMaxSize().padding(24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+fun MiPrimeraInterfaz() {
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(estado, style = MaterialTheme.typography.titleLarge)
-        Spacer(Modifier.height(24.dp))
-        Row {
-            Button(onClick = { estado = "Has aceptado" }) {
-                Text("Aceptar")
-            }
-            Spacer(Modifier.width(12.dp))
-            OutlinedButton(onClick = { estado = "Has cancelado" }) {
-                Text("Cancelar")
-            }
+        Button(onClick = { }) {
+            Text("Aceptar")
+        }
+        Button(onClick = { }) {
+            Text("Cancelar")
         }
     }
 }
 ```
 
-`OutlinedButton` es el botón delineado de Material 3: la solución limpia es usar el componente que ya existe en la biblioteca.
+**Qué se observa:** al arrastrar un componente desde la paleta en la vista *Design*, Android Studio **escribe el mismo código Kotlin** en la vista *Code*: las dos vistas son espejos de un único código. No hay "doble verdad" como en otros entornos clásicos: lo que arrastras es lo que está en el archivo, y puedes ajustarlo a mano en cualquier momento.
 
-**C4.**
+### C5
 
-```kotlin
-@Composable
-fun ContadorConLimite(modifier: Modifier = Modifier) {
-    var pulsaciones by remember { mutableStateOf(0) }
+> **Enunciado.** Añade una función `@Preview` a tu componible y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?
 
-    Column(
-        modifier = modifier.fillMaxSize().padding(24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Pulsaciones: $pulsaciones", style = MaterialTheme.typography.headlineMedium)
-        Spacer(Modifier.height(16.dp))
-        Button(onClick = { pulsaciones++ }, enabled = pulsaciones < 10) {
-            Text("Sumar")
-        }
-        Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = { pulsaciones = 0 }) {
-            Text("Reset")
-        }
-    }
-}
-```
-
-La condición `enabled = pulsaciones < 10` es **estado derivado**: se calcula a partir del estado en cada recomposición. Guardarla en otra variable sería duplicar estado y abrir la puerta a inconsistencias.
-
-**C5.**
+**Solución.**
 
 ```kotlin
 @Preview(showBackground = true)
 @Composable
-fun PresentacionPreview() {
-    MaterialTheme { Presentacion() }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ContadorInicialPreview() {
-    MaterialTheme { ContadorConLimite() }
+fun MiPrimeraInterfazPreview() {
+    MiPrimeraInterfaz()
 }
 ```
 
-Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecutar la app. Puedes tener todas las que quieras, cada una mostrando un estado distinto.
-
-## Bloque D — Integración
-
-**D1.** Interfaz de calculadora (solo UI):
-
-```kotlin
-@Composable
-fun CalculadoraUI(modifier: Modifier = Modifier) {
-    var visor by remember { mutableStateOf("0") }
-
-    Column(modifier = modifier.fillMaxWidth().padding(16.dp)) {
-        Text(
-            text = visor,
-            style = MaterialTheme.typography.displayMedium,
-            textAlign = TextAlign.End,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
-        )
-
-        val filas = listOf(
-            listOf("7", "8", "9", "÷"),
-            listOf("4", "5", "6", "×"),
-            listOf("1", "2", "3", "−"),
-            listOf("C", "0", ",", "+")
-        )
-        filas.forEach { fila ->
-            Row(Modifier.fillMaxWidth()) {
-                fila.forEach { tecla ->
-                    Button(
-                        onClick = {
-                            visor = if (visor == "0" || tecla == "C") tecla else visor + tecla
-                        },
-                        modifier = Modifier.weight(1f).padding(4.dp)
-                    ) {
-                        Text(tecla)
-                    }
-                }
-            }
-        }
-        Row(Modifier.fillMaxWidth()) {
-            Button(
-                onClick = { visor += "=" },
-                modifier = Modifier.weight(2f).padding(4.dp)
-            ) { Text("=") }
-        }
-    }
-}
-```
-
-```text
-┌──────────────────────────┐
-│                       0  │  <- visor (displayMedium, alineado a la derecha)
-│                          │
-│  [7]   [8]   [9]   [÷]   │
-│  [4]   [5]   [6]   [×]   │
-│  [1]   [2]   [3]   [−]   │
-│  [C]   [0]   [,]   [+]   │
-│  [        =         ]    │  <- tecla doble (weight 2f)
-└──────────────────────────┘
-```
-
-**Reflexión exigida:** no guardamos el resultado todavía porque la unidad es de **interfaz**: aún no hay lógica de cálculo (eso llegaría con la capa de modelo/dominio, p. ej. un ViewModel). Guardar "resultado" sin motor de cálculo sería estado falso.
-
-**D2.** Refactor con componente `Tecla`:
-
-```kotlin
-@Composable
-fun Tecla(
-    etiqueta: String,
-    onPulsar: (String) -> Unit,
-    ancho: Float = 1f
-) {
-    Button(
-        onClick = { onPulsar(etiqueta) },
-        modifier = Modifier.weight(ancho).padding(4.dp)
-    ) {
-        Text(etiqueta, fontSize = 20.sp)
-    }
-}
-
-@Composable
-fun CalculadoraUI(modifier: Modifier = Modifier) {
-    var visor by remember { mutableStateOf("0") }
-
-    Column(modifier = modifier.fillMaxWidth().padding(16.dp)) {
-        Text(
-            visor,
-            style = MaterialTheme.typography.displayMedium,
-            textAlign = TextAlign.End,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp)
-        )
-        listOf(
-            listOf("7", "8", "9", "÷"),
-            listOf("4", "5", "6", "×"),
-            listOf("1", "2", "3", "−"),
-            listOf("C", "0", ",", "+")
-        ).forEach { fila ->
-            Row(Modifier.fillMaxWidth()) {
-                fila.forEach { tecla ->
-                    Tecla(tecla, onPulsar = { t ->
-                        visor = if (visor == "0" || t == "C") t else visor + t
-                    })
-                }
-            }
-        }
-        Row(Modifier.fillMaxWidth()) {
-            Tecla("=", onPulsar = { t -> visor += t }, ancho = 2f)
-        }
-    }
-}
-```
-
-**Ventaja frente a copiar/pegar:** la tecla está definida una sola vez; cambiar su estilo (tamaño de fuente, padding, forma) cambia **todas** a la vez, y el comportamiento se inyecta desde fuera (`onPulsar`), así que el componente no sabe nada de cálculos: solo "me pulsaron con esta etiqueta". Es exactamente el modelo basado en componentes del tema 1.1.
-
-**D3.** Respuesta modelo (en comentario del código):
-
-```kotlin
-/*
- * (1) POO: instanciamos objetos (mutableStateOf, Modifier, Button) y la propia
- *     CalculadoraUI se comporta como un tipo con identidad y reutilización.
- * (2) Evento: cada onClick/onPulsar es un manejador que reacciona a la acción
- *     externa del usuario (la pulsación).
- * (3) Componente reutilizable: Tecla — definido una vez, usado 17 veces,
- *     parametrizado (etiqueta, ancho) y con comportamiento inyectado.
- * (4) Declarativo: CalculadoraUI describe la pantalla en función de `visor`;
- *     cuando visor cambia, Compose recompone automáticamente sin que
- *     nadie "actualice" los componentes a mano.
- */
-```
+Con solo guardar el archivo, la previsualización aparece en el panel derecho (vista *Split* o *Design*) sin arrancar el emulador. **Ventaja:** el ciclo de cambio→verificación pasa de minutos (arrancar emulador, desplegar APK) a **segundos** (guardar y mirar), lo que acelera enormemente el diseño de interfaces. Además se pueden declarar varias previews con contenidos distintos para ver varios estados de la misma pantalla a la vez.

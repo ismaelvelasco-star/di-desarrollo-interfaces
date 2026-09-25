@@ -15,11 +15,9 @@ Contenido de la unidad 1: paradigmas, modelos de programación, primer contacto 
 
 ## Teoría
 
-| Apartado | Título |
-|----------|--------|
-| 1.1 | [Paradigmas y modelos de programación](teoria/DI-U1.1.-ParadigmasModelosProgramacion.md) |
-| 1.2 | [Kotlin y Jetpack Compose: el salto a la UI declarativa](teoria/DI-U1.2.-KotlinJetpackCompose.md) |
-| 1.3 | [Herramientas de edición de interfaces](teoria/DI-U1.3.-HerramientasEdicionInterfaces.md) |
+La teoría completa de la unidad está en un único documento:
+
+- [1. Introducción a la confección de interfaces](teoria/DI-U1.1.-IntroduccionConfeccionInterfaces.md) — paradigmas, herramientas, instalación de Android Studio, primer proyecto con Kotlin y entorno de diseño.
 
 ## Presentaciones
 
