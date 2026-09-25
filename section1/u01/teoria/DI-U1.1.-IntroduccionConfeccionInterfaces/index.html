@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-introduccion-a-la-confeccion-de-interfaces" class="md-skip">
+        <a href="#introduccion-a-la-confeccion-de-interfaces" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -676,6 +676,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="7. Primer proyecto con Kotlin. El componible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-la-estructura-del-proyecto-que-es-cada-carpeta-y-para-que-sirve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. La estructura del proyecto: qué es cada carpeta y para qué sirve
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -947,6 +964,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="7. Primer proyecto con Kotlin. El componible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-la-estructura-del-proyecto-que-es-cada-carpeta-y-para-que-sirve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. La estructura del proyecto: qué es cada carpeta y para qué sirve
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1024,7 +1058,7 @@
   
 
 
-<h1 id="1-introduccion-a-la-confeccion-de-interfaces">1. Introducción a la confección de interfaces</h1>
+<h1 id="introduccion-a-la-confeccion-de-interfaces">Introducción a la confección de interfaces</h1>
 <div class="admonition abstract">
 <p class="admonition-title">Idea principal</p>
 <p>Este tema presenta el terreno de juego: qué es una interfaz, qué paradigmas hay detrás y, sobre todo, <strong>el entorno donde vamos a trabajar todo el módulo: Android Studio con Kotlin y Jetpack Compose</strong>. Al terminar tendremos el IDE instalado, creada la primera interfaz y conocidas las zonas del entorno de diseño.</p>
@@ -1070,12 +1104,6 @@
 </thead>
 <tbody>
 <tr>
-<td>Visual Studio</td>
-<td>Propietaria (<em>Community</em> libre)</td>
-<td>C#, HTML, JavaScript, XML</td>
-<td>visualstudio.microsoft.com/es/</td>
-</tr>
-<tr>
 <td>MonoDevelop</td>
 <td>Libre</td>
 <td>C#, Java, .NET, Python</td>
@@ -1088,18 +1116,6 @@
 <td>glade.gnome.org</td>
 </tr>
 <tr>
-<td>NetBeans</td>
-<td>Libre</td>
-<td>Java, HTML, PHP, Python</td>
-<td>netbeans.org</td>
-</tr>
-<tr>
-<td>Eclipse</td>
-<td>Libre</td>
-<td>Java, C++, PHP</td>
-<td>eclipse.org</td>
-</tr>
-<tr>
 <td><strong>Android Studio</strong></td>
 <td>Libre</td>
 <td><strong>Kotlin, Java</strong></td>
@@ -1107,21 +1123,18 @@
 </tr>
 </tbody>
 </table>
-<p>Tabla 1. Tabla comparativa de las herramientas de edición de interfaces.</p>
-<p><strong>4.1. Visual Studio.</strong> Entre sus fortalezas más importantes se encuentra el uso de lenguajes multiplataforma (C#, F#, Razor, HTML5, CSS, JavaScript, TypeScript, XAML y XML). Incorpora autocompletado de código con detección de problemas en tiempo real (líneas rojas y onduladas bajo el código sospechoso), depuración paso a paso con puntos de interrupción y administración del código en Git, GitHub y Azure DevOps.</p>
-<p><strong>4.2. MonoDevelop.</strong> Este IDE libre y gratuito proporciona las funcionalidades propias de un editor de texto, además de las propias de un entorno para depurar y gestionar proyectos. Pertenece al ecosistema de Unity (motor de videojuegos multiplataforma), lo que resulta interesante porque permite desarrollar para Windows, macOS y Linux.</p>
+<p>Tabla 1. Tabla comparativa de las herramientas de edición de interfaces (selección).</p>
+<p><strong>4.1. MonoDevelop.</strong> Este IDE libre y gratuito proporciona las funcionalidades propias de un editor de texto, además de las propias de un entorno para depurar y gestionar proyectos. Pertenece al ecosistema de Unity (motor de videojuegos multiplataforma), lo que resulta interesante porque permite desarrollar para Windows, macOS y Linux.</p>
 <figure>
 <p><img alt="Interfaz de la aplicación MonoDevelop con su diseñador visual." src="../assets/monodevelop.png" /></p>
 <figcaption>Fig. 2. Interfaz de la aplicación MonoDevelop. Fuente: temario del módulo.</figcaption>
 </figure>
-<p><strong>4.3. Glade.</strong> Este programa ayuda a la creación de interfaces gráficas de usuario y es muy utilizado en entornos XML, también para interfaces basadas en C, C++, C#, Java o Python. Su interfaz es bastante intuitiva y se domina invirtiendo poco tiempo. La principal diferencia respecto a las demás propuestas es que está diseñada pensando especialmente en GNU/Linux.</p>
+<p><strong>4.2. Glade.</strong> Este programa ayuda a la creación de interfaces gráficas de usuario y es muy utilizado en entornos XML, también para interfaces basadas en C, C++, C#, Java o Python. Su interfaz es bastante intuitiva y se domina invirtiendo poco tiempo. La principal diferencia respecto a las demás propuestas es que está diseñada pensando especialmente en GNU/Linux.</p>
 <figure>
 <p><img alt="Interfaz de la aplicación Glade con su paleta de componentes y propiedades." src="../assets/glade.png" /></p>
 <figcaption>Fig. 3. Interfaz de la aplicación Glade. Fuente: temario del módulo.</figcaption>
 </figure>
-<p><strong>4.4. NetBeans.</strong> Herramienta gratuita y de código abierto, uno de los entornos más utilizados para el desarrollo con Java (también PHP o Python). Permite extender el entorno con módulos que agrupan clases y que permiten interactuar con las APIs de NetBeans.</p>
-<p><strong>4.5. Eclipse.</strong> IDE de código abierto y multiplataforma. Dispone de la funcionalidad Graphical Layout, que permite visualizar el contenido en vista de diseño y desarrollar componentes visuales de forma rápida e intuitiva, con su panel Palette para crear botones, cuadros de texto, cuadrículas o insertar imágenes.</p>
-<p><strong>4.6. Android Studio.</strong> Es el IDE oficial para el desarrollo Android: gratuito, libre y multiplataforma, basado en IntelliJ IDEA. Ofrece todo lo anterior y además lo que da nombre al módulo moderno: la vista de diseño en vivo para <strong>Jetpack Compose</strong> (previsualización sin ejecutar la app), el emulador de dispositivos Android integrado y el soporte completo de <strong>Kotlin</strong>. Para completar esta asignatura vamos a utilizar <strong>Android Studio</strong>, puesto que su uso es el estándar profesional actual en el desarrollo de interfaces móviles.</p>
+<p><strong>4.3. Android Studio.</strong> Es el IDE oficial para el desarrollo Android: gratuito, libre y multiplataforma, basado en IntelliJ IDEA. Reúne las virtudes de los anteriores (editor con autocompletado y detección de errores en tiempo real, depuración paso a paso, integración con Git/GitHub) y añade lo que da nombre al módulo moderno: la vista de diseño en vivo para <strong>Jetpack Compose</strong> (previsualización sin ejecutar la app), el emulador de dispositivos Android integrado y el soporte completo de <strong>Kotlin</strong>. Para completar esta asignatura vamos a utilizar <strong>Android Studio</strong>, puesto que su uso es el estándar profesional actual en el desarrollo de interfaces móviles.</p>
 <figure>
 <p><img alt="Burbujas con lenguajes de programación de alto nivel, entre ellos Kotlin." src="../assets/lenguajes.png" /></p>
 <figcaption>Fig. 4. Lenguajes de programación de alto nivel. Fuente: temario del módulo.</figcaption>
@@ -1153,86 +1166,205 @@
 <li>En la galería de plantillas elegimos <strong>Empty Activity</strong> (la plantilla básica con Compose), damos nombre al proyecto (por ejemplo <code>MiPrimeraInterfaz</code>), y pulsamos <strong>Finish</strong>.</li>
 </ul>
 <p>Android Studio genera el proyecto con una actividad y su primer componible de ejemplo (<code>Greeting</code>). El resultado sería el mismo programándolo a mano, pero se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose. La vista de diseño (Split/Design) estará disponible desde el primer momento.</p>
+<h3 id="71-la-estructura-del-proyecto-que-es-cada-carpeta-y-para-que-sirve">7.1. La estructura del proyecto: qué es cada carpeta y para qué sirve</h3>
+<p>Al crear el proyecto, la vista <strong>Android</strong> del panel <em>Project</em> (a la izquierda del IDE) organiza los archivos de forma lógica en grupos que conviene dominar desde el primer día:</p>
+<figure>
+<p><img alt="Vista Android del panel Project de Android Studio con los módulos y los Gradle Scripts." src="../assets/vista-android-project.png" /></p>
+<figcaption>Fig. 5. La vista Android del panel Project agrupa el código por módulos y reúne todos los Gradle Scripts. Fuente: developer.android.com.</figcaption>
+</figure>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>MiPrimeraInterfaz/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── app/                          &lt;- el módulo principal de la app
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   ├── manifests/                &lt;- AndroidManifest.xml
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── java/ y kotlin+java/      &lt;- el código Kotlin (MainActivity.kt, componibles)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── res/                      &lt;- recursos no-código
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│       ├── drawable/             &lt;- imágenes e iconos
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│       ├── values/               &lt;- strings.xml (textos), themes.xml (tema), colores
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│       └── ...
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├── Gradle Scripts/
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── build.gradle.kts (Project)   &lt;- config del proyecto entero
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── build.gradle.kts (Module:app)&lt;- config del módulo app (dependencias Compose)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   ├── settings.gradle.kts          &lt;- qué módulos forman el proyecto
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   └── gradle.properties            &lt;- propiedades de la construcción
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>└── ...
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Qué guarda</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/manifests/AndroidManifest.xml</code></td>
+<td>La "carta de identidad" de la app</td>
+<td>Declara el nombre, el icono, las actividades (pantallas) y los permisos que necesita</td>
+</tr>
+<tr>
+<td><code>app/java</code> + <code>kotlin+java/</code></td>
+<td>El <strong>código fuente Kotlin</strong></td>
+<td>Aquí viven <code>MainActivity.kt</code> y todos los componibles: la lógica y la interfaz</td>
+</tr>
+<tr>
+<td><code>app/res/drawable/</code></td>
+<td>Imágenes e iconos</td>
+<td>Fondos, logos, gráficos que usa la interfaz</td>
+</tr>
+<tr>
+<td><code>app/res/values/strings.xml</code></td>
+<td>Los <strong>textos</strong> separados del código</td>
+<td>Permiten traducir la app cambiando un solo archivo (buena práctica: nunca textos "duros" en Kotlin)</td>
+</tr>
+<tr>
+<td><code>app/res/values/themes.xml</code></td>
+<td>El tema de la app</td>
+<td>Colores y tipografía de Material que heredan todas las pantallas</td>
+</tr>
+<tr>
+<td><code>build.gradle.kts (Project)</code></td>
+<td>La configuración global</td>
+<td>Versión de las herramientas de compilación y repositorios de descarga</td>
+</tr>
+<tr>
+<td><code>build.gradle.kts (Module :app)</code></td>
+<td>Dependencias y versión de la app</td>
+<td>Aquí está la lista de librerías: es donde vive <strong>Jetpack Compose</strong></td>
+</tr>
+<tr>
+<td><code>settings.gradle.kts</code></td>
+<td>La lista de módulos</td>
+<td>Define qué módulos (app, librerías propias...) forman el proyecto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gradle</strong> es el sistema de construcción: la herramienta que descarga las librerías, compila el código y genera el APK instalable. Cuando añadas una dependencia nueva, Android Studio te pedirá <em>Sync</em> (sincronizar): es Gradle descargándola y dejándola lista.</p>
 <h2 id="8-analisis-del-entorno-de-diseno-en-android-studio">8. Análisis del entorno de diseño en Android Studio</h2>
 <p>El área de diseño para desarrolladores en Android Studio permite desarrollar interfaces añadiendo componentes gráficos directamente, sin necesidad de programar líneas de código: estos se generan automáticamente y pueden consultarse en la pestaña <em>Code</em>. Es decir, desde <em>Design</em> es posible añadir todos los elementos que se quieran incluir en la aplicación, y desde la vista de código se ajusta el comportamiento exacto de cada objeto insertado.</p>
-<pre class="mermaid"><code>flowchart LR
-    P["Palette&lt;br/&gt;(componentes)"] --&gt; L["Lienzo / Preview&lt;br/&gt;(zona de diseño)"]
-    L --&gt; C["Code&lt;br/&gt;(Kotlin generado)"]
-    C -.-&gt;|"edición manual"| L
-    style P fill:#e8d5f2
-    style L fill:#d5e8d4
-    style C fill:#dae8fc</code></pre>
 <p>A continuación se describen los diferentes grupos de herramientas que podemos encontrar, tanto los de tipo general como los específicos del área de diseño.</p>
-<p><strong>8.1. Toolbar.</strong> En la barra de herramientas se encuentran los iconos relativos a las acciones genéricas: creación de proyectos y archivos, sincronización de Gradle, gestor de SDK, emulador... Uno de los botones más importantes es el encargado de la ejecución de la app (<strong>Run</strong> ▶). Al hacer clic sobre la flecha que se encuentra a su derecha se podrá seleccionar el dispositivo (emulador o físico) sobre el que ejecutar.</p>
-<p><strong>8.2. Vista de diseño. General.</strong> La zona de diseño es la ventana principal del entorno con Compose: en ella se colocan los elementos de la interfaz. Android Studio ofrece tres modos combinables mediante pestañas: <strong>Code</strong> (solo código), <strong>Split</strong> (código y previsualización al mismo tiempo) y <strong>Design</strong> (solo previsualización). En la zona de previsualización se muestra el aspecto de la aplicación que se está implementando: podríamos decir que es el lienzo sobre el que dibujar la interfaz. Las funciones anotadas con <code>@Preview</code> se renderizan aquí en vivo, sin ejecutar la app.</p>
+<p><strong>8.1. Toolbar.</strong> En la barra de herramientas se encuentran los iconos relativos a las acciones genéricas: creación de proyectos y archivos, sincronización de Gradle, gestor de SDK, emulador... Uno de los botones más importantes es el encargado de la ejecución de la app (<strong>Run</strong> ▶). Al hacer clic sobre la flecha que se encuentra a su derecha (en realidad sobre el selector de dispositivo) se podrá seleccionar el emulador o dispositivo físico sobre el que ejecutar:</p>
+<figure>
+<p><img alt="Selector de dispositivos de la toolbar de Android Studio con el desplegable Available devices abierto." src="../assets/toolbar-dispositivos.png" /></p>
+<figcaption>Fig. 6. El selector de dispositivos de la toolbar: emuladores disponibles (Pixel, Wear OS...), emparejar por Wi-Fi y acceso al Device Manager. Fuente: developer.android.com.</figcaption>
+</figure>
+<p><strong>8.2. Vista de diseño. General.</strong> La zona de diseño es la ventana principal del entorno con Compose: en ella se colocan los elementos de la interfaz. Android Studio ofrece tres modos combinables mediante pestañas: <strong>Code</strong> (solo código), <strong>Split</strong> (código y previsualización al mismo tiempo) y <strong>Design</strong> (solo previsualización). En la zona de previsualización se muestra el aspecto de la aplicación que se está implementando: podríamos decir que es el lienzo sobre el que dibujar la interfaz. Las funciones anotadas con <code>@Preview</code> se renderizan aquí en vivo, sin ejecutar la app:</p>
+<figure>
+<p><img alt="Vista Split de Android Studio: código Kotlin a la izquierda y preview de Compose renderizada a la derecha." src="../assets/vista-split.png" /></p>
+<figcaption>Fig. 7. La vista Split: el código Kotlin a la izquierda y la preview de la interfaz renderizándose en vivo a la derecha (indicador "Up-to-date"). Fuente: developer.android.com.</figcaption>
+</figure>
 <p><strong>8.3. Vista de diseño. Palette.</strong> En la vista <em>Design</em> aparece la paleta de componibles, que recoge todos los componentes, contenedores y propiedades que se utilizan en la creación de una interfaz Compose. Desde ella se realiza todo el diseño, ya que incorpora los elementos habituales: textos y botones, campos de texto, casillas de verificación, contenedores de disposición (columnas, filas, cajas), etc. Los componentes gráficos son los elementos que permiten al usuario interaccionar con la aplicación; cada uno corresponde con una función de Kotlin con sus propios parámetros. Para insertarlos en la zona de diseño basta con hacer clic sobre el componente y arrastrarlo hasta el punto exacto en el que se va a ubicar.</p>
-<p><strong>8.4. Vista de diseño. Structure.</strong> La última sección del entorno recibe el nombre de <em>Component Tree/Structure</em> y está formada por dos partes claramente diferenciadas: el árbol de componentes y el panel de propiedades (<em>Attributes</em>).</p>
+<p><strong>8.4. Vista de diseño. Structure.</strong> La última sección del entorno está formada por el árbol de componentes y el panel de propiedades (<em>Attributes</em>).</p>
 <ul>
 <li><strong>Component Tree</strong>: muestra un resumen de todos los componentes colocados en el diseño, como si de un explorador de carpetas se tratase, pero con los elementos de la interfaz. Aparece el nombre de la función componible (por ejemplo <code>Button</code> o <code>Text</code>), que es el nombre del componente; el texto que se muestra al usuario puede ser diferente y, en la mayor parte de los casos, lo será.</li>
 <li><strong>Attributes</strong>: cada componente dispone de diferentes propiedades modificables desde este panel, entre ellas el texto mostrado, la alineación o el color de fondo. Propiedades típicas de un botón son su <code>text</code> (el contenido que ve el usuario) y <code>enabled</code>, que permite habilitar o deshabilitar su funcionalidad, entre otras de aspecto.</li>
 </ul>
+<p><strong>8.5. Tipos de proyecto nuevos.</strong> Al crear un <em>New Project</em>, la galería de plantillas de Android Studio ofrece varios puntos de partida. Conviene saber qué es cada uno y en qué se diferencia de los demás:</p>
+<table>
+<thead>
+<tr>
+<th>Plantilla</th>
+<th>Qué genera</th>
+<th>Cuándo usarla</th>
+<th>Diferencia con las demás</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Empty Activity</strong></td>
+<td>Una actividad con un componible vacío y Compose ya configurado</td>
+<td>La de este módulo: partir de cero con la interfaz limpia</td>
+<td>Es la más mínima: sin navegación ni componentes precolocados</td>
+</tr>
+<tr>
+<td><strong>Empty Views Activity</strong></td>
+<td>Una actividad con layout XML (sistema clásico de vistas)</td>
+<td>Solo para mantener apps antiguas que usan Views</td>
+<td>La contraria a la anterior: UI imperativa con XML, sin Compose</td>
+</tr>
+<tr>
+<td><strong>Compose Activity</strong> (Basic /_variantes de material)</td>
+<td>Actividad con estructura Material ya montada (Scaffold, tema)</td>
+<td>Cuando quieres arrancar con el esqueleto Material listo</td>
+<td>Igual que Empty pero con más piezas preconstruidas</td>
+</tr>
+<tr>
+<td><strong>Bottom Navigation / Navigation Drawer / Navigation Views</strong></td>
+<td>Actividad con menú de navegación inferior/lateral y varias pantallas ya conectadas</td>
+<td>Apps con varias secciones (Inicio, Perfil, Ajustes...)</td>
+<td>Incluye <em>navigation</em> ya montado: cambiar de pantalla sin escribirlo</td>
+</tr>
+<tr>
+<td><strong>Phone/Tablet, Wear OS, TV, Auto, Glass</strong></td>
+<td>Proyectos para el factor de forma elegido</td>
+<td>Apps para reloj, televisión, coche...</td>
+<td>Cambia el tipo de dispositivo objetivo (y las librerías de UI asociadas)</td>
+</tr>
+</tbody>
+</table>
+<p>Tabla 2. Tipos de plantilla de proyecto nuevo y sus diferencias.</p>
+<p>Todas comparten la misma estructura de carpetas que vimos en el apartado 7.1; lo que cambia es el contenido inicial generado y las librerías incluidas. En este módulo usaremos <strong>Empty Activity</strong>, que nos deja el lienzo limpio para construir la interfaz desde cero.</p>
 <h2 id="9-caso-practico-1-creacion-de-una-pantalla">9. Caso práctico 1: "Creación de una pantalla"</h2>
 <p><strong>Planteamiento.</strong> Los pasos imprescindibles para la creación de una pantalla con Compose son: declarar la función componible, describir su contenido y asignarla a la actividad con <code>setContent</code>. Implementa una pantalla desde cero utilizando solo el código de programación, es decir, sin utilizar la vista <em>Design</em>. Tras realizar este desarrollo, ¿cuál es una de las grandes diferencias que puedes observar entre las dos formas de creación descritas?</p>
 <p><strong>Nudo.</strong> En el siguiente código se muestra cada uno de los pasos descritos en el planteamiento: la actividad monta el contenido con <code>setContent</code> y la función componible <code>MiPrimeraInterfaz</code> describe lo que se ve en pantalla (un texto centrado).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w">                        </span><span class="c1">// paso 2: asignar a la actividad</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">            </span><span class="n">MiPrimeraInterfaz</span><span class="p">()</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nd">@Composable</span><span class="w">                                  </span><span class="c1">// paso 1: declarar el componible</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">MiPrimeraInterfaz</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">                    </span><span class="c1">// paso 3: describir el contenido</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">"Mi primera interfaz"</span><span class="p">)</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">setContent</span><span class="w"> </span><span class="p">{</span><span class="w">                        </span><span class="c1">// paso 2: asignar a la actividad</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">            </span><span class="n">MiPrimeraInterfaz</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nd">@Composable</span><span class="w">                                  </span><span class="c1">// paso 1: declarar el componible</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">MiPrimeraInterfaz</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">                    </span><span class="c1">// paso 3: describir el contenido</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">"Mi primera interfaz"</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">}</span>
 </code></pre></div>
 <p>Código 2. Código de creación de la primera pantalla.</p>
 <p><strong>Desenlace.</strong> El resultado del código anterior es una pantalla como la que se muestra a continuación, con el texto centrado sobre el fondo de la app. A diferencia de las ventanas de escritorio clásicas, no hay que indicar tamaño ni visibilidad: la interfaz ocupa toda la pantalla del dispositivo y se adapta a ella.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────┐
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                         │
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│                         │
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   Mi primera interfaz   │
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│                         │
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│                         │
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>└─────────────────────────┘
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌─────────────────────────┐
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│                         │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│                         │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   Mi primera interfaz   │
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│                         │
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│                         │
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>└─────────────────────────┘
 </code></pre></div>
 <p>Es importante destacar que una de las principales diferencias a la hora de crear la interfaz directamente con código es que la vista <em>Split/Design</em> seguirá disponible para cualquier función <code>@Preview</code> que añadamos, pero no se genera automáticamente: la previsualización hay que declararla expresamente.</p>
 <h2 id="10-caso-practico-2-creacion-de-un-boton">10. Caso práctico 2: "Creación de un botón"</h2>
 <p><strong>Planteamiento.</strong> A lo largo del tema hemos analizado que la vista en modo <em>Design/Split</em> permite colocar elementos en la interfaz mientras se muestra una previsualización del resultado final. Utilizando esta vista, crea dos botones que muestren las opciones <strong>Aceptar</strong> y <strong>Cancelar</strong>.</p>
 <p><strong>Nudo.</strong> Partiendo del proyecto del caso práctico anterior, sustituimos el contenido del componible por una fila (<code>Row</code>) con dos botones. Podemos escribirlos directamente en la vista <em>Code</em> o arrastrarlos desde la paleta en la vista <em>Design</em>; en ambos casos el resultado es el mismo código Kotlin:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@Composable</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">MiPrimeraInterfaz</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">Row</span><span class="p">(</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="n">horizontalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Aceptar"</span><span class="p">)</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Cancelar"</span><span class="p">)</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@Composable</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">MiPrimeraInterfaz</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">Row</span><span class="p">(</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">horizontalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">verticalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterVertically</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Aceptar"</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Cancelar"</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="p">}</span>
 </code></pre></div>
 <p>Código 3. Dos botones en una fila.</p>
 <p><strong>Desenlace.</strong> La interfaz final que obtendremos corresponde con un resultado similar al que se muestra en la imagen, con los dos botones centrados en pantalla y la previsualización actualizándose en vivo en la vista <em>Split</em> mientras los colocamos.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────────────┐
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│                         │
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│                         │
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│  [Aceptar]  [Cancelar]  │
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│                         │
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│                         │
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>└─────────────────────────┘
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────┐
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                         │
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│                         │
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│  [Aceptar]  [Cancelar]  │
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│                         │
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│                         │
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>└─────────────────────────┘
 </code></pre></div>
 <h2 id="11-resumen-y-resolucion-del-caso-practico-de-la-unidad">11. Resumen y resolución del caso práctico de la unidad</h2>
 <p>En este tema hemos visto que la librería <strong>Jetpack Compose</strong> contiene todas las funciones necesarias para programar todo tipo de componentes visuales como botones, textos, campos de edición o casillas de verificación, entre muchos otros. Para lograr una interfaz básica, será necesario hacer uso de al menos una <strong>función componible</strong> que describa la pantalla y poder añadirle objetos que sirvan para interactuar entre el usuario y la aplicación.</p>
