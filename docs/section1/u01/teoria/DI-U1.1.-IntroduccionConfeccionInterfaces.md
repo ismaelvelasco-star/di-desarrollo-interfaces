@@ -123,11 +123,27 @@ Para la implementación de interfaces en Kotlin se va a utilizar **Android Studi
 
 Una vez completado este proceso, ya tendríamos instalado todo el entorno básico para el desarrollo de interfaces posterior.
 
-## 7. Primer proyecto con Kotlin. El componible
+## 7. Primer proyecto con Kotlin. La función componible
 
 La importación de las librerías de Compose se realiza usando la sentencia `import androidx.compose...`, como vimos en el apartado anterior. Lo habitual es que el propio IDE añada estas importaciones automáticamente (con **Alt+Intro** sobre el elemento en rojo).
 
-Uno de los elementos más importantes de Compose es la **función componible**: una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz. Sobre ella se añaden el resto de elementos. Se puede confundir el componible raíz con la **actividad** (`ComponentActivity`), pero mientras que la primera define la interfaz como tal, la segunda es la pantalla del sistema que la aloja: dentro de una actividad encontramos el `setContent { }` que "monta" nuestros componibles.
+Uno de los elementos más importantes de Compose es la **función de componibilidad**, llamada a menudo **componible** a secas: una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz. La documentación oficial en español utiliza ambas formas ("función que admite composición" es la más formal); en este módulo diremos **función componible** la primera vez y **componible** en adelante. Sobre ella se añaden el resto de elementos.
+
+```kotlin
+@Composable                  // <- la ANOTACIÓN: marca la función
+fun Saludo() {               // <- la FUNCIÓN componible en sí
+    Text("Hola")
+}
+```
+
+Es importante distinguir los dos términos para no mezclarlos:
+
+| Término | Qué es | Ejemplo |
+|---------|--------|---------|
+| `@Composable` | La **anotación** que se escribe delante de la función | `@Composable fun Saludo()` |
+| Función componible (o componible) | La **función** marcada con esa anotación, que describe la interfaz | `Saludo()`, `Text()`, `Button()` |
+
+Se puede confundir el componible raíz con la **actividad** (`ComponentActivity`), pero mientras que la primera define la interfaz como tal, la segunda es la pantalla del sistema que la aloja: dentro de una actividad encontramos el `setContent { }` que "monta" nuestros componibles.
 
 La creación de nuestro primer proyecto se realiza en dos sencillos pasos:
 
