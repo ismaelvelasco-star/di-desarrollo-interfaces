@@ -1,10 +1,10 @@
 ---
-title: "UD 1 - 1.2 Kotlin y Jetpack Compose: el salto a la UI declarativa"
-description: De Swing a Compose: ventanas, botones y propiedades en la UI declarativa moderna, con el entorno Android Studio como editor visual.
-summary: Cómo se crea hoy lo que antes hacíamos con JFrame y JButton: primer proyecto Compose, componentes, propiedades, estado y previsualización en Android Studio.
+title: "UD 1 - 1.2 Kotlin y Jetpack Compose: la UI declarativa en acción"
+description: Primer proyecto Android con Kotlin y Jetpack Compose: componentes, propiedades, eventos, estado y recomposición.
+summary: Cómo se construye hoy una interfaz: primer proyecto Compose, componibles, estado con remember y mutableStateOf, previsualización y casos prácticos completos.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-outline"
 permalink: /di/unidad1/1.2
 categories:
@@ -14,19 +14,12 @@ tags:
     - Kotlin
     - Jetpack Compose
     - Android Studio
-
-# Relacionado con la tabla de contenidos
-toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"
 ---
 
-## 1.2. Kotlin y Jetpack Compose: el salto a la UI declarativa
+## 1.2. Kotlin y Jetpack Compose: la UI declarativa en acción
 
 !!! abstract "Idea principal"
-    Todo lo que el temario clásico construía con Java Swing (ventanas con JFrame, botones con JButton, editores visuales tipo WindowBuilder) hoy se construye con Kotlin y Jetpack Compose. La idea de fondo no cambia —componentes con propiedades que responden a eventos— pero la forma de expresarla sí: en lugar de crear y manipular objetos de ventana, describimos la interfaz como funciones que convierten estado en pantalla.
-
-Este tema es el corazón de la adaptación del módulo: aquí traducimos, concepto a concepto, el mundo Swing al mundo Compose.
+    Jetpack Compose es el kit de herramientas oficial para construir interfaces de usuario en Android con Kotlin. En lugar de diseñar ventanas en un editor gráfico y luego manipularlas desde código, **escribes la interfaz como funciones Kotlin que describen la pantalla para cada estado**, y el framework la actualiza sola cuando el estado cambia. Este tema es el primer contacto real: proyecto, componentes, eventos y estado.
 
 !!! info "Qué deberías saber al terminar"
     Al acabar este tema deberías poder:
@@ -35,16 +28,16 @@ Este tema es el corazón de la adaptación del módulo: aquí traducimos, concep
     - explicar qué es una función componible y escribir la primera;
     - usar componentes básicos (Text, Button, TextField) con sus propiedades;
     - manejar el estado con `remember` y `mutableStateOf`;
-    - usar la previsualización (`@Preview`) como sustituto del modo Design clásico.
+    - usar la previsualización (`@Preview`) como editor visual moderno.
 
 !!! tip "Mapa del tema"
     En este documento vamos a seguir esta secuencia:
 
-    1. de las librerías AWT y Swing a Compose: la evolución de las librerías de UI;
-    2. el entorno: Android Studio como editor de interfaces;
-    3. la primera pantalla: equivalencia con JFrame;
-    4. componentes, propiedades y eventos: equivalencia con JButton;
-    5. estado y recomposición: la diferencia de fondo;
+    1. qué es Jetpack Compose y por qué existe;
+    2. el entorno: Android Studio;
+    3. el primer proyecto y su anatomía;
+    4. componentes, propiedades y eventos;
+    5. estado y recomposición;
     6. casos prácticos resueltos.
 
 | Código | Descripción |
@@ -55,68 +48,61 @@ Este tema es el corazón de la adaptación del módulo: aquí traducimos, concep
 | CE 1.c | Se han modificado las propiedades de los componentes para adecuarlas a las necesidades de la aplicación. |
 | CE 1.d | Se ha adaptado el código generado por el editor para adaptarlo a las necesidades de la aplicación. |
 
-### 1. De AWT y Swing a Jetpack Compose
+### 1. ¿Qué es Jetpack Compose y por qué existe?
 
-Algunos lenguajes de programación (entre ellos Java) utilizan **librerías**: conjuntos de clases con sus propios atributos y métodos ya implementados, que pueden reutilizarse para cualquier desarrollo reduciendo considerablemente el tiempo de programación. Para implementar interfaces gráficas debemos usar librerías específicas.
+**Jetpack Compose** es el toolkit declarativo de UI para Android, basado en funciones de Kotlin. Su unidad básica no es una clase de ventana ni un archivo de layout: es la **función componible**, una función normal de Kotlin anotada con `@Composable` que **describe un trozo de interfaz**.
 
-**La historia de las librerías de UI en Java (y su heredera):**
-
-- **AWT (Abstract Window Toolkit)** se desarrolló en primer lugar. Permite crear interfaces gráficas importando el paquete `java.awt`. Sus clases clave son `Component` (los controles) y `Container` (la pantalla que los contiene). Su limitación: utiliza los controles nativos del sistema operativo, así que el aspecto y comportamiento cambian según la plataforma.
-- **Swing** supuso la evolución de AWT, eliminando limitaciones (como el uso de barras de desplazamiento) e incorporando múltiples componentes más avanzados con apariencia propia e independiente del sistema operativo. Su clase estrella: `JFrame`, la ventana sobre la que se añade todo lo demás.
-- **Jetpack Compose** es el equivalente moderno dentro del ecosistema Android/Kotlin: un **kit de herramientas declarativo** basado en funciones componibles en lugar de clases de ventana. No "construimos" la interfaz creando objetos y añadiéndolos a un contenedor: **describimos** la interfaz como funciones de Kotlin que reciben estado y devuelven pantalla.
-
-| Concepto clásico (Swing) | Equivalente en Compose |
-|---------------------------|------------------------|
-| `JFrame` (ventana) | `ComponentActivity` + componible raíz (`setContent { }`) |
-| `JPanel` (contenedor intermedio) | `Column`, `Row`, `Box` (contenedores de diseño) |
-| `JButton` (botón) | `Button { }` |
-| `JLabel` (etiqueta) | `Text()` |
-| `JTextField` (campo de texto) | `TextField()` / `OutlinedTextField()` |
-| Propiedades (text, enabled, font, background) | Parámetros del componible (`text`, `enabled`, `style`, `color`) |
-| Evento `ActionListener` | Lambda `onClick = { ... }` |
-| Vista Design (WindowBuilder) | `@Preview` + modo Split/Design de Android Studio |
-| Layouts (FlowLayout, BorderLayout, GridLayout) | `Column`, `Row`, `Box`, `LazyColumn` + `Modifier` |
-
-!!! note "Aclaración"
-    Al igual que en Java importábamos `javax.swing.*`, en Compose importamos las funciones de los paquetes `androidx.compose.foundation.*`, `androidx.compose.material3.*` y `androidx.compose.runtime.*`. El IDE añade las importaciones automáticamente (Alt+Intro en un símbolo sin importar).
-
-### 2. El entorno: Android Studio como editor de interfaces
-
-El papel que en el temario clásico hacían Eclipse, NetBeans o Visual Studio lo hace hoy **Android Studio** (basado en IntelliJ IDEA): un IDE gratuito y multiplataforma que integra:
-
-- **Editor de código Kotlin** con autocompletado y detección de errores en tiempo real (las mismas líneas rojas onduladas que describía el temario clásico).
-- **Vista Split/Design + `@Preview`**: el equivalente moderno del modo Design de WindowBuilder. Junto al código ves la interfaz renderizada en vivo, y puedes arrastrar componentes desde la paleta a la vista de diseño.
-- **Emulador y dispositivos físicos** para ejecutar (Run ▶).
-- **Layout Inspector y Compose Preview** para inspeccionar la jerarquía de componentes.
-- **Integración con Git/GitHub** para el control de versiones del proyecto.
-
-Instalación: se descarga de <https://developer.android.com/studio> y el asistente deja las opciones por defecto. Requiere el **JDK (Java Development Kit)**, que el propio instalador de Android Studio incluye (Embedded JDK), a diferencia del proceso clásico donde había que instalarlo aparte desde Oracle.
-
-Para crear el primer proyecto: *File → New → New Project → Empty Activity* (plantilla Compose), nombre de la app, y Finish. El IDE genera un proyecto Kotlin con `MainActivity.kt` y su primer componible.
-
-### 3. La primera pantalla: equivalencia con JFrame
-
-El temario clásico creaba su primera ventana así:
-
-```java
-// Java + Swing (temario clásico)
-import javax.swing.*;
-
-public class MiPrimeraVentana {
-    public static void main(String[] args) {
-        JFrame f = new JFrame("Mi primera ventana");
-        f.setSize(400, 400);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
-    }
-}
+```mermaid
+flowchart LR
+    E["Estado"] -->|"descripción declarativa"| U["Pantalla"]
+    U -->|"evento del usuario"| C["Cambio de estado"]
+    C -->|"recomposición automática"| U
+    style E fill:#e8d5f2
+    style U fill:#d5e8d4
+    style C fill:#ffe6cc
 ```
 
-Los tres pasos imprescindibles eran: indicar el tamaño, indicar que permanezca visible y establecer la acción de cierre. **El mismo programa en Kotlin + Compose:**
+Características clave:
+
+- **Declarativo**: describes QUÉ se ve para cada estado, no CÓMO actualizarlo.
+- **100% Kotlin**: la UI es código Kotlin normal (funciones, `if`, bucles `for`, variables).
+- **Componentes por defecto**: `Text`, `Button`, `TextField`, `Column`, `Row`, `Image`... listos para usar.
+- **Previsualización en vivo**: `@Preview` renderiza la interfaz en el IDE sin ejecutar la app.
+- **Material 3 integrado**: colores, tipografía y formas del sistema de diseño de Google listos.
+
+En Android Studio se programa en Kotlin y se apoya en **librerías**: conjuntos de clases y funciones ya implementadas que se reutilizan para cualquier desarrollo, reduciendo el tiempo de programación. Compose vive en los paquetes `androidx.compose.*`.
+
+### 2. El entorno: Android Studio
+
+**Android Studio** (basado en IntelliJ IDEA) es el IDE oficial: gratuito, multiplataforma e integra todo lo necesario:
+
+- **Editor Kotlin** con autocompletado y detección de errores en tiempo real (líneas rojas onduladas).
+- **Vista Split/Design**: código y previsualización renderizada lado a lado; también modo arrastrar-y-soltar.
+- **Emulador de Android** integrado para ejecutar la app (Run ▶).
+- **Layout Inspector** para inspeccionar la jerarquía de componentes en ejecución.
+- **Git/GitHub** integrado para el control de versiones.
+
+Instalación: <https://developer.android.com/studio> con las opciones por defecto del asistente. Incluye el **JDK** embebido y gestiona el SDK de Android automáticamente: no hay que instalar nada aparte.
+
+### 3. El primer proyecto y su anatomía
+
+*File → New → New Project → Empty Activity* (plantilla Compose), nombre, y Finish. Android Studio genera la estructura:
+
+```text
+DIUnidad1/
+├── app/src/main/java/com/example/diunidad1/
+│   └── MainActivity.kt        <- aquí vive la UI (Compose)
+├── app/src/main/res/values/
+│   ├── strings.xml             <- textos
+│   ├── themes.xml              <- tema
+│   └── ...
+└── app/build.gradle.kts        <- dependencias (incluye BOM de Compose)
+```
+
+El corazón es `MainActivity.kt`:
 
 ```kotlin
-// Kotlin + Jetpack Compose (hoy)
-package com.example.miprimainterfaz
+package com.example.diunidad1
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -128,12 +114,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {                       // <- el "JFrame": la ventana de la app
+        setContent {                    // <- punto de entrada de la UI
             MaterialTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MiPrimeraInterfaz(Modifier.padding(innerPadding))
@@ -152,29 +137,24 @@ fun MiPrimeraInterfaz(modifier: Modifier = Modifier) {
 }
 ```
 
-Observa las equivalencias:
+Anatomía del código:
 
-- `setContent { ... }` hace de ventana: es el punto donde la actividad "monta" su interfaz.
-- `Scaffold` aporta la estructura básica de pantalla (como el content pane del `JFrame`).
-- No hay `setSize` ni `setVisible`: **la app es siempre visible y se adapta al tamaño de la pantalla del dispositivo**. El concepto "tamaño de ventana" se sustituye por diseño adaptativo (pantallas de móvil, tablet, foldable...).
-- No hay `setDefaultCloseOperation`: el ciclo de vida de la app lo gestiona el sistema (botón Inicio, multitarea...), como vimos en PMDM.
+| Pieza | Papel |
+|-------|-------|
+| `ComponentActivity` | La "pantalla" del sistema operativo que aloja la UI |
+| `setContent { ... }` | Monta la interfaz declarativa dentro de la actividad |
+| `MaterialTheme` | Aplica colores, tipografía y formas de Material 3 |
+| `Scaffold` | Estructura básica de pantalla (barras, zona de contenido) |
+| `MiPrimeraInterfaz` | **Tu primer componible**: describe el contenido |
 
-Al ejecutarlo en el emulador, el resultado es una pantalla con el texto "Mi primera interfaz" centrado-izquierda, con el tema Material 3 (colores y tipografía por defecto) y la barra de estado del sistema arriba. En un Pixel 7 emulado se ve así, esquemáticamente:
+No existe el concepto clásico de "tamaño de ventana": la app se adapta a la pantalla del dispositivo (móvil, tablet, foldable) y su ciclo de vida lo gestiona el sistema.
 
-```text
-┌─────────────────────────┐
-│ ▂▂▂ 12:30        ▲ ▙ █ │  <- barra de estado
-│                         │
-│  Mi primera interfaz    │  <- Text(...)
-│                         │
-│                         │
-│                         │
-└─────────────────────────┘
-```
+!!! note "Nota"
+    Al escribir componibles, las importaciones de `androidx.compose.*` las añade el IDE con **Alt+Intro** sobre el símbolo en rojo. No hace falta memorizarlas.
 
-### 4. Componentes, propiedades y eventos: equivalencia con JButton
+### 4. Componentes, propiedades y eventos
 
-En el temario clásico, el segundo caso práctico añadía dos `JButton` ("Aceptar" y "Cancelar") desde la vista Design y modificaba su propiedad `text`. En Compose, los botones son funciones que se declaran dentro del componible:
+Los componentes de Compose son funciones con **parámetros** que equivalen a las clásicas "propiedades" de un control visual:
 
 ```kotlin
 @Composable
@@ -190,48 +170,43 @@ fun BotonesAceptarCancelar(modifier: Modifier = Modifier) {
             Text("Aceptar")
         }
         Spacer(modifier = Modifier.width(12.dp))
-        Button(
-            onClick = { /* acción al pulsar */ },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.error
-            )
-        ) {
+        OutlinedButton(onClick = { /* acción */ }) {
             Text("Cancelar")
         }
     }
 }
 ```
 
-Y su correspondencia con las propiedades clásicas del `JButton`:
+| Componente | Para qué | Propiedades típicas |
+|------------|----------|---------------------|
+| `Text` | Mostrar texto | `text`, `style`, `color`, `textAlign` |
+| `Button` | Botón relleno | `onClick`, `colors`, `enabled` |
+| `OutlinedButton` | Botón delineado | `onClick`, `colors`, `enabled` |
+| `TextField` | Campo de texto editable | `value`, `onValueChange`, `label` |
+| `Column` / `Row` / `Box` | Contenedores (vertical/horizontal/caja) | `verticalArrangement`, `horizontalAlignment` |
+| `Image` | Mostrar imagen | `painter`, `contentDescription` |
+| `Spacer` | Espacio en blanco | `modifier = Modifier.height(8.dp)` |
 
-| Propiedad Swing | Parámetro Compose |
-|------------------|-------------------|
-| `text` | contenido: `Text("Aceptar")` dentro del botón |
-| `background` | `colors = ButtonDefaults.buttonColors(containerColor = ...)` |
-| `enabled` | `enabled = true / false` |
-| `font`, `foreground` | `style` y `color` del `Text` interior |
-| addActionListener | `onClick = { ... }` |
+El **evento** no se registra aparte: la lambda `onClick` ES el manejador, declarado junto al componente. Componente, propiedades y comportamiento viven juntos — una de las grandes victorias de Compose.
 
-!!! example "Ejemplo: cómo queda en ejecución"
+!!! example "Cómo queda en ejecución"
     ```text
     ┌─────────────────────────┐
     │                         │
-    │   [ Aceptar ]  [ Cancelar ]   │   <- Row con dos Button
+    │  [ Aceptar ]  [ Cancelar ]  <- Row con Button + OutlinedButton
     │                         │
     └─────────────────────────┘
     ```
-    Dos botones Material 3 lado a lado (12 dp de separación), el primero con el color primario del tema y el segundo en tono de error (rojo), texto blanco centrado y la ondulación (ripple) característica al pulsarlos en el emulador.
+    Dos botones Material 3 lado a lado (12 dp de separación), relleno el primero y delineado el segundo, texto centrado y la ondulación (ripple) característica al pulsarlos en el emulador.
 
-El **evento** no se registra aparte con un listener: la lambda `onClick` **es** el manejador del evento, declarado junto al componente. Esta es una de las grandes victorias de Compose: componente, propiedades y comportamiento viven juntos.
+### 5. Estado y recomposición
 
-### 5. Estado y recomposición: la diferencia de fondo
-
-En Swing, cuando querías que un cambio de datos se reflejara en pantalla, tenías que llamar tú al método correspondiente (`label.setText(...)`). En Compose existe la **recomposición**: declaras la UI en función de un **estado**, y cuando el estado cambia, las funciones que dependen de él se vuelven a ejecutar automáticamente.
+La pieza que lo cambia todo: declaras la UI en función de un **estado observable**, y cuando el estado cambia, las funciones que dependen de él se **recomponen** (vuelven a ejecutarse) automáticamente.
 
 ```kotlin
 @Composable
 fun ContadorPulsaciones() {
-    var pulsaciones by remember { mutableStateOf(0) }   // estado
+    var pulsaciones by remember { mutableStateOf(0) }   // estado observable
 
     Column(
         modifier = Modifier.fillMaxSize().padding(24.dp),
@@ -246,25 +221,27 @@ fun ContadorPulsaciones() {
 }
 ```
 
-```text
-┌─────────────────────────┐        ┌─────────────────────────┐
-│                         │  clic  │                         │
-│   Pulsaciones: 0        │  ───►  │   Pulsaciones: 1        │  <- recomposición
-│                         │        │                         │     automática
-│      [ Púlsame ]        │        │      [ Púlsame ]        │
-└─────────────────────────┘        └─────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant U as Usuario
+    participant E as Estado (pulsaciones)
+    participant UI as Text
+    U->>E: pulsa botón (onClick)
+    E->>UI: pulsaciones = 1
+    UI->>UI: recomposición automática
+    Note over UI: "Pulsaciones: 1" en pantalla
 ```
 
-- `mutableStateOf(0)` crea el estado observable (el valor inicial es 0).
-- `remember` conserva el valor entre recomposiciones (mientras el composable siga en pantalla).
+- `mutableStateOf(0)` crea el estado observable (valor inicial 0).
+- `remember` conserva el valor entre recomposiciones.
 - `pulsaciones++` dentro de `onClick` cambia el estado; Compose detecta que `Text` lo lee y redibuja solo ese texto.
 
 !!! warning "Atención"
-    La equivalencia Swing no es literal: en Swing el programa *imperaba* el cambio (`setText`); en Compose *declaras* la dependencia. Mientras pienses "¿qué tengo que actualizar?" seguirás en Swing; cuando pienses "¿de qué estado depende esta pantalla?" habrás cambiado de paradigma.
+    Si una variable normal de Kotlin cambia, la pantalla no se entera. **Solo el estado observable (`mutableStateOf`) dispara la recomposición.** Y sin `remember`, el valor se resetearía en cada recomposición.
 
-### 6. La vista Design moderna: @Preview
+### 6. La previsualización: el editor visual moderno
 
-El modo Design de WindowBuilder tenía su heredero perfecto: la anotación **`@Preview`** sobre una función composable. Android Studio renderiza esa función en un panel lateral, sin ejecutar la app, y se actualiza mientras escribes (modo *Split*).
+La anotación **`@Preview`** sobre una función componible hace que Android Studio la renderice en un panel lateral sin ejecutar la app, actualizándose mientras escribes:
 
 ```kotlin
 @Preview(showBackground = true)
@@ -276,18 +253,17 @@ fun BotonesPreview() {
 }
 ```
 
-- `showBackground = true` muestra la interfaz sobre fondo blanco (simulando una pantalla real).
-- Puedes tener varias previews con distintos contenidos (por ejemplo, un botón habilitado y otro deshabilitado) — algo imposible con el Design clásico de una sola vista.
-- El modo *Design* del editor visual (arrastrar componentes de la paleta al lienzo) también existe y genera el código Kotlin correspondiente, igual que WindowBuilder generaba el Java.
-- **Interactive Mode** (icono de play en la preview) permite incluso pulsar los botones y navegar dentro de la previsualización sin ejecutar la app.
+- Puedes tener tantas previews como quieras (un botón habilitado, otro deshabilitado, un estado vacío, otro lleno).
+- El modo *Design* permite arrastrar componentes desde la paleta al lienzo, generando el código Kotlin.
+- **Interactive Mode** (icono play de la preview) permite pulsar botones y navegar la interfaz sin ejecutar nada.
 
 ### 7. Casos prácticos resueltos
 
-#### Caso práctico 1: "Creación de una pantalla" (antes: JFrame)
+#### Caso práctico 1: "Mi primera pantalla con estado"
 
-**Planteamiento.** Crear una interfaz desde cero usando solo código, sin el asistente visual, y comprobar el resultado en el emulador.
+**Planteamiento.** Crear una pantalla de bienvenida desde cero y comprobar su renderizado en preview y emulador.
 
-**Desarrollo.** Crea un proyecto *Empty Activity* y sustituye el componible por defecto por:
+**Desarrollo.**
 
 ```kotlin
 @Composable
@@ -304,9 +280,9 @@ fun PantallaBienvenida(modifier: Modifier = Modifier) {
 }
 ```
 
-**Desenlace.** En el emulador, pantalla con dos textos centrados vertical y horizontalmente. La gran diferencia respecto a la creación clásica "por asistente": aquí **todo es código desde el primer momento** — el asistente genera la plantilla, pero la interfaz completa la describe tu función; la vista previa (@Preview) es un espejo del código, no un editor que genera código oculto.
+**Desenlace.** En el emulador: dos textos centrados vertical y horizontalmente, con tipografías del tema. Todo es código desde el primer minuto: la preview es un espejo del código, no un editor que genera código oculto.
 
-#### Caso práctico 2: "Aceptar y Cancelar con comportamiento" (antes: dos JButton)
+#### Caso práctico 2: "Aceptar y Cancelar con comportamiento"
 
 **Planteamiento.** Dos botones que muestren cuál se ha pulsado en una etiqueta.
 
@@ -327,28 +303,28 @@ fun AceptarCancelar(modifier: Modifier = Modifier) {
         Row {
             Button(onClick = { mensaje = "Has aceptado" }) { Text("Aceptar") }
             Spacer(Modifier.width(12.dp))
-            Button(onClick = { mensaje = "Has cancelado" }) { Text("Cancelar") }
+            OutlinedButton(onClick = { mensaje = "Has cancelado" }) { Text("Cancelar") }
         }
     }
 }
 ```
 
-**Desenlace.** Al pulsar cada botón, la etiqueta superior cambia al instante sin una sola línea de "actualizar la etiqueta": el estado `mensaje` cambia y Compose recompone el `Text`. Con Swing habrías necesitado guardar la referencia del `JLabel` y llamar a `setText`; aquí el flujo de datos es automático.
+**Desenlace.** Al pulsar cada botón, la etiqueta superior cambia al instante sin una sola línea de "actualizar la etiqueta": cambia el estado `mensaje` y Compose recompone el `Text`. El flujo de datos es automático y unidireccional: evento → estado → pantalla.
 
 ### 8. Buenas prácticas
 
-- **Previews para todo**: cada componente con su `@Preview` (o varias) — es tu vista Design permanente y gratis.
+- **Previews para todo**: cada componente con su `@Preview` (o varias) — es tu editor visual permanente y gratis.
 - **Extrae componibles en cuanto repitas** código: si dos pantallas tienen el mismo encabezado, es un componible `Encabezado()`.
-- **Estilo al tema, no al componente**: usa `MaterialTheme.colorScheme` y `typography` en vez de colores y fuentes sueltos; cambiar el tema cambia toda la app.
-- **Depura el estado, no la pantalla**: si la UI no se actualiza, casi siempre es que el estado no es observable o no es `remember`ado donde toca.
+- **Estilo al tema, no al componente**: usa `MaterialTheme.colorScheme` y `typography` en vez de colores sueltos; cambiar el tema cambia toda la app.
+- **Depura el estado, no la pantalla**: si la UI no se actualiza, casi siempre es que el estado no es observable o no está recordado donde toca.
 
 ### 9. Errores frecuentes
 
 | Error frecuente | Por qué ocurre | Cómo evitarlo |
 |-----------------|----------------|---------------|
-| Escribir `Text("...")` sin importar y rendirse | Faltan importaciones de `androidx.compose` | Alt+Intro sobre el símbolo en rojo; el IDE las añade |
+| Escribir `Text("...")` sin importar y rendirse | Faltan importaciones de `androidx.compose` | Alt+Intro sobre el símbolo en rojo |
 | Estado que "se resetea" solo | `mutableStateOf` sin `remember` | Envolver siempre: `remember { mutableStateOf(...) }` |
-| Modificar una variable normal y esperar que la UI cambie | Kotlin no sabe que esa variable afecta a la pantalla | Solo el estado observable (`mutableStateOf`) dispara la recomposición |
+| Modificar una variable normal y esperar que la UI cambie | Kotlin no sabe que esa variable afecta a la pantalla | Solo el estado observable dispara la recomposición |
 | Pelear con tamaños fijos | Herencia del pensamiento "ventana de escritorio" | Pensar en adaptativo: `fillMaxSize`, `weight`, constraints |
 | Olvidar `dp` en paddings | `24` sin unidad no compila | `24.dp` (y para fuentes, `sp`) |
 
@@ -356,14 +332,14 @@ fun AceptarCancelar(modifier: Modifier = Modifier) {
 
 En este tema has aprendido que:
 
-- las librerías de UI evolucionaron de AWT a Swing y, en el mundo Android/Kotlin, a Jetpack Compose;
-- el editor visual moderno es Android Studio con su vista Split/Design y `@Preview`, heredero del modo Design de WindowBuilder;
-- `setContent` + `Scaffold` sustituyen a `JFrame`; los componentes (`Button`, `Text`, `TextField`, `Column`, `Row`) sustituyen a los `J*` de Swing;
-- las propiedades Swing se convierten en parámetros de las funciones componibles, y los listeners en lambdas `onClick`;
-- la diferencia de fondo es el estado observable y la recomposición automática frente a la actualización manual de la UI.
+- Jetpack Compose es el toolkit declarativo de UI para Android basado en funciones componibles Kotlin;
+- la unidad de construcción es la función `@Composable`, que describe la interfaz para un estado dado;
+- los componentes (`Text`, `Button`, `TextField`, `Column`...) reciben propiedades como parámetros y eventos como lambdas;
+- el estado observable (`remember` + `mutableStateOf`) y la recomposición automática sustituyen cualquier actualización manual de la pantalla;
+- `@Preview` es el editor visual moderno: previsualización en vivo, múltiples estados y modo interactivo.
 
 !!! success "Idea clave"
-    En Swing describías la ventana una vez y luego la perseguías con `setText`; en Compose describes la pantalla para cada estado y el framework hace el resto. La interfaz es una función del estado.
+    La interfaz es una función del estado: UI = f(estado). Cuando el estado cambia, la pantalla se redibuja sola. Todo lo demás del módulo construye sobre esta idea.
 
 ### 11. Para seguir practicando
 
@@ -375,6 +351,6 @@ En este tema has aprendido que:
 
 - Android Developers. *Jetpack Compose documentation*. <https://developer.android.com/develop/ui/compose>
 - Android Developers. *Thinking in Compose*. <https://developer.android.com/develop/ui/compose/mental-model>
+- Android Developers. *State and Jetpack Compose*. <https://developer.android.com/develop/ui/compose/state>
 - Kotlin Foundation. *Kotlin docs*. <https://kotlinlang.org/docs/home.html>
 - Real Decreto 450/2010. Módulo profesional 0488 Desarrollo de interfaces.
-- Temario clásico del módulo (material Java Swing) como base conceptual de la adaptación.

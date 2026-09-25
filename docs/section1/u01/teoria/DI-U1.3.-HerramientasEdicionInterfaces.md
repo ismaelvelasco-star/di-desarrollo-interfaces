@@ -4,7 +4,7 @@ description: Editores visuales e IDEs para construir interfaces: del panorama cl
 summary: Panorámica de herramientas propietarias y libres para editar interfaces, con la comparativa clásica actualizada y el flujo de trabajo moderno de diseño a código.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-outline"
 permalink: /di/unidad1/1.3
 categories:
@@ -15,11 +15,6 @@ tags:
     - Herramientas
     - Android Studio
     - Figma
-
-# Relacionado con la tabla de contenidos
-toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"
 ---
 
 ## 1.3. Herramientas de edición de interfaces
@@ -34,7 +29,7 @@ Si no se desarrolla utilizando componentes y se realiza de manera directa, se pr
 
     - comparar los IDE clásicos de edición de interfaces y sus licencias;
     - justificar la elección de Android Studio para este módulo;
-    - conocer herramientas complementarias actuales (Figma, Compose Multiplatform, Compose Preview).
+    - conocer herramientas complementarias actuales (Figma, Compose Multiplatform, Preview).
 
 | Código | Descripción |
 |--------|-------------|
@@ -56,20 +51,30 @@ Si no se desarrolla utilizando componentes y se realiza de manera directa, se pr
 
 **MonoDevelop.** IDE libre y gratuito con editor, depurador y gestión de proyectos. Perteneció al ecosistema de Unity (motor de videojuegos multiplataforma) e interesa porque permitía desarrollar para Windows, macOS y Linux.
 
-**Glade.** Ayuda a la creación de interfaces GTK y está muy ligado a entornos XML. Es intuitiva y rápida de aprender, y su diferencia principal es que está diseñada para GNU/Linux.
+<figure markdown>
+![MonoDevelop con su diseñador visual de interfaces Gtk#.](assets/monodevelop.png)
+<figcaption>MonoDevelop diseñando una ventana con su editor visual: paleta de componentes a la derecha, lienzo al centro y propiedades. Fuente: temario del módulo.</figcaption>
+</figure>
+
+**Glade.** Ayuda a la creación de interfaces GTK y está muy ligada a entornos XML. Es intuitiva y rápida de aprender, y su diferencia principal es que está diseñada para GNU/Linux.
+
+<figure markdown>
+![Glade, diseñador de interfaces GTK+ con paleta y propiedades.](assets/glade.png)
+<figcaption>Glade editando una ventana GTK+: paleta superior de componentes, lienzo central e inspección de propiedades a la derecha. Fuente: temario del módulo.</figcaption>
+</figure>
 
 **NetBeans.** Gratuito y de código abierto; junto a Eclipse, de los más usados para interfaces Java. Se extiende con módulos que agrupan clases y permiten interactuar con sus APIs.
 
-**Eclipse.** De código abierto y multiplataforma. Su Graphical Layout permitía visualizar el diseño y crear componentes visuales de forma rápida con su panel Palette (botones, cuadros de texto, cuadrículas, imágenes...). El temario clásico lo elegía como entorno de trabajo con el plugin WindowBuilder.
+**Eclipse.** De código abierto y multiplataforma. Su Graphical Layout permitía visualizar el diseño y crear componentes visuales de forma rápida con su panel Palette (botones, cuadros de texto, cuadrículas, imágenes...).
 
 !!! note "Aclaración"
-    En su momento, Eclipse se justificaba así: *"su uso es cada vez más frecuente en lo que respecta al desarrollo de interfaces de forma profesional"*. Hoy ese argumento lo cumple **Android Studio** para interfaces móviles: es el estándar de facto del desarrollo Android, con el mismo tipo de ventajas (gratuito, multiplataforma, editor visual, palette, control de versiones integrado).
+    MonoDevelop y Glade ilustran la idea permanente de este tema: **paleta de componentes + lienzo + panel de propiedades**. Ese patrón de editor visual es el mismo que hoy ofrece Android Studio con su vista Design para Compose.
 
 ### 2. El panorama actual
 
 | Nombre | Licencia | Enfoque | Papel hoy |
 |--------|----------|---------|-----------|
-| Android Studio | Libre (IntelliJ) | Kotlin/Java + Compose, XML | El IDE de este módulo |
+| Android Studio | Libre (IntelliJ) | Kotlin/Java + Compose | El IDE de este módulo |
 | IntelliJ IDEA | Community libre / Ultimate propietaria | Kotlin, Java, JVM | Base de Android Studio; apps de escritorio con Compose Multiplatform |
 | Visual Studio / VS Code | Propietaria / MIT | .NET / multilenguaje | Escritorio (WPF, WinUI), web y multiplataforma |
 | Figma | Freemium (proprietaria) | Diseño de interfaces | Estándar de diseño previo a codificar |
@@ -77,20 +82,29 @@ Si no se desarrolla utilizando componentes y se realiza de manera directa, se pr
 
 **Android Studio** reúne todo lo que pedíamos a los clásicos y más: editor visual (Design/Split + paleta arrastrable), `@Preview` en vivo, emulador integrado, Layout Inspector, profiler de rendimiento y Git/GitHub integrados.
 
-**Figma** ocupa un lugar nuevo en el flujo: **diseñar antes de programar**. El prototipo se comparte con el cliente y luego se traduce a Compose (incluso hay plugins que generan código Compose desde el diseño). Es el estándar de la industria para pasar de la idea al mockup.
+**Figma** ocupa un lugar nuevo en el flujo: **diseñar antes de programar**. El prototipo se comparte con el cliente y luego se traduce a componibles (incluso hay plugins que generan código Compose desde el diseño). Es el estándar de la industria para pasar de la idea al mockup.
 
 **Compose Multiplatform** extiende Compose más allá de Android: la misma UI declarativa para escritorio (Windows/macOS/Linux), iOS y web. Kotlin demuestra así que el paradigma aprendido en este módulo no se queda en el móvil.
+
+```mermaid
+flowchart LR
+    D["Diseño<br/>(Figma)"] --> C["Componibles Kotlin<br/>(Android Studio)"]
+    C --> P["@Preview<br/>validación en vivo"]
+    P --> E["Emulador / dispositivo"]
+    E --> G["Git / GitHub<br/>revisión y publicación"]
+    style D fill:#e8d5f2
+    style C fill:#d5e8d4
+```
 
 !!! example "Ejemplo: flujo de trabajo real 2026"
     1. La diseñadora monta el prototipo en Figma y lo comparte con el equipo.
     2. El equipo de desarrollo lo traduce a componibles en Android Studio (a veces con ayuda de plugins de generación).
     3. Cada componente se valida con `@Preview` y en el emulador.
     4. El código vive en GitHub; cada pull request revisa el diseño y la lógica.
-    Comparado con el flujo clásico (diseño en papel o mockup estático → WindowBuilder → Java), el ciclo es más corto y colaborativo.
 
 ### 3. Elección de herramienta: criterios
 
-A la hora de elegir entorno se sigue el mismo razonamiento del temario clásico: depende del lenguaje y del tipo de interfaz. En nuestro caso:
+A la hora de elegir entorno se aplica el mismo razonamiento de siempre: depende del lenguaje y del tipo de interfaz. En nuestro caso:
 
 - **Lenguaje**: Kotlin (moderno, seguro, soportado por Google como principal para Android).
 - **Plataforma**: Android en primer lugar (móvil), con salida natural a escritorio vía Compose Multiplatform.
@@ -108,24 +122,24 @@ A la hora de elegir entorno se sigue el mismo razonamiento del temario clásico:
 
 | Error frecuente | Por qué ocurre | Cómo evitarlo |
 |-----------------|----------------|---------------|
-| Instalar plugins clásicos (WindowBuilder) por inercia | El material antiguo lo menciona | Para Kotlin/Compose el "editor visual" ya viene integrado en Android Studio |
 | Empezar a codificar sin decidir la plataforma | Cada plataforma condiciona lenguaje y herramientas | Decidir primero: ¿escritorio, móvil, web? y luego cadena de herramientas |
 | Ignorar Figma y diseñar en la cabeza | "Total, es una app pequeña" | El mockup previo detecta problemas de flujo antes de escribir código |
 | Duplicar proyectos para "probar cosas" sin control de versiones | Prisas | Un solo repo, ramas para experimentos |
+| Tratar la preview como decoración | Se ejecuta la app para cada cambio | Preview + Interactive Mode validan en segundos sin emulador |
 
 ### 6. Resumen
 
 En este tema has aprendido que:
 
-- el panorama clásico (Visual Studio, MonoDevelop, Glade, NetBeans, Eclipse) sigue existiendo en proyectos heredados y comparte conceptos: palette, vista diseño/código, depuración;
-- hoy el estándar para interfaces móviles Kotlin es Android Studio, heredero directo de IntelliJ/Eclipse en cuanto a funcionalidades;
+- el panorama clásico (Visual Studio, MonoDevelop, Glade, NetBeans, Eclipse) sigue existiendo en proyectos heredados y comparte el patrón paleta + lienzo + propiedades;
+- hoy el estándar para interfaces móviles Kotlin es Android Studio, con vista Design y `@Preview`;
 - Figma añade la fase de diseño colaborativo previa al código;
 - Compose Multiplatform lleva la UI declarativa a escritorio, iOS y web con el mismo conocimiento.
 
 !!! success "Idea clave"
-    Las herramientas cambian (Eclipse → Android Studio, Palette → Compose Preview), pero el concepto de editor visual con generación de código y previsualización en vivo es el mismo desde hace 20 años. Aprende el concepto y sobrevivirás a cualquier herramienta.
+    Las herramientas cambian, pero el concepto de editor visual con generación de código y previsualización en vivo es el mismo desde hace 20 años. Aprende el concepto y sobrevivirás a cualquier herramienta.
 
-### 7. Para seguir praticando
+### 7. Para seguir practicando
 
 - Ejercicios de la unidad: `DI-U1.-Ejercicios.md` (bloque A, ejercicio de comparativa).
 - Explora el catálogo de Figma (figma.com/community) buscando "material 3 ui kit".
@@ -135,4 +149,4 @@ En este tema has aprendido que:
 - Android Studio. <https://developer.android.com/studio>
 - JetBrains, Compose Multiplatform. <https://www.jetbrains.com/lp/compose-multiplatform/>
 - Figma. <https://figma.com>
-- Temario clásico del módulo (material Java Swing) como base conceptual de la adaptación.
+- Temario del módulo como base conceptual de la adaptación.

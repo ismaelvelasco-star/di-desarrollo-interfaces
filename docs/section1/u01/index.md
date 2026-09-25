@@ -11,7 +11,7 @@ permalink: /di/unidad1
 
 # Unidad 1. Introducción a la confección de interfaces
 
-Contenido de la unidad 1: paradigmas, el salto de Swing a Compose y herramientas de edición.
+Contenido de la unidad 1: paradigmas, modelos de programación, primer contacto con Kotlin y Jetpack Compose, y herramientas de edición.
 
 ## Teoría
 

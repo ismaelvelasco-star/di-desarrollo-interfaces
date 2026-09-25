@@ -4,7 +4,7 @@ description: Paradigmas de programación y los modelos orientados a objetos, eve
 summary: De la programación imperativa a la declarativa: los paradigmas que hay detrás de toda interfaz de usuario, con Kotlin y Jetpack Compose como hilo conductor.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-outline"
 permalink: /di/unidad1/1.1
 categories:
@@ -14,11 +14,6 @@ tags:
     - Paradigmas
     - Kotlin
     - Jetpack Compose
-
-# Relacionado con la tabla de contenidos
-toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"
 ---
 
 ## 1.1. Paradigmas y modelos de programación
@@ -32,6 +27,20 @@ De manera tradicional se ha establecido una clasificación entre lenguajes de **
 
 - Los de **bajo nivel** se encuentran más cerca de lo que es capaz de entender un ordenador, ejercen un control directo sobre el hardware y están más alejados de la lógica humana (lenguaje máquina con 0 y 1, o lenguaje ensamblador). Resultan muy difíciles de entender por una persona.
 - Los de **alto nivel** pueden ser descritos utilizando reglas comprensibles por el programador, con un lenguaje más cercano al natural. Será durante el proceso de compilación cuando estos se traduzcan a un lenguaje de bajo nivel capaz de ser entendido por la máquina.
+
+<figure markdown>
+![Esquema del proceso de compilación: los lenguajes de alto nivel se traducen a código de bajo nivel.](assets/compilacion.png)
+<figcaption>El proceso de compilación traduce lenguajes de alto nivel (comprendibles por personas) a lenguajes de bajo nivel (comprendibles por la máquina). Fuente: temario del módulo.</figcaption>
+</figure>
+
+```mermaid
+flowchart LR
+    A["Kotlin (alto nivel)"] -->|"compilador Kotlin"| B["Bytecode JVM"]
+    B -->|"máquina virtual"| C["Instrucciones al hardware"]
+    style A fill:#e8d5f2
+    style B fill:#d5e8d4
+    style C fill:#dae8fc
+```
 
 Las herramientas desarrolladas a través de un lenguaje de programación, sea del tipo que sea, requieren del desarrollo de una **interfaz** que permita la interacción con el usuario; de lo contrario, se requeriría que todos fuéramos programadores expertos para utilizar cualquier aplicación atendiendo a su lenguaje fuente.
 
@@ -70,6 +79,11 @@ El modelo **imperativo** consiste en un conjunto de instrucciones ordenadas de f
 
 Algunos lenguajes conocidos que utilizan la programación imperativa son Java, C, C#, **Kotlin**, Python o Ruby.
 
+<figure markdown>
+![Burbujas con lenguajes de programación de alto nivel.](assets/lenguajes.png)
+<figcaption>Lenguajes de programación de alto nivel habituales en el desarrollo de software. Fuente: temario del módulo.</figcaption>
+</figure>
+
 ```kotlin
 // Imperativo puro: paso a paso, mutando estado
 var total = 0
@@ -97,11 +111,22 @@ println("Suma de pares: $total")
 ```
 
 !!! note "Aclaración"
-    **Jetpack Compose es declarativo**: describes qué debe mostrar la interfaz para un estado dado, y el framework se encarga de cómo renderizarlo y de actualizar la pantalla cuando el estado cambia. En el mundo Android clásico, los layouts XML también eran declarativos, pero el código que los manipulaba (con `findViewById` o ViewBinding) era imperativo. La diferencia la veremos en detalle en el tema 1.2.
+    **Jetpack Compose es declarativo**: describes qué debe mostrar la interfaz para un estado dado, y el framework se encarga de cómo renderizarlo y de actualizar la pantalla cuando el estado cambia.
 
 ### 3. Programación orientada a objetos, eventos y componentes
 
 Encontramos otros modelos de programación que incluyen características propias de los definidos anteriormente. Es el caso de la programación orientada a objetos, por eventos o por componentes. **La combinación de estos tres tipos resulta clave para el desarrollo de interfaces.**
+
+```mermaid
+flowchart TB
+    D["UI declarativa<br/>estado → pantalla"] --> IPOO
+    subgraph IPOO["Una interfaz Compose combina:"]
+        direction LR
+        O["POO<br/>objetos + métodos"] --- E["Eventos<br/>onClick / lambda"]
+        E --- C["Componentes<br/>@Composable"]
+    end
+    style D fill:#e8d5f2
+```
 
 #### 3.1. Modelo orientado a objetos
 
@@ -136,22 +161,15 @@ Button(onClick = { pulsaciones++ }) {
 La clave de este último modelo es la **reutilización de módulos de software desarrollados previamente**. Para llevar a cabo esta tarea, la mayoría de los entornos de desarrollo integrados (IDE) permiten desarrollar componentes visuales, permitiendo empaquetar el código para reutilizarlo posteriormente.
 
 ```kotlin
-// Un composable es un componente reutilizable: se define una vez
+// Un componible es un componente reutilizable: se define una vez...
 @Composable
-function Saludo(nombre: String) { }
+fun Saludo(nombre: String) {
+    Text(text = "Hola, $nombre")
+}
+
+// ...y se reutiliza como cualquier otro componente de la biblioteca
+// Saludo(nombre = "María")
 ```
-
-!!! warning "Atención (errata clásica)"
-    En Kotlin, las funciones se declaran con `fun`, no con `function`. El ejemplo correcto:
-
-    ```kotlin
-    @Composable
-    fun Saludo(nombre: String) {
-        Text(text = "Hola, $nombre")
-    }
-    ```
-    
-    Y desde cualquier otra parte de la app se reutiliza como un componente más: `Saludo(nombre = "María")`.
 
 ### 4. Los tres modelos juntos en una interfaz Compose
 
@@ -160,7 +178,7 @@ El siguiente fragmento reúne los tres modelos en una sola pantalla de Jetpack C
 ```kotlin
 @Composable
 fun PantallaContador() {
-    // POO + estado: la clase mutableStateOf guarda el valor
+    // POO + estado: mutableStateOf guarda el valor observable
     var pulsaciones by remember { mutableStateOf(0) }
 
     // Componente: Column organiza otros componentes
@@ -190,8 +208,8 @@ fun PantallaContador() {
 
 - **Elige el paradigma según la capa**: lógica de negocio imperativa/funcional, interfaz declarativa. Forzar un único estilo en todo el proyecto suele empeorar el resultado.
 - **Nombra los componentes por su función** (`PantallaContador`, `FilaAlumno`), igual que nombrarías una clase: son las piezas reutilizables de tu interfaz.
-- **Estado mínimo**: guarda solo el estado imprescindible y derive todo lo demás. Menos estado, menos errores de sincronización.
-- **Un componente, una responsabilidad**: si un composable hace tres cosas distintas, son tres componibles.
+- **Estado mínimo**: guarda solo el estado imprescindible y deriva todo lo demás. Menos estado, menos errores de sincronización.
+- **Un componente, una responsabilidad**: si un componible hace tres cosas distintas, son tres componibles.
 
 ### 6. Errores frecuentes
 
@@ -200,7 +218,7 @@ fun PantallaContador() {
 | Pensar que Compose es "imperativo con otra sintaxis" | Venimos de manipular la UI manualmente | Pensar en "qué muestra la pantalla para este estado", no en "qué pasos doy para actualizarla" |
 | Duplicar código de UI copiando y pegando | No se ve la UI como componentes | Extraer componibles con parámetros desde el primer momento |
 | Mezclar lógica de negocio dentro de los componibles | Todo acaba viviendo en la pantalla | Mantener la lógica fuera (ViewModel, casos de uso) y la UI como capa de presentación |
-| Escribir `function` en Kotlin | Arrastran la sintaxis de JavaScript | En Kotlin las funciones se declaran con `fun` |
+| Creer que "declarativo" significa "sin lógica" | Confusión paradigma ≠ complejidad | La lógica sigue ahí; lo que cambia es dónde vive y cómo se expresa |
 
 ### 7. Resumen
 
@@ -225,4 +243,4 @@ En este tema has aprendido que:
 - Android Developers. *Thinking in Compose*. <https://developer.android.com/develop/ui/compose/mental-model>
 - Kotlin Foundation. *Kotlin docs*. <https://kotlinlang.org/docs/home.html>
 - Real Decreto 450/2010. Módulo profesional 0488 Desarrollo de interfaces.
-- Temario clásico del módulo (material Java Swing, temas 1-16) como base conceptual de la adaptación.
+- Temario del módulo como base conceptual de la adaptación.

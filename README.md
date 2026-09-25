@@ -29,4 +29,4 @@ slides/                → Presentaciones Reveal.js (pareja .md + .html)
 ## Créditos
 
 - Estructura del sitio y sistema de slides inspirados en la plantilla de [Eduardo Fdez (revilofe)](https://revilofe.github.io/).
-- Adaptación del temario clásico de Java Swing a Kotlin + Jetpack Compose: Ismael Velasco.
+- Contenido elaborado directamente en Kotlin + Jetpack Compose: Ismael Velasco.

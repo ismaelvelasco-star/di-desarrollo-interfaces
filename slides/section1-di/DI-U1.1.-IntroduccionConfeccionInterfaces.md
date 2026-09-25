@@ -1,20 +1,20 @@
 # DI-U1.1 - Introducción a la confección de interfaces
 
-Note: Bienvenid@ al módulo de Desarrollo de Interfaces. Esta unidad es la puerta de entrada: antes de escribir interfaces modernas tenemos que entender qué paradigmas las sostienen. **El hilo conductor de todo el módulo será Kotlin y Jetpack Compose**, la pila actual de Google para Android. La pregunta que guía la unidad: ¿qué hay debajo de una interfaz?
+Note: Bienvenid@ al módulo de Desarrollo de Interfaces. Esta unidad es la puerta de entrada: antes de escribir interfaces modernas tenemos que entender qué paradigmas las sostienen. **El hilo conductor de todo el módulo es Kotlin y Jetpack Compose**, la pila actual de Google para Android. La pregunta que guía la unidad: ¿qué hay debajo de una interfaz?
 
 ---
 
 
 ![Logo Alberti](assets/logo-iesra.png) <!-- .element height="50%" -->
 
-Note: Presentamos el módulo dentro de 2º DAM. Este primer tema adapta el temario clásico de Java Swing al mundo actual: los conceptos no cambian, las herramientas sí. Aclarar al inicio que quien entienda los conceptos podrá trabajar con cualquier framework del mercado.
+Note: Presentamos el módulo dentro de 2º DAM. Este primer tema sienta las bases conceptuales: paradigmas, modelos y herramientas. Quien entienda los conceptos podrá trabajar con cualquier framework del mercado.
 
 ---
 
 
 ## Índice
 
-Note: Seguimos tres bloques: primero los paradigmas y modelos de programación; después el salto de Swing a Compose con el primer proyecto; y cerramos con las herramientas de edición, de Eclipse a Android Studio y Figma.
+Note: Seguimos tres bloques: primero los paradigmas y modelos de programación; después el primer contacto real con Kotlin y Compose; y cerramos con las herramientas de edición.
 
 
 ### Índice I
@@ -28,12 +28,11 @@ Note: El primer bloque es conceptual pero no teórico vacío: cada paradigma lo 
 
 ### Índice II
 
-- De AWT y Swing a Compose
 - Primer proyecto y componentes
 - Estado y recomposición
-- Herramientas: de Eclipse a Android Studio
+- Herramientas: de los clásicos a Android Studio
 
-Note: El segundo bloque es la parte práctica: montar el primer proyecto, escribir componibles y entender el estado. Y el tercero pone el contexto de herramientas, comparando el panorama clásico con el actual. Con eso quedan listos para los ejercicios.
+Note: El segundo bloque es la parte práctica: montar el primer proyecto, escribir componibles y entender el estado. Y el tercero pone el contexto de herramientas. Con eso quedan listos para los ejercicios.
 
 ---
 
@@ -46,7 +45,7 @@ Note: Empezamos por la motivación: por qué existen las interfaces y por qué s
 ### Sin interfaz, todos programadores
 
 - Las apps requieren interacción con el usuario
-- Sin GUI: usar el lenguaje fuente
+- Sin GUI: leer el lenguaje fuente
 - La interfaz traduce persona ↔ máquina
 
 Note: Un lenguaje de programación permite escribir instrucciones interpretables por un ordenador. Sin interfaz, para usar cualquier aplicación habría que ser programador experto y leer su código fuente. **La interfaz es la capa que nos salva a todos.**
@@ -98,68 +97,30 @@ Note: Los tres modelos que combina toda interfaz. POO: objetos que interactúan.
 ---
 
 
-## De Swing a Compose
+## Kotlin y Jetpack Compose
 
-Note: Ahora el salto histórico: de las librerías clásicas de Java a la pila moderna. La historia ayuda a entender por qué Compose es como es.
-
-
-### La evolución de las librerías
-
-- AWT: controles nativos del SO
-- Swing: apariencia propia, JFrame, JButton
-- Compose: UI declarativa con funciones Kotlin
-
-Note: AWT usaba los controles del sistema y cambiaba de aspecto según plataforma. Swing lo resolvió con componentes propios: nace el JFrame. Y Compose da el salto de paradigma: **ya no hay clases de ventana que manipular, sino funciones que describen**.
+Note: Ahora el primer contacto real con la pila del módulo: qué es Compose, por qué existe y cómo se programa.
 
 
-### Tabla de equivalencias
-
-| Swing | Compose |
-|-------|---------|
-| JFrame | setContent + Scaffold |
-| JButton | Button |
-| JTextField | TextField |
-| ActionListener | onClick |
-
-Note: La tabla que hay que memorizar. JFrame pasa a ser la actividad con setContent; JButton es la función Button; el listener es una lambda. Quien venga de Java Swing tiene aquí su diccionario de traducción.
-
-
-### El entorno hoy
-
-- Eclipse + WindowBuilder entonces
-- Android Studio ahora: Split, Preview, paleta
-- El concepto no cambia: diseño + código
-
-Note: El rol de Eclipse con WindowBuilder lo hace Android Studio: vista Split con previsualización en vivo, paleta de componentes, arrastrar y soltar. **El concepto de editor visual con generación de código lleva 20 años igual**; solo cambian los nombres. Eso libera: aprende el concepto, sobrevive a cualquier herramienta.
-
----
-
-
-## Primer contacto Compose
-
-Note: Vemos el primer código real: la primera pantalla y los primeros componentes, equivalentes de los casos prácticos clásicos de JFrame y JButton.
-
-
-### Mi primera interfaz
+### ¿Qué es un componible?
 
 ```kotlin
-setContent {
-    MaterialTheme {
-        Scaffold { MiPrimeraInterfaz() }
-    }
+@Composable
+fun Saludo(nombre: String) {
+    Text(text = "Hola, $nombre")
 }
 ```
 
-Note: El setContent es la ventana. Sin setSize ni setVisible: la app se adapta a la pantalla del dispositivo. Scaffold da la estructura. **Todo es código desde el primer minuto**; la preview es un espejo del código.
+Note: La unidad básica de Compose NO es una clase de ventana ni un archivo de layout: es una función de Kotlin anotada con @Composable que **describe** un trozo de interfaz. Se define una vez y se reutiliza en cualquier pantalla: eso es el modelo de componentes en estado puro.
 
 
 ### Componentes y propiedades
 
-- Text, Button, TextField
-- Propiedades = parámetros
+- Text, Button, OutlinedButton, TextField
+- Propiedades = parámetros de la función
 - Evento: onClick junto al componente
 
-Note: Los componentes son funciones con parámetros que equivalen a las propiedades clásicas: text, enabled, colors, style. Y el gran avance de Compose: **componente, propiedades y evento viven juntos** en el mismo sitio. En Swing había que registrar el listener aparte.
+Note: Los componentes son funciones con parámetros que equivalen a las propiedades clásicas: text, enabled, colors, style. Y el gran avance de Compose: **componente, propiedades y evento viven juntos**. El onClick ES el manejador del evento, declarado junto al botón.
 
 
 ### Estado y recomposición
@@ -168,7 +129,31 @@ Note: Los componentes son funciones con parámetros que equivalen a las propieda
 - Evento cambia el estado
 - La pantalla se redibuja sola
 
-Note: La diferencia de fondo con Swing. Antes perseguías la etiqueta con setText; ahora declaras que el Text depende del estado y **el framework actualiza solo**. Mientras pienses "qué tengo que actualizar" sigues en Swing; cuando pienses "de qué estado depende esto", ya piensas en Compose.
+Note: La idea que lo cambia todo: declaras la UI en función de un estado observable, y cuando el estado cambia, las funciones que dependen de él se re-ejecutan solas. Si piensas "qué tengo que actualizar" vas mal; piensa "de qué estado depende esta pantalla". UI = f(estado).
+
+---
+
+
+## Herramientas
+
+Note: Cerramos con el panorama de herramientas: de los IDE clásicos con editor visual al flujo moderno.
+
+
+### El patrón clásico
+
+![MonoDevelop](assets/monodevelop.png) <!-- .element height="45%" -->
+
+Note: MonoDevelop, Glade, Eclipse, NetBeans, Visual Studio: todos comparten el mismo patrón que sigue vivo hoy: **paleta de componentes + lienzo + panel de propiedades**. Las capturas del temario (MonoDevelop con su diseñador, Glade editando una ventana GTK) muestran ese patrón universal del editor visual.
+
+
+### El flujo actual
+
+- Figma → diseño compartido
+- Android Studio → componibles Kotlin
+- Preview → validación en vivo
+- GitHub → revisión y publicación
+
+Note: El flujo 2026: la diseñadora prototipa en Figma, el equipo traduce a componibles, cada componente se valida con @Preview sin ejecutar nada, y todo vive en Git. Las herramientas cambian; **el concepto de editor visual con previsualización en vivo lleva 20 años igual**. Aprende el concepto y sobrevive a cualquier herramienta.
 
 ---
 

@@ -4,7 +4,7 @@ description: Soluciones comentadas de los ejercicios de la unidad 1.
 summary: Solucionario completo de los ejercicios de la unidad 1, con explicación didáctica de cada respuesta.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-edit"
 permalink: /di/unidad1/solucionario
 categories:
@@ -14,11 +14,6 @@ tags:
     - Solucionario
     - Kotlin
     - Jetpack Compose
-
-# Relacionado con la tabla de contenidos
-toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"
 ---
 
 # Solucionario de la Unidad 1
@@ -37,21 +32,22 @@ Soluciones con comentario didáctico. Si tu solución difiere pero funciona y es
 
 **A3.**
 
-1. **Verdadera.** AWT delega en los controles nativos del SO (por eso su aspecto cambiaba según plataforma).
-2. **Falsa.** `JPanel` es un contenedor intermedio de componentes; la ventana completa es `JFrame` (y pueden convivir varios `JPanel` dentro de un `JFrame`).
-3. **Verdadera.** El par `ActionListener`/`addActionListener` de Swing se expresa hoy como la lambda `onClick` del `Button` de Compose.
-4. **Verdadera.** Es la definición de UI declarativa: función del estado → pantalla.
+1. **Verdadera.** Un componible es una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz.
+2. **Verdadera.** La recomposición es el redibujado automático de las funciones que leen el estado que cambió.
+3. **Falsa.** `onClick` ES el manejador del evento de pulsación: la lambda que recibe se ejecuta como respuesta a la acción externa. No es una propiedad "decorativa".
+4. **Verdadera.** Ese es el modelo basado en componentes: definir una vez, reutilizar en todas partes.
 
 **A4.**
 
-| Swing | Compose |
-|-------|---------|
-| `JFrame` | `ComponentActivity` + `setContent { }` (con `Scaffold` como estructura) |
-| `JButton` | `Button { Text(...) }` |
-| `JTextField` | `TextField()` / `OutlinedTextField()` |
-| `FlowLayout` / `BorderLayout` | `Row` / `Column` + `Box` y `Modifier` |
+| Necesidad | Componente |
+|-----------|------------|
+| Mostrar un texto | `Text` |
+| Botón relleno con acción | `Button` |
+| Campo para escribir el email | `TextField` / `OutlinedTextField` |
+| Colocar elementos en vertical | `Column` |
+| Espacio en blanco entre elementos | `Spacer` |
 
-**A5.** NetBeans y Eclipse (además de MonoDevelop y Glade). Para una app Android hoy: **Android Studio**, porque es el IDE oficial (basado en IntelliJ, de la misma familia que Eclipse/NetBeans en concepto), gratuito, con editor visual integrado para Compose, emulador y control de versiones.
+**A5.** NetBeans y Eclipse (además de MonoDevelop y Glade). Para una app Android hoy: **Android Studio**, porque es el IDE oficial (basado en IntelliJ), gratuito, con editor visual integrado para Compose, emulador y control de versiones.
 
 ## Bloque B — Kotlin
 
@@ -72,9 +68,9 @@ val positivos = muestras.count { it > 0 }
 println(positivos)
 ```
 
-Comentario: ambos imprimen `4`. El segundo dice *qué* se calcula (cuántos positivos hay); el primero dice *cómo* recorrer y acumular.
+Ambos imprimen `4`. El segundo dice *qué* se calcula; el primero dice *cómo* recorrer y acumular.
 
-**B2.** El error de diseño: `max` es un parámetro del constructor que no se guarda como propiedad; en cuanto termina el constructor desaparece, y `subir()` no podrá leerlo. La corrección es `private val max: Int`. El error de sintaxis: no hay llave de cierre de la clase.
+**B2.** El error de diseño: `max` es un parámetro del constructor que no se guarda como propiedad; en cuanto termina el constructor desaparece y `subir()` no podrá leerlo. Corrección: `private val max: Int`. El error de sintaxis: falta la llave de cierre de la clase.
 
 ```kotlin
 class Termometro(private val max: Int) {
@@ -99,7 +95,7 @@ fun delGrupo(alumnado: List<Alumno>): List<Alumno> = alumnado.filter { it.grupo 
 onClick = { contador = contador + 1 }   // o, más idiomático: { contador++ }
 ```
 
-En Compose no existe `actualizarEtiqueta()`: al ser el contador estado observable, la etiqueta se recomposición sola. Ese es precisamente el punto del ejercicio.
+En Compose no existe `actualizarEtiqueta()`: al ser el contador estado observable, la etiqueta se redibuja sola. Ese es precisamente el punto del ejercicio.
 
 ## Bloque C — Primer proyecto
 
@@ -113,14 +109,14 @@ fun Presentacion(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Ismael Velasco", style = MaterialTheme.typography.displaySmall)
+        Text("Tu Nombre", style = MaterialTheme.typography.displaySmall)
         Spacer(Modifier.height(8.dp))
         Text("2º DAM · Desarrollo de Interfaces", style = MaterialTheme.typography.bodyLarge)
     }
 }
 ```
 
-(Con tu nombre, claro.) Los tamaños `displaySmall` y `bodyLarge` vienen del tema Material 3; centrar es tarea de los *arrangement* del contenedor, no del texto.
+Los tamaños `displaySmall` y `bodyLarge` vienen del tema Material 3; centrar es tarea de los *arrangement* del contenedor, no del texto.
 
 **C2 y C3.**
 
@@ -149,7 +145,7 @@ fun AceptarCancelar(modifier: Modifier = Modifier) {
 }
 ```
 
-`OutlinedButton` es el botón delineado de Material 3 (equivale a aplicar `ButtonDefaults.outlinedButtonColors`): la solución limpia es usar el componente que ya existe.
+`OutlinedButton` es el botón delineado de Material 3: la solución limpia es usar el componente que ya existe en la biblioteca.
 
 **C4.**
 
@@ -176,7 +172,7 @@ fun ContadorConLimite(modifier: Modifier = Modifier) {
 }
 ```
 
-La condición `enabled = pulsaciones < 10` es **estado derivado**: se calcula a partir del estado cada recomposición. Guardarla en otra variable sería duplicar estado y abrir la puerta a inconsistencias.
+La condición `enabled = pulsaciones < 10` es **estado derivado**: se calcula a partir del estado en cada recomposición. Guardarla en otra variable sería duplicar estado y abrir la puerta a inconsistencias.
 
 **C5.**
 
@@ -194,7 +190,7 @@ fun ContadorInicialPreview() {
 }
 ```
 
-Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecutar la app. Puedes tener todas las que quieras: es la ventaja sobre el Design clásico de ventana única.
+Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecutar la app. Puedes tener todas las que quieras, cada una mostrando un estado distinto.
 
 ## Bloque D — Integración
 
@@ -205,10 +201,7 @@ Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecuta
 fun CalculadoraUI(modifier: Modifier = Modifier) {
     var visor by remember { mutableStateOf("0") }
 
-    Column(
-        modifier = modifier.fillMaxWidth().padding(16.dp),
-        verticalArrangement = Arrangement.Center
-    ) {
+    Column(modifier = modifier.fillMaxWidth().padding(16.dp)) {
         Text(
             text = visor,
             style = MaterialTheme.typography.displayMedium,
@@ -322,7 +315,7 @@ fun CalculadoraUI(modifier: Modifier = Modifier) {
  * (3) Componente reutilizable: Tecla — definido una vez, usado 17 veces,
  *     parametrizado (etiqueta, ancho) y con comportamiento inyectado.
  * (4) Declarativo: CalculadoraUI describe la pantalla en función de `visor`;
- *     cuando visor cambia, Compose recomponga automáticamente sin que
+ *     cuando visor cambia, Compose recompone automáticamente sin que
  *     nadie "actualice" los componentes a mano.
  */
 ```

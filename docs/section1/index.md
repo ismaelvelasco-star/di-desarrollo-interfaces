@@ -13,7 +13,7 @@ permalink: /di
 
 Bienvenid@ al temario de **Desarrollo de Interfaces** del ciclo **Desarrollo de Aplicaciones Multiplataforma (2º DAM)**.
 
-Este curso el módulo se imparte íntegramente con **Kotlin y Jetpack Compose**: el temario clásico de Java Swing se ha adaptado concepto a concepto, manteniendo la estructura oficial del módulo 0488 (RD 450/2010) y actualizando herramientas, código y casos prácticos.
+Este curso el módulo se imparte íntegramente con **Kotlin y Jetpack Compose**, siguiendo la estructura oficial del módulo 0488 (RD 450/2010): teoría, ejercicios graduados con solucionario y presentaciones.
 
 ## Unidades
 

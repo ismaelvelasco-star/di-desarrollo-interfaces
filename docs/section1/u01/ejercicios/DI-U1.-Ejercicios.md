@@ -4,7 +4,7 @@ description: Ejercicios graduados de menor a mayor dificultad sobre paradigmas, 
 summary: Lista de ejercicios de la unidad 1 ordenados por dificultad, del paradigma conceptual a una mini-app completa con estado.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-edit"
 permalink: /di/unidad1/ejercicios
 categories:
@@ -14,11 +14,6 @@ tags:
     - Ejercicios
     - Kotlin
     - Jetpack Compose
-
-# Relacionado con la tabla de contenidos
-toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"
 ---
 
 # Ejercicios de la Unidad 1
@@ -33,19 +28,20 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 
 **A3.** Di si cada afirmación es verdadera o falsa, corrigiendo las falsas:
 
-1. AWT utiliza los controles nativos del sistema operativo.
-2. En Swing, `JPanel` define una ventana completa.
-3. En Compose, `onClick` es el equivalente moderno del `ActionListener`.
-4. Una función `@Composable` describe cómo es la interfaz para un estado dado.
+1. En Jetpack Compose, la interfaz se describe como funciones de Kotlin.
+2. La recomposición es el proceso automático de redibujar la UI cuando cambia el estado.
+3. `onClick` es una propiedad más del botón, sin relación con eventos.
+4. Una función `@Composable` puede reutilizarse como componente en cualquier pantalla.
 
-**A4.** Completa la tabla de equivalencias:
+**A4.** Completa la tabla con el componente de Compose adecuado:
 
-| Swing | Compose |
-|-------|---------|
-| `JFrame` | |
-| `JButton` | |
-| `JTextField` | |
-| `FlowLayout` / `BorderLayout` | |
+| Necesidad | Componente |
+|-----------|------------|
+| Mostrar un texto | |
+| Botón relleno con acción | |
+| Campo para escribir el email | |
+| Colocar elementos en vertical | |
+| Espacio en blanco entre elementos | |
 
 **A5.** Busca en la tabla comparativa del tema 1.3 dos IDEs libres que soporten Java y explica cuál elegirías hoy para una app Android y por qué.
 
@@ -59,12 +55,11 @@ Ejercicios ordenados **de menor a mayor dificultad**. Los bloques A y B son indi
 class Termometro(max: Int) {
     var actual = 0
     fun subir() { if (actual < max) actual++ }
-}
 ```
 
 **B3.** Escribe una data class `Alumno` con nombre y grupo, y una función que reciba una lista de alumnos y devuelva los del grupo "2DAM" (una línea con `filter`).
 
-**B4.** En Kotlin, las funciones se declaran con `fun`. Convierte este manejador de evento JavaScript a la lambda Kotlin que iría en un `onClick` de Compose:
+**B4.** Convierte este manejador de evento JavaScript a la lambda Kotlin que iría en un `onClick` de Compose:
 
 ```javascript
 boton.onclick = function() { contador = contador + 1; actualizarEtiqueta(); }
@@ -72,11 +67,11 @@ boton.onclick = function() { contador = contador + 1; actualizarEtiqueta(); }
 
 ## Bloque C — Primer proyecto Compose (nivel: medio)
 
-Para C1-C4, crea **un** proyecto *Empty Activity* llamado `DIUnidad1` y ve añadiendo cada ejercicio como un componible. Ejecuta en emulador tras cada uno.
+Para C1-C5, crea **un** proyecto *Empty Activity* llamado `DIUnidad1` y ve añadiendo cada ejercicio como un componible. Ejecuta en emulador tras cada uno.
 
 **C1 (primer pantallazo).** Sustituye el `Greeting` de la plantilla por un componible `Presentacion` que muestre tu nombre y tu ciclo en dos `Text` (uno con `displaySmall` y otro con `bodyLarge`), centrados.
 
-**C2 (dos botones).** Añade una fila con dos botones, "Aceptar" y "Cancelar". El de aceptar con color primario, el de cancelar con `ButtonDefaults.outlinedButtonColors()` (botón delineado). Debajo, un `Text` que empiece mostrando "Sin acción".
+**C2 (dos botones).** Añade una fila con dos botones, "Aceptar" (relleno, color primario) y "Cancelar" (delineado, `OutlinedButton`). Debajo, un `Text` que empiece mostrando "Sin acción".
 
 **C3 (estado).** Haz que los botones de C2 actualicen el `Text` inferior: aceptar → "Has aceptado", cancelar → "Has cancelado". No puedes usar ninguna variable "normal": obligatorio `remember { mutableStateOf(...) }`.
 
@@ -86,9 +81,9 @@ Para C1-C4, crea **un** proyecto *Empty Activity* llamado `DIUnidad1` y ve añad
 
 ## Bloque D — Integración (nivel: medio-alto)
 
-**D1 (calculadora de interface).** La unidad clásica planteaba el caso de una calculadora. Construye solo la **interfaz** de una calculadora: un `Text` grande como visor (estado), y una cuadrícula de botones para dígitos 0-9, coma, y operaciones +, −, ×, ÷, =, C. Usa `Column` con `Row`s; los botones de dígitos y operaciones actualizan el visor concatenando texto (sin calcular nada aún). Pregunta de reflexión al final del código en comentario: ¿por qué no guardamos "el resultado" todavía?
+**D1 (calculadora de interface).** Construye solo la **interfaz** de una calculadora: un `Text` grande como visor (estado), y una cuadrícula de botones para dígitos 0-9, coma, y operaciones +, −, ×, ÷, =, C. Usa `Column` con `Row`s; los botones actualizan el visor concatenando texto (sin calcular nada aún). Pregunta de reflexión al final del código en comentario: ¿por qué no guardamos "el resultado" todavía?
 
-**D2 (componente reutilizable).** Refactoriza D1: crea un componible `Tecla(calculo: String, onPulsar: (String) -> Unit, ancho: Float = 1f)` y haz que la calculadora lo use con `Modifier.weight(ancho)`. La tecla "=" debe ocupar el doble de ancho que una normal. Comenta qué ventaja tiene frente a copiar/pegar botones.
+**D2 (componente reutilizable).** Refactoriza D1: crea un componible `Tecla(etiqueta: String, onPulsar: (String) -> Unit, ancho: Float = 1f)` y haz que la calculadora lo use con `Modifier.weight(ancho)`. La tecla "=" debe ocupar el doble de ancho que una normal. Comenta qué ventaja tiene frente a copiar/pegar botones.
 
 **D3 (cito los tres modelos).** En un comentario al final de tu `MainActivity.kt` de D2, señala con precisión: (1) dónde hay POO, (2) dónde un evento, (3) dónde un componente reutilizable, y (4) qué parte de tu código es declarativa. Es el cierre conceptual de la unidad.
 

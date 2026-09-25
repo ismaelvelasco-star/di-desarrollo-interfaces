@@ -13,7 +13,7 @@ permalink: /
 
 Temario del módulo **Desarrollo de Interfaces** (código 0488, RD 450/2010) del ciclo Desarrollo de Aplicaciones Multiplataforma, adaptado a **Kotlin y Jetpack Compose**.
 
-Nuevo enfoque 2026/27: el clásico temario Java Swing se traduce concepto a concepto a la pila moderna. Cada unidad incluye teoría, ejercicios graduados con solucionario y presentación.
+Enfoque 2026/27: desarrollo de interfaces **100% Kotlin y Jetpack Compose**. Cada unidad incluye teoría, ejercicios graduados con solucionario y presentación.
 
 ## Acceso directo
 
