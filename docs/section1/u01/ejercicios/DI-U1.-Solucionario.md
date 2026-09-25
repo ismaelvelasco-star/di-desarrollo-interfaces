@@ -1,7 +1,7 @@
 ---
 title: "UD 1 - Solucionario: Introducción a la confección de interfaces"
 description: Soluciones comentadas de los ejercicios de la unidad 1, con el enunciado de cada ejercicio.
-summary: Solucionario completo de los ejercicios de la unidad 1: cada solución va precedida de su enunciado y seguida de un comentario didáctico.
+summary: "Solucionario completo de los ejercicios de la unidad 1: cada solución va precedida de su enunciado y seguida de un comentario didáctico."
 authors:
     - Ismael Velasco
 date: 2026-09-25

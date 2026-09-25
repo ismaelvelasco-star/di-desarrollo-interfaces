@@ -1,7 +1,7 @@
 ---
 title: "UD 1 - Introducción a la confección de interfaces"
-description: Introducción al módulo y al entorno de trabajo: paradigmas, herramientas de edición e instalación y primer contacto con Android Studio, Kotlin y Jetpack Compose.
-summary: El entorno de desarrollo de interfaces hoy: instalación de Android Studio, la librería Jetpack Compose, el primer componible y análisis del entorno de diseño.
+description: "Introducción al módulo y al entorno de trabajo: paradigmas, herramientas de edición e instalación y primer contacto con Android Studio, Kotlin y Jetpack Compose."
+summary: "El entorno de desarrollo de interfaces hoy: instalación de Android Studio, la librería Jetpack Compose, el primer componible y análisis del entorno de diseño."
 authors:
     - Ismael Velasco
 date: 2026-09-25
