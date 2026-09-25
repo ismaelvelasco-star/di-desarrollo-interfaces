@@ -1258,14 +1258,14 @@
 <ul>
 <li><strong>Toolbar</strong>: barra de herramientas con las acciones genéricas: crear proyectos y archivos, sincronizar Gradle, gestor de SDK, emulador y, especialmente, el botón <strong>Run</strong> (▶) para ejecutar la app en el dispositivo elegido.</li>
 <li><strong>Vista <em>Split</em></strong>: muestra a la vez el código Kotlin y la previsualización en vivo de la interfaz (<code>@Preview</code>), permitiendo diseñar viendo el resultado sin ejecutar la app.</li>
-<li><strong><em>Palette</em></strong>: paleta de componibles en la vista <em>Design</em> de la que se arrastran los componentes (textos, botones, campos, contenedores) hasta el lienzo.</li>
+<li><strong><em>Palette</em></strong>: paleta de composables en la vista <em>Design</em> de la que se arrastran los componentes (textos, botones, campos, contenedores) hasta el lienzo.</li>
 <li><strong><em>Component Tree</em></strong>: árbol que resume todos los componentes colocados en el diseño, como un explorador de la jerarquía de la interfaz.</li>
 </ul>
 <h3 id="b3">B3</h3>
 <blockquote>
-<p><strong>Enunciado.</strong> ¿Qué diferencia hay entre una <strong>actividad</strong> (<code>ComponentActivity</code>) y una <strong>función componible</strong>? ¿Cuál de las dos "monta" a la otra y con qué sentencia?</p>
+<p><strong>Enunciado.</strong> ¿Qué diferencia hay entre una <strong>actividad</strong> (<code>ComponentActivity</code>) y una <strong>función composable</strong>? ¿Cuál de las dos "monta" a la otra y con qué sentencia?</p>
 </blockquote>
-<p><strong>Solución.</strong> La <strong>actividad</strong> es la pantalla del sistema operativo que aloja la interfaz; la <strong>función componible</strong> es la que describe el contenido de esa interfaz. La actividad "monta" al componible mediante la sentencia <strong><code>setContent { ... }</code></strong> dentro de <code>onCreate</code>, como una ventana que contiene el diseño.</p>
+<p><strong>Solución.</strong> La <strong>actividad</strong> es la pantalla del sistema operativo que aloja la interfaz; la <strong>función composable</strong> es la que describe el contenido de esa interfaz. La actividad "monta" al composable mediante la sentencia <strong><code>setContent { ... }</code></strong> dentro de <code>onCreate</code>, como una ventana que contiene el diseño.</p>
 <h3 id="b4">B4</h3>
 <blockquote>
 <p><strong>Enunciado.</strong> ¿Qué hay que escribir para importar en Kotlin solo el componente <code>Button</code> de Material 3? ¿Y para importar toda la librería Material 3?</p>
@@ -1285,10 +1285,10 @@
 <blockquote>
 <p><strong>Enunciado.</strong> Localiza en el proyecto generado el archivo donde vive la interfaz (<code>MainActivity.kt</code>) y las tres vistas del editor (<em>Code</em>, <em>Split</em>, <em>Design</em>). Haz una captura de cada modo.</p>
 </blockquote>
-<p><strong>Solución.</strong> El archivo está en <code>app/src/main/java/&lt;paquete&gt;/MainActivity.kt</code>. Arriba a la derecha del editor aparecen las tres pestañas: <strong>Code</strong> (solo código Kotlin), <strong>Split</strong> (código + previsualización) y <strong>Design</strong> (solo previsualización). Las capturas deben mostrar la misma función <code>Greeting</code> renderizada en los tres modos. Es normal que en <em>Code</em> no haya nada visual: la previsualización aparece en cuanto el editor detecta funciones componibles (o al añadir <code>@Preview</code>, ver C5).</p>
+<p><strong>Solución.</strong> El archivo está en <code>app/src/main/java/&lt;paquete&gt;/MainActivity.kt</code>. Arriba a la derecha del editor aparecen las tres pestañas: <strong>Code</strong> (solo código Kotlin), <strong>Split</strong> (código + previsualización) y <strong>Design</strong> (solo previsualización). Las capturas deben mostrar la misma función <code>Greeting</code> renderizada en los tres modos. Es normal que en <em>Code</em> no haya nada visual: la previsualización aparece en cuanto el editor detecta funciones composables (o al añadir <code>@Preview</code>, ver C5).</p>
 <h3 id="c3">C3</h3>
 <blockquote>
-<p><strong>Enunciado.</strong> Modifica el componible de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos <code>Text</code>, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.</p>
+<p><strong>Enunciado.</strong> Modifica el composable de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos <code>Text</code>, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.</p>
 </blockquote>
 <p><strong>Solución.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ComponentActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1337,7 +1337,7 @@
 <p><strong>Qué se observa:</strong> al arrastrar un componente desde la paleta en la vista <em>Design</em>, Android Studio <strong>escribe el mismo código Kotlin</strong> en la vista <em>Code</em>: las dos vistas son espejos de un único código. No hay "doble verdad" como en otros entornos clásicos: lo que arrastras es lo que está en el archivo, y puedes ajustarlo a mano en cualquier momento.</p>
 <h3 id="c5">C5</h3>
 <blockquote>
-<p><strong>Enunciado.</strong> Añade una función <code>@Preview</code> a tu componible y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?</p>
+<p><strong>Enunciado.</strong> Añade una función <code>@Preview</code> a tu composable y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?</p>
 </blockquote>
 <p><strong>Solución.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
