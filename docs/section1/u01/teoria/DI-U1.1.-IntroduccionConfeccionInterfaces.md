@@ -129,6 +129,9 @@ La importación de las librerías de Compose se realiza usando la sentencia `imp
 
 Uno de los elementos más importantes de Compose es la **función de componibilidad**, llamada a menudo **componible** a secas: una función de Kotlin anotada con `@Composable` que describe un trozo de interfaz. La documentación oficial en español utiliza ambas formas ("función que admite composición" es la más formal); en este módulo diremos **función componible** la primera vez y **componible** en adelante. Sobre ella se añaden el resto de elementos.
 
+!!! note "Ojo con los vídeos"
+    En tutoriales de YouTube, foros y equipos de trabajo es muy habitual oír el término **en inglés**: *"un composable"*, *"composable function"*. Es exactamente el mismo concepto: la función anotada con `@Composable`. Aquí usaremos la forma oficial en español (componible) para la teoría y el examen, pero debes reconocer ambas cuando busques ayuda en internet.
+
 ```kotlin
 @Composable                  // <- la ANOTACIÓN: marca la función
 fun Saludo() {               // <- la FUNCIÓN componible en sí
