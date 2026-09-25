@@ -119,13 +119,14 @@ Note: La parte práctica: crear el proyecto y entender qué se ha generado.
 Note: Dos sencillos pasos: New Project y elegir la plantilla Empty Activity (la básica con Compose). El IDE genera MainActivity.kt con una actividad y un componible de ejemplo. Se recomienda partir de la plantilla porque deja configuradas las dependencias de Compose.
 
 
-### Actividad y componible
+### Actividad y función componible
 
 - Actividad: la pantalla del sistema
-- Componible: la función que describe la interfaz
-- setContent monta uno dentro de la otra
+- `@Composable`: la ANOTACIÓN que marca la función
+- Función componible: la función que describe la interfaz
+- setContent monta una dentro de la otra
 
-Note: Distinción importante del tema: la actividad aloja, el componible describe. La conexión es la sentencia setContent dentro de onCreate. Es el equivalente funcional de "crear la ventana y añadirle el contenido".
+Note: Doble distinción importante del tema. Primera: @Composable es la ANOTACIÓN (lo que escribes delante), y la función marcada es la función componible o componible a secas, como la llama la documentación oficial en español. Segunda: la actividad aloja, el componible describe. La conexión es setContent dentro de onCreate: el equivalente funcional de "crear la ventana y añadirle el contenido".
 
 
 ### Importar la librería
