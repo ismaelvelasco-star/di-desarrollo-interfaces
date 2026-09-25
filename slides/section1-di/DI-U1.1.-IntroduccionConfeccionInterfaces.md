@@ -126,7 +126,7 @@ Note: Dos sencillos pasos: New Project y elegir la plantilla Empty Activity (la 
 - Función composable: la función que describe la interfaz
 - setContent monta una dentro de la otra
 
-Note: Doble distinción importante del tema. Primera: @Composable es la ANOTACIÓN (lo que escribes delante), y la función marcada es la función composable o composable a secas, como la llama la documentación oficial en español. Segunda: la actividad aloja, el composable describe. La conexión es setContent dentro de onCreate: el equivalente funcional de "crear la ventana y añadirle el contenido".
+Note: Doble distinción importante del tema. Primera: @Composable es la ANOTACIÓN (lo que escribes delante), y la función marcada es la función composable. Ojo: la doc oficial en español la llama "función de componibilidad" o "componible", pero en la comunidad y los vídeos se dice composable, que es como la llamaremos aquí. Segunda: la actividad aloja, el componible describe. La conexión es setContent dentro de onCreate: el equivalente funcional de "crear la ventana y añadirle el contenido".
 
 
 ### Importar la librería
