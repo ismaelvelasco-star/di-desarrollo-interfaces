@@ -931,34 +931,38 @@
 <p><strong>A2.</strong> Explica con una frase cada uno de los tres modelos clave para interfaces: orientado a objetos, basado en eventos y basado en componentes.</p>
 <p><strong>A3.</strong> Di si cada afirmación es verdadera o falsa, corrigiendo las falsas:</p>
 <ol>
-<li>AWT utiliza los controles nativos del sistema operativo.</li>
-<li>En Swing, <code>JPanel</code> define una ventana completa.</li>
-<li>En Compose, <code>onClick</code> es el equivalente moderno del <code>ActionListener</code>.</li>
-<li>Una función <code>@Composable</code> describe cómo es la interfaz para un estado dado.</li>
+<li>En Jetpack Compose, la interfaz se describe como funciones de Kotlin.</li>
+<li>La recomposición es el proceso automático de redibujar la UI cuando cambia el estado.</li>
+<li><code>onClick</code> es una propiedad más del botón, sin relación con eventos.</li>
+<li>Una función <code>@Composable</code> puede reutilizarse como componente en cualquier pantalla.</li>
 </ol>
-<p><strong>A4.</strong> Completa la tabla de equivalencias:</p>
+<p><strong>A4.</strong> Completa la tabla con el componente de Compose adecuado:</p>
 <table>
 <thead>
 <tr>
-<th>Swing</th>
-<th>Compose</th>
+<th>Necesidad</th>
+<th>Componente</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>JFrame</code></td>
+<td>Mostrar un texto</td>
 <td></td>
 </tr>
 <tr>
-<td><code>JButton</code></td>
+<td>Botón relleno con acción</td>
 <td></td>
 </tr>
 <tr>
-<td><code>JTextField</code></td>
+<td>Campo para escribir el email</td>
 <td></td>
 </tr>
 <tr>
-<td><code>FlowLayout</code> / <code>BorderLayout</code></td>
+<td>Colocar elementos en vertical</td>
+<td></td>
+</tr>
+<tr>
+<td>Espacio en blanco entre elementos</td>
 <td></td>
 </tr>
 </tbody>
@@ -970,22 +974,21 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">Termometro</span><span class="p">(</span><span class="n">max</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">subir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="n">actual</span><span class="o">++</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
 </code></pre></div>
 <p><strong>B3.</strong> Escribe una data class <code>Alumno</code> con nombre y grupo, y una función que reciba una lista de alumnos y devuelva los del grupo "2DAM" (una línea con <code>filter</code>).</p>
-<p><strong>B4.</strong> En Kotlin, las funciones se declaran con <code>fun</code>. Convierte este manejador de evento JavaScript a la lambda Kotlin que iría en un <code>onClick</code> de Compose:</p>
+<p><strong>B4.</strong> Convierte este manejador de evento JavaScript a la lambda Kotlin que iría en un <code>onClick</code> de Compose:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">boton</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">actualizarEtiqueta</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <h2 id="bloque-c-primer-proyecto-compose-nivel-medio">Bloque C — Primer proyecto Compose (nivel: medio)</h2>
-<p>Para C1-C4, crea <strong>un</strong> proyecto <em>Empty Activity</em> llamado <code>DIUnidad1</code> y ve añadiendo cada ejercicio como un componible. Ejecuta en emulador tras cada uno.</p>
+<p>Para C1-C5, crea <strong>un</strong> proyecto <em>Empty Activity</em> llamado <code>DIUnidad1</code> y ve añadiendo cada ejercicio como un componible. Ejecuta en emulador tras cada uno.</p>
 <p><strong>C1 (primer pantallazo).</strong> Sustituye el <code>Greeting</code> de la plantilla por un componible <code>Presentacion</code> que muestre tu nombre y tu ciclo en dos <code>Text</code> (uno con <code>displaySmall</code> y otro con <code>bodyLarge</code>), centrados.</p>
-<p><strong>C2 (dos botones).</strong> Añade una fila con dos botones, "Aceptar" y "Cancelar". El de aceptar con color primario, el de cancelar con <code>ButtonDefaults.outlinedButtonColors()</code> (botón delineado). Debajo, un <code>Text</code> que empiece mostrando "Sin acción".</p>
+<p><strong>C2 (dos botones).</strong> Añade una fila con dos botones, "Aceptar" (relleno, color primario) y "Cancelar" (delineado, <code>OutlinedButton</code>). Debajo, un <code>Text</code> que empiece mostrando "Sin acción".</p>
 <p><strong>C3 (estado).</strong> Haz que los botones de C2 actualicen el <code>Text</code> inferior: aceptar → "Has aceptado", cancelar → "Has cancelado". No puedes usar ninguna variable "normal": obligatorio <code>remember { mutableStateOf(...) }</code>.</p>
 <p><strong>C4 (contador con límite).</strong> Un <code>Text</code> con "Pulsaciones: X", un botón "Sumar" y un botón "Reset". Cuando X llegue a 10, el botón Sumar debe deshabilitarse (<code>enabled</code>). Pista: la condición es estado derivado, no hace falta variable aparte.</p>
 <p><strong>C5 (preview).</strong> Añade <code>@Preview(showBackground = true)</code> para <code>Presentacion</code> y otra preview para el contador en su estado inicial. Comprueba que se renderizan sin ejecutar la app.</p>
 <h2 id="bloque-d-integracion-nivel-medio-alto">Bloque D — Integración (nivel: medio-alto)</h2>
-<p><strong>D1 (calculadora de interface).</strong> La unidad clásica planteaba el caso de una calculadora. Construye solo la <strong>interfaz</strong> de una calculadora: un <code>Text</code> grande como visor (estado), y una cuadrícula de botones para dígitos 0-9, coma, y operaciones +, −, ×, ÷, =, C. Usa <code>Column</code> con <code>Row</code>s; los botones de dígitos y operaciones actualizan el visor concatenando texto (sin calcular nada aún). Pregunta de reflexión al final del código en comentario: ¿por qué no guardamos "el resultado" todavía?</p>
-<p><strong>D2 (componente reutilizable).</strong> Refactoriza D1: crea un componible <code>Tecla(calculo: String, onPulsar: (String) -&gt; Unit, ancho: Float = 1f)</code> y haz que la calculadora lo use con <code>Modifier.weight(ancho)</code>. La tecla "=" debe ocupar el doble de ancho que una normal. Comenta qué ventaja tiene frente a copiar/pegar botones.</p>
+<p><strong>D1 (calculadora de interface).</strong> Construye solo la <strong>interfaz</strong> de una calculadora: un <code>Text</code> grande como visor (estado), y una cuadrícula de botones para dígitos 0-9, coma, y operaciones +, −, ×, ÷, =, C. Usa <code>Column</code> con <code>Row</code>s; los botones actualizan el visor concatenando texto (sin calcular nada aún). Pregunta de reflexión al final del código en comentario: ¿por qué no guardamos "el resultado" todavía?</p>
+<p><strong>D2 (componente reutilizable).</strong> Refactoriza D1: crea un componible <code>Tecla(etiqueta: String, onPulsar: (String) -&gt; Unit, ancho: Float = 1f)</code> y haz que la calculadora lo use con <code>Modifier.weight(ancho)</code>. La tecla "=" debe ocupar el doble de ancho que una normal. Comenta qué ventaja tiene frente a copiar/pegar botones.</p>
 <p><strong>D3 (cito los tres modelos).</strong> En un comentario al final de tu <code>MainActivity.kt</code> de D2, señala con precisión: (1) dónde hay POO, (2) dónde un evento, (3) dónde un componente reutilizable, y (4) qué parte de tu código es declarativa. Es el cierre conceptual de la unidad.</p>
 <h2 id="entrega">Entrega</h2>
 <ul>

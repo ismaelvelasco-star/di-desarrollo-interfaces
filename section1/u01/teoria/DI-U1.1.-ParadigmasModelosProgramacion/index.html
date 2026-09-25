@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#relacionado-con-la-tabla-de-contenidos" class="md-skip">
+        <a href="#11-paradigmas-y-modelos-de-programacion" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -544,8 +544,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -587,8 +585,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -938,8 +934,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1122,13 +1116,15 @@
   
 
 
+  <h1>1.1.-Paradigmas y modelos de programación</h1>
+
 <hr />
 <p>title: "UD 1 - 1.1 Paradigmas y modelos de programación"
 description: Paradigmas de programación y los modelos orientados a objetos, eventos y componentes que sustentan las interfaces gráficas modernas.
 summary: De la programación imperativa a la declarativa: los paradigmas que hay detrás de toda interfaz de usuario, con Kotlin y Jetpack Compose como hilo conductor.
 authors:
     - Ismael Velasco
-date: 2026-09-23
+date: 2026-09-25
 icon: "material/file-document-outline"
 permalink: /di/unidad1/1.1
 categories:
@@ -1138,10 +1134,6 @@ tags:
     - Paradigmas
     - Kotlin
     - Jetpack Compose</p>
-<h1 id="relacionado-con-la-tabla-de-contenidos">Relacionado con la tabla de contenidos</h1>
-<p>toc: true
-toc_label: "Contenido"
-toc_icon: "file-code"</p>
 <hr />
 <h2 id="11-paradigmas-y-modelos-de-programacion">1.1. Paradigmas y modelos de programación</h2>
 <div class="admonition abstract">
@@ -1154,6 +1146,16 @@ toc_icon: "file-code"</p>
 <li>Los de <strong>bajo nivel</strong> se encuentran más cerca de lo que es capaz de entender un ordenador, ejercen un control directo sobre el hardware y están más alejados de la lógica humana (lenguaje máquina con 0 y 1, o lenguaje ensamblador). Resultan muy difíciles de entender por una persona.</li>
 <li>Los de <strong>alto nivel</strong> pueden ser descritos utilizando reglas comprensibles por el programador, con un lenguaje más cercano al natural. Será durante el proceso de compilación cuando estos se traduzcan a un lenguaje de bajo nivel capaz de ser entendido por la máquina.</li>
 </ul>
+<figure>
+<p><img alt="Esquema del proceso de compilación: los lenguajes de alto nivel se traducen a código de bajo nivel." src="../assets/compilacion.png" /></p>
+<figcaption>El proceso de compilación traduce lenguajes de alto nivel (comprendibles por personas) a lenguajes de bajo nivel (comprendibles por la máquina). Fuente: temario del módulo.</figcaption>
+</figure>
+<pre class="mermaid"><code>flowchart LR
+    A["Kotlin (alto nivel)"] --&gt;|"compilador Kotlin"| B["Bytecode JVM"]
+    B --&gt;|"máquina virtual"| C["Instrucciones al hardware"]
+    style A fill:#e8d5f2
+    style B fill:#d5e8d4
+    style C fill:#dae8fc</code></pre>
 <p>Las herramientas desarrolladas a través de un lenguaje de programación, sea del tipo que sea, requieren del desarrollo de una <strong>interfaz</strong> que permita la interacción con el usuario; de lo contrario, se requeriría que todos fuéramos programadores expertos para utilizar cualquier aplicación atendiendo a su lenguaje fuente.</p>
 <div class="admonition info">
 <p class="admonition-title">Qué deberías saber al terminar</p>
@@ -1210,6 +1212,10 @@ toc_icon: "file-code"</p>
 <li><strong>Programación modular.</strong> Permite desarrollar cada programa de forma completamente independiente al resto del código, lo que agiliza las tareas de implementación y prueba. En la parte final del proceso se combinan todos los módulos, creando el software definitivo.</li>
 </ul>
 <p>Algunos lenguajes conocidos que utilizan la programación imperativa son Java, C, C#, <strong>Kotlin</strong>, Python o Ruby.</p>
+<figure>
+<p><img alt="Burbujas con lenguajes de programación de alto nivel." src="../assets/lenguajes.png" /></p>
+<figcaption>Lenguajes de programación de alto nivel habituales en el desarrollo de software. Fuente: temario del módulo.</figcaption>
+</figure>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Imperativo puro: paso a paso, mutando estado</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">var</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">numero</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lista</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1230,10 +1236,18 @@ toc_icon: "file-code"</p>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Aclaración</p>
-<p><strong>Jetpack Compose es declarativo</strong>: describes qué debe mostrar la interfaz para un estado dado, y el framework se encarga de cómo renderizarlo y de actualizar la pantalla cuando el estado cambia. En el mundo Android clásico, los layouts XML también eran declarativos, pero el código que los manipulaba (con <code>findViewById</code> o ViewBinding) era imperativo. La diferencia la veremos en detalle en el tema 1.2.</p>
+<p><strong>Jetpack Compose es declarativo</strong>: describes qué debe mostrar la interfaz para un estado dado, y el framework se encarga de cómo renderizarlo y de actualizar la pantalla cuando el estado cambia.</p>
 </div>
 <h3 id="3-programacion-orientada-a-objetos-eventos-y-componentes">3. Programación orientada a objetos, eventos y componentes</h3>
 <p>Encontramos otros modelos de programación que incluyen características propias de los definidos anteriormente. Es el caso de la programación orientada a objetos, por eventos o por componentes. <strong>La combinación de estos tres tipos resulta clave para el desarrollo de interfaces.</strong></p>
+<pre class="mermaid"><code>flowchart TB
+    D["UI declarativa&lt;br/&gt;estado → pantalla"] --&gt; IPOO
+    subgraph IPOO["Una interfaz Compose combina:"]
+        direction LR
+        O["POO&lt;br/&gt;objetos + métodos"] --- E["Eventos&lt;br/&gt;onClick / lambda"]
+        E --- C["Componentes&lt;br/&gt;@Composable"]
+    end
+    style D fill:#e8d5f2</code></pre>
 <h4 id="31-modelo-orientado-a-objetos">3.1. Modelo orientado a objetos</h4>
 <p>El funcionamiento de este tipo de programas se basa en la creación de entidades, que reciben el nombre de <strong>objetos</strong>, las cuales tienen asociados <strong>atributos, propiedades y métodos</strong>. La interacción entre los objetos permite resolver los problemas de computación planteados. Algunos lenguajes orientados a objetos son Java, Ruby, Visual Basic, Perl, PHP, Python o <strong>Kotlin</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// POO en Kotlin: una clase con atributos y métodos</span>
@@ -1256,44 +1270,39 @@ toc_icon: "file-code"</p>
 </code></pre></div>
 <h4 id="33-modelo-basado-en-componentes">3.3. Modelo basado en componentes</h4>
 <p>La clave de este último modelo es la <strong>reutilización de módulos de software desarrollados previamente</strong>. Para llevar a cabo esta tarea, la mayoría de los entornos de desarrollo integrados (IDE) permiten desarrollar componentes visuales, permitiendo empaquetar el código para reutilizarlo posteriormente.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Un composable es un componente reutilizable: se define una vez</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Un componible es un componente reutilizable: se define una vez...</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nd">@Composable</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">function</span><span class="w"> </span><span class="n">Saludo</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">Saludo</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, </span><span class="si">$</span><span class="n">nombre</span><span class="s">"</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">// ...y se reutiliza como cualquier otro componente de la biblioteca</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">// Saludo(nombre = "María")</span>
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Atención (errata clásica)</p>
-<p>En Kotlin, las funciones se declaran con <code>fun</code>, no con <code>function</code>. El ejemplo correcto:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@Composable</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">Saludo</span><span class="p">(</span><span class="n">nombre</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, </span><span class="si">$</span><span class="n">nombre</span><span class="s">"</span><span class="p">)</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
-</code></pre></div>
-<p>Y desde cualquier otra parte de la app se reutiliza como un componente más: <code>Saludo(nombre = "María")</code>.</p>
-</div>
 <h3 id="4-los-tres-modelos-juntos-en-una-interfaz-compose">4. Los tres modelos juntos en una interfaz Compose</h3>
 <p>El siguiente fragmento reúne los tres modelos en una sola pantalla de Jetpack Compose:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nd">@Composable</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">PantallaContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// POO + estado: la clase mutableStateOf guarda el valor</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">pulsaciones</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="c1">// Componente: Column organiza otros componentes</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">),</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Pulsaciones: </span><span class="si">$</span><span class="n">pulsaciones</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">headlineMedium</span><span class="p">)</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="c1">// Evento: el clic actualiza el estado; la UI se redibuja sola</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pulsaciones</span><span class="o">++</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Púlsame"</span><span class="p">)</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@Composable</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">PantallaContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="c1">// POO + estado: mutableStateOf guarda el valor observable</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">pulsaciones</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="c1">// Componente: Column organiza otros componentes</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">()</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span><span class="p">.</span><span class="na">padding</span><span class="p">(</span><span class="m">24.</span><span class="n">dp</span><span class="p">),</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Pulsaciones: </span><span class="si">$</span><span class="n">pulsaciones</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">headlineMedium</span><span class="p">)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="c1">// Evento: el clic actualiza el estado; la UI se redibuja sola</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pulsaciones</span><span class="o">++</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">"Púlsame"</span><span class="p">)</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li><strong>POO</strong>: instanciamos y manipulamos objetos (<code>mutableStateOf</code>, <code>Modifier</code>, <code>Button</code>).</li>
@@ -1304,8 +1313,8 @@ toc_icon: "file-code"</p>
 <ul>
 <li><strong>Elige el paradigma según la capa</strong>: lógica de negocio imperativa/funcional, interfaz declarativa. Forzar un único estilo en todo el proyecto suele empeorar el resultado.</li>
 <li><strong>Nombra los componentes por su función</strong> (<code>PantallaContador</code>, <code>FilaAlumno</code>), igual que nombrarías una clase: son las piezas reutilizables de tu interfaz.</li>
-<li><strong>Estado mínimo</strong>: guarda solo el estado imprescindible y derive todo lo demás. Menos estado, menos errores de sincronización.</li>
-<li><strong>Un componente, una responsabilidad</strong>: si un composable hace tres cosas distintas, son tres componibles.</li>
+<li><strong>Estado mínimo</strong>: guarda solo el estado imprescindible y deriva todo lo demás. Menos estado, menos errores de sincronización.</li>
+<li><strong>Un componente, una responsabilidad</strong>: si un componible hace tres cosas distintas, son tres componibles.</li>
 </ul>
 <h3 id="6-errores-frecuentes">6. Errores frecuentes</h3>
 <table>
@@ -1333,9 +1342,9 @@ toc_icon: "file-code"</p>
 <td>Mantener la lógica fuera (ViewModel, casos de uso) y la UI como capa de presentación</td>
 </tr>
 <tr>
-<td>Escribir <code>function</code> en Kotlin</td>
-<td>Arrastran la sintaxis de JavaScript</td>
-<td>En Kotlin las funciones se declaran con <code>fun</code></td>
+<td>Creer que "declarativo" significa "sin lógica"</td>
+<td>Confusión paradigma ≠ complejidad</td>
+<td>La lógica sigue ahí; lo que cambia es dónde vive y cómo se expresa</td>
 </tr>
 </tbody>
 </table>
@@ -1362,7 +1371,7 @@ toc_icon: "file-code"</p>
 <li>Android Developers. <em>Thinking in Compose</em>. <a href="https://developer.android.com/develop/ui/compose/mental-model">https://developer.android.com/develop/ui/compose/mental-model</a></li>
 <li>Kotlin Foundation. <em>Kotlin docs</em>. <a href="https://kotlinlang.org/docs/home.html">https://kotlinlang.org/docs/home.html</a></li>
 <li>Real Decreto 450/2010. Módulo profesional 0488 Desarrollo de interfaces.</li>
-<li>Temario clásico del módulo (material Java Swing, temas 1-16) como base conceptual de la adaptación.</li>
+<li>Temario del módulo como base conceptual de la adaptación.</li>
 </ul>
 
 

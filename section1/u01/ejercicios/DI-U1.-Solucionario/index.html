@@ -914,39 +914,43 @@
 </ul>
 <p><strong>A3.</strong></p>
 <ol>
-<li><strong>Verdadera.</strong> AWT delega en los controles nativos del SO (por eso su aspecto cambiaba según plataforma).</li>
-<li><strong>Falsa.</strong> <code>JPanel</code> es un contenedor intermedio de componentes; la ventana completa es <code>JFrame</code> (y pueden convivir varios <code>JPanel</code> dentro de un <code>JFrame</code>).</li>
-<li><strong>Verdadera.</strong> El par <code>ActionListener</code>/<code>addActionListener</code> de Swing se expresa hoy como la lambda <code>onClick</code> del <code>Button</code> de Compose.</li>
-<li><strong>Verdadera.</strong> Es la definición de UI declarativa: función del estado → pantalla.</li>
+<li><strong>Verdadera.</strong> Un componible es una función de Kotlin anotada con <code>@Composable</code> que describe un trozo de interfaz.</li>
+<li><strong>Verdadera.</strong> La recomposición es el redibujado automático de las funciones que leen el estado que cambió.</li>
+<li><strong>Falsa.</strong> <code>onClick</code> ES el manejador del evento de pulsación: la lambda que recibe se ejecuta como respuesta a la acción externa. No es una propiedad "decorativa".</li>
+<li><strong>Verdadera.</strong> Ese es el modelo basado en componentes: definir una vez, reutilizar en todas partes.</li>
 </ol>
 <p><strong>A4.</strong></p>
 <table>
 <thead>
 <tr>
-<th>Swing</th>
-<th>Compose</th>
+<th>Necesidad</th>
+<th>Componente</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>JFrame</code></td>
-<td><code>ComponentActivity</code> + <code>setContent { }</code> (con <code>Scaffold</code> como estructura)</td>
+<td>Mostrar un texto</td>
+<td><code>Text</code></td>
 </tr>
 <tr>
-<td><code>JButton</code></td>
-<td><code>Button { Text(...) }</code></td>
+<td>Botón relleno con acción</td>
+<td><code>Button</code></td>
 </tr>
 <tr>
-<td><code>JTextField</code></td>
-<td><code>TextField()</code> / <code>OutlinedTextField()</code></td>
+<td>Campo para escribir el email</td>
+<td><code>TextField</code> / <code>OutlinedTextField</code></td>
 </tr>
 <tr>
-<td><code>FlowLayout</code> / <code>BorderLayout</code></td>
-<td><code>Row</code> / <code>Column</code> + <code>Box</code> y <code>Modifier</code></td>
+<td>Colocar elementos en vertical</td>
+<td><code>Column</code></td>
+</tr>
+<tr>
+<td>Espacio en blanco entre elementos</td>
+<td><code>Spacer</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>A5.</strong> NetBeans y Eclipse (además de MonoDevelop y Glade). Para una app Android hoy: <strong>Android Studio</strong>, porque es el IDE oficial (basado en IntelliJ, de la misma familia que Eclipse/NetBeans en concepto), gratuito, con editor visual integrado para Compose, emulador y control de versiones.</p>
+<p><strong>A5.</strong> NetBeans y Eclipse (además de MonoDevelop y Glade). Para una app Android hoy: <strong>Android Studio</strong>, porque es el IDE oficial (basado en IntelliJ), gratuito, con editor visual integrado para Compose, emulador y control de versiones.</p>
 <h2 id="bloque-b-kotlin">Bloque B — Kotlin</h2>
 <p><strong>B1.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">muestras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
@@ -962,8 +966,8 @@
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kd">val</span><span class="w"> </span><span class="nv">positivos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">muestras</span><span class="p">.</span><span class="na">count</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">println</span><span class="p">(</span><span class="n">positivos</span><span class="p">)</span>
 </code></pre></div>
-<p>Comentario: ambos imprimen <code>4</code>. El segundo dice <em>qué</em> se calcula (cuántos positivos hay); el primero dice <em>cómo</em> recorrer y acumular.</p>
-<p><strong>B2.</strong> El error de diseño: <code>max</code> es un parámetro del constructor que no se guarda como propiedad; en cuanto termina el constructor desaparece, y <code>subir()</code> no podrá leerlo. La corrección es <code>private val max: Int</code>. El error de sintaxis: no hay llave de cierre de la clase.</p>
+<p>Ambos imprimen <code>4</code>. El segundo dice <em>qué</em> se calcula; el primero dice <em>cómo</em> recorrer y acumular.</p>
+<p><strong>B2.</strong> El error de diseño: <code>max</code> es un parámetro del constructor que no se guarda como propiedad; en cuanto termina el constructor desaparece y <code>subir()</code> no podrá leerlo. Corrección: <code>private val max: Int</code>. El error de sintaxis: falta la llave de cierre de la clase.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">Termometro</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">max</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">subir</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -979,7 +983,7 @@
 <p><strong>B4.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// o, más idiomático: { contador++ }</span>
 </code></pre></div>
-<p>En Compose no existe <code>actualizarEtiqueta()</code>: al ser el contador estado observable, la etiqueta se recomposición sola. Ese es precisamente el punto del ejercicio.</p>
+<p>En Compose no existe <code>actualizarEtiqueta()</code>: al ser el contador estado observable, la etiqueta se redibuja sola. Ese es precisamente el punto del ejercicio.</p>
 <h2 id="bloque-c-primer-proyecto">Bloque C — Primer proyecto</h2>
 <p><strong>C1.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@Composable</span>
@@ -989,13 +993,13 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">"Ismael Velasco"</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">displaySmall</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">"Tu Nombre"</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">displaySmall</span><span class="p">)</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="n">Spacer</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">height</span><span class="p">(</span><span class="m">8.</span><span class="n">dp</span><span class="p">))</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span><span class="s">"2º DAM · Desarrollo de Interfaces"</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">bodyLarge</span><span class="p">)</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
 </code></pre></div>
-<p>(Con tu nombre, claro.) Los tamaños <code>displaySmall</code> y <code>bodyLarge</code> vienen del tema Material 3; centrar es tarea de los <em>arrangement</em> del contenedor, no del texto.</p>
+<p>Los tamaños <code>displaySmall</code> y <code>bodyLarge</code> vienen del tema Material 3; centrar es tarea de los <em>arrangement</em> del contenedor, no del texto.</p>
 <p><strong>C2 y C3.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@Composable</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">AceptarCancelar</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1020,7 +1024,7 @@
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>OutlinedButton</code> es el botón delineado de Material 3 (equivale a aplicar <code>ButtonDefaults.outlinedButtonColors</code>): la solución limpia es usar el componente que ya existe.</p>
+<p><code>OutlinedButton</code> es el botón delineado de Material 3: la solución limpia es usar el componente que ya existe en la biblioteca.</p>
 <p><strong>C4.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@Composable</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">ContadorConLimite</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1043,7 +1047,7 @@
 <a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
 </code></pre></div>
-<p>La condición <code>enabled = pulsaciones &lt; 10</code> es <strong>estado derivado</strong>: se calcula a partir del estado cada recomposición. Guardarla en otra variable sería duplicar estado y abrir la puerta a inconsistencias.</p>
+<p>La condición <code>enabled = pulsaciones &lt; 10</code> es <strong>estado derivado</strong>: se calcula a partir del estado en cada recomposición. Guardarla en otra variable sería duplicar estado y abrir la puerta a inconsistencias.</p>
 <p><strong>C5.</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nd">@Composable</span>
@@ -1057,52 +1061,49 @@
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="n">MaterialTheme</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ContadorConLimite</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecutar la app. Puedes tener todas las que quieras: es la ventaja sobre el Design clásico de ventana única.</p>
+<p>Las previews se renderizan en el panel derecho del IDE (vista Split) sin ejecutar la app. Puedes tener todas las que quieras, cada una mostrando un estado distinto.</p>
 <h2 id="bloque-d-integracion">Bloque D — Integración</h2>
 <p><strong>D1.</strong> Interfaz de calculadora (solo UI):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nd">@Composable</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">CalculadoraUI</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span><span class="w"> </span><span class="n">Modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">visor</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="s">"0"</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">().</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">),</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visor</span><span class="p">,</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">displayMedium</span><span class="p">,</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">            </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">End</span><span class="p">,</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">().</span><span class="na">padding</span><span class="p">(</span><span class="n">vertical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">        </span><span class="p">)</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"7"</span><span class="p">,</span><span class="w"> </span><span class="s">"8"</span><span class="p">,</span><span class="w"> </span><span class="s">"9"</span><span class="p">,</span><span class="w"> </span><span class="s">"÷"</span><span class="p">),</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"4"</span><span class="p">,</span><span class="w"> </span><span class="s">"5"</span><span class="p">,</span><span class="w"> </span><span class="s">"6"</span><span class="p">,</span><span class="w"> </span><span class="s">"×"</span><span class="p">),</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"1"</span><span class="p">,</span><span class="w"> </span><span class="s">"2"</span><span class="p">,</span><span class="w"> </span><span class="s">"3"</span><span class="p">,</span><span class="w"> </span><span class="s">"−"</span><span class="p">),</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"C"</span><span class="p">,</span><span class="w"> </span><span class="s">"0"</span><span class="p">,</span><span class="w"> </span><span class="s">","</span><span class="p">,</span><span class="w"> </span><span class="s">"+"</span><span class="p">)</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">        </span><span class="p">)</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">        </span><span class="n">filas</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fila</span><span class="w"> </span><span class="o">-&gt;</span>
-<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">            </span><span class="n">Row</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">                </span><span class="n">fila</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="o">-&gt;</span>
-<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">                    </span><span class="n">Button</span><span class="p">(</span>
-<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">                            </span><span class="n">visor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"0"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"C"</span><span class="p">)</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">visor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tecla</span>
-<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">                        </span><span class="p">},</span>
-<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">).</span><span class="na">padding</span><span class="p">(</span><span class="m">4.</span><span class="n">dp</span><span class="p">)</span>
-<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">                    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">tecla</span><span class="p">)</span>
-<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">                    </span><span class="p">}</span>
-<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">                </span><span class="p">}</span>
-<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">            </span><span class="n">Button</span><span class="p">(</span>
-<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">                </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">visor</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">"="</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">2f</span><span class="p">).</span><span class="na">padding</span><span class="p">(</span><span class="m">4.</span><span class="n">dp</span><span class="p">)</span>
-<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">"="</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="p">}</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">Column</span><span class="p">(</span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">().</span><span class="na">padding</span><span class="p">(</span><span class="m">16.</span><span class="n">dp</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="n">Text</span><span class="p">(</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">            </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visor</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaterialTheme</span><span class="p">.</span><span class="na">typography</span><span class="p">.</span><span class="na">displayMedium</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="n">textAlign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextAlign</span><span class="p">.</span><span class="na">End</span><span class="p">,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">().</span><span class="na">padding</span><span class="p">(</span><span class="n">vertical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16.</span><span class="n">dp</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">filas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"7"</span><span class="p">,</span><span class="w"> </span><span class="s">"8"</span><span class="p">,</span><span class="w"> </span><span class="s">"9"</span><span class="p">,</span><span class="w"> </span><span class="s">"÷"</span><span class="p">),</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"4"</span><span class="p">,</span><span class="w"> </span><span class="s">"5"</span><span class="p">,</span><span class="w"> </span><span class="s">"6"</span><span class="p">,</span><span class="w"> </span><span class="s">"×"</span><span class="p">),</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"1"</span><span class="p">,</span><span class="w"> </span><span class="s">"2"</span><span class="p">,</span><span class="w"> </span><span class="s">"3"</span><span class="p">,</span><span class="w"> </span><span class="s">"−"</span><span class="p">),</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">            </span><span class="n">listOf</span><span class="p">(</span><span class="s">"C"</span><span class="p">,</span><span class="w"> </span><span class="s">"0"</span><span class="p">,</span><span class="w"> </span><span class="s">","</span><span class="p">,</span><span class="w"> </span><span class="s">"+"</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="p">)</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">        </span><span class="n">filas</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fila</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">            </span><span class="n">Row</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">                </span><span class="n">fila</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">                    </span><span class="n">Button</span><span class="p">(</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">                        </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">                            </span><span class="n">visor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"0"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">"C"</span><span class="p">)</span><span class="w"> </span><span class="n">tecla</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">visor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tecla</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">                        </span><span class="p">},</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">                        </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">1f</span><span class="p">).</span><span class="na">padding</span><span class="p">(</span><span class="m">4.</span><span class="n">dp</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">                    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">                        </span><span class="n">Text</span><span class="p">(</span><span class="n">tecla</span><span class="p">)</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">        </span><span class="n">Row</span><span class="p">(</span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxWidth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">            </span><span class="n">Button</span><span class="p">(</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">                </span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">visor</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">"="</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">                </span><span class="n">modifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="m">2f</span><span class="p">).</span><span class="na">padding</span><span class="p">(</span><span class="m">4.</span><span class="n">dp</span><span class="p">)</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s">"="</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>┌──────────────────────────┐
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>│                       0  │  &lt;- visor (displayMedium, alineado a la derecha)
@@ -1171,7 +1172,7 @@
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="cm"> * (3) Componente reutilizable: Tecla — definido una vez, usado 17 veces,</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="cm"> *     parametrizado (etiqueta, ancho) y con comportamiento inyectado.</span>
 <a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="cm"> * (4) Declarativo: CalculadoraUI describe la pantalla en función de `visor`;</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="cm"> *     cuando visor cambia, Compose recomponga automáticamente sin que</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="cm"> *     cuando visor cambia, Compose recompone automáticamente sin que</span>
 <a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="cm"> *     nadie "actualice" los componentes a mano.</span>
 <a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="cm"> */</span>
 </code></pre></div>
