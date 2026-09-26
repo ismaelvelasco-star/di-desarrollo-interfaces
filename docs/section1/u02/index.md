@@ -4,7 +4,7 @@ description: "Índice de la unidad 2: teoría, ejercicios y solucionario de comp
 authors:
     - Ismael Velasco
 date: 2026-09-26
-icon: "material/grid-view"
+icon: "material/view-dashboard"
 permalink: /di/unidad2/
 categories:
     - DI

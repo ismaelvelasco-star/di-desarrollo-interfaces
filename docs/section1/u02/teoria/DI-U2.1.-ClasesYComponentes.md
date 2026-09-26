@@ -5,7 +5,7 @@ summary: "Del JFrame al composable: ventanas y paneles en Compose, eventos con o
 authors:
     - Ismael Velasco
 date: 2026-09-26
-icon: "material/grid-view"
+icon: "material/view-dashboard"
 permalink: /di/unidad2/2.1
 categories:
     - DI
