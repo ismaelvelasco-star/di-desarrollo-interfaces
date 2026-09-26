@@ -53,18 +53,77 @@ Conocer en profundidad todas las funcionalidades del área de la vista de diseñ
 
 El flujo de trabajo es siempre el mismo: escribes (o arrastras desde la paleta) un componible en la vista *Code* o *Design*, y la vista *Split* te muestra el resultado renderizándose en vivo. Recordemos las partes principales de la vista de diseño:
 
+<figure markdown>
+![El área de diseño de Android Studio con sus cuatro zonas: Palette con el catálogo de componentes, Component Tree con la jerarquía, la Preview como lienzo y Attributes con las propiedades del elemento seleccionado.](assets/area-diseno-zonas.svg)
+<figcaption>Fig. 1. El área de diseño: las cuatro zonas y el flujo completo de un componente, desde que lo arrastras hasta que ajustas sus propiedades.</figcaption>
+</figure>
+
 - **Zona de diseño (preview)**: el lienzo donde se sitúan los componentes de la interfaz. Las funciones anotadas con `@Preview` se renderizan aquí en vivo.
-- **Palette**: todos los componentes disponibles (textos, botones, campos, contenedores...), listos para arrastrar. Cada vez que se coloca uno, aparece su código en la vista *Code*.
-- **Component Tree**: el mapa de navegación que muestra la jerarquía de todos los elementos insertados.
-- **Attributes**: al seleccionar cualquier componente, muestra todas sus propiedades (texto, color, alineación, habilitado...). Si no hay nada seleccionado, aparece en blanco.
+- **Palette**: aquí se encuentran todos los elementos utilizados para la implementación de la interfaz (textos, botones, campos, contenedores...), listos para arrastrar. Cada vez que se coloca uno, aparece su código en la vista *Code*.
+- **Component Tree**: mapa de navegación que muestra un resumen de todos los elementos insertados en la zona de diseño, jerarquizados por contenedores, como un explorador de carpetas pero de la interfaz.
+- **Attributes**: si se selecciona cualquier componente en esta ventana, se muestran todas las propiedades del elemento que permiten definir su apariencia y comportamiento (texto, color, alineación, habilitado...). En cambio, si no se pulsa sobre ningún elemento aparece en blanco.
+
+Por ejemplo, si arrastramos un `Button` desde la paleta hasta un `Column` de la preview, el *Component Tree* gana esa rama, el panel *Attributes* pasa a mostrar sus propiedades (`text: "Púlsame"`, `enabled: true`, `onClick: { }`...) y en la vista *Code* aparece su llamada exactamente igual que si la hubiéramos escrito a mano:
+
+```kotlin
+@Composable
+fun EjemploAreaDiseno() {
+    Column {
+        Text("Hola")                    // ya estaba en el árbol
+        Button(onClick = { }) {         // recién insertado desde la paleta
+            Text("Púlsame")             // el texto del botón, dentro de sus llaves
+        }
+    }
+}
+```
+
+Código 1. Lo que genera arrastrar un Button a un Column: la llamada aparece en Code, la rama en el Component Tree y sus propiedades en Attributes. Las tres vistas son espejos del mismo código.
 
 ### 2.1. Insertar elementos
 
 Para colocar cualquier elemento basta con pulsar sobre él en la paleta de componentes y arrastrarlo hasta la posición exacta de la zona de diseño. Al soltarlo sobre un contenedor (Column, Row, Box...), el elemento queda insertado **dentro** de ese contenedor y su llamada aparece automáticamente en la vista *Code*. También puedes escribir la llamada directamente en Kotlin: el resultado es idéntico, porque las dos vistas son espejos del mismo código.
 
+```kotlin
+// ANTES: un Column con un solo Text
+Column {
+    Text("Hola")
+}
+
+// DESPUÉS de insertar un TextField desde la paleta (o a mano: idéntico)
+Column {
+    Text("Hola")
+    OutlinedTextField(                  // insertado dentro del Column
+        value = nombre,
+        onValueChange = { nombre = it },
+        label = { Text("Escribe tu nombre") }
+    )
+}
+```
+
+Código 2. Insertar un elemento es añadir su llamada dentro del contenedor: arrastrándolo en Design o escribiéndola en Code produce exactamente el mismo resultado.
+
 ### 2.2. Eliminar elementos
 
 Para eliminar un elemento, ya sea componente o contenedor, basta con seleccionarlo desde la zona de diseño o desde el *Component Tree*, pulsar **Supr** (o clic derecho → Delete). También puede hacerse desde la vista *Code*, localizando la llamada al componible y eliminándola completa. La primera opción es mucho más rápida y segura, porque el IDE se asegura de borrar todo el bloque (llaves incluidas).
+
+```kotlin
+// ANTES: el Column con el TextField insertado
+Column {
+    Text("Hola")
+    OutlinedTextField(
+        value = nombre,
+        onValueChange = { nombre = it },
+        label = { Text("Escribe tu nombre") }
+    )
+}
+
+// DESPUÉS de eliminar el TextField (Supr sobre él en Design o el Tree):
+Column {
+    Text("Hola")
+}
+```
+
+Código 3. Eliminar un elemento es quitar su llamada completa del contenedor: seleccionar + Supr lo hace en un clic; a mano en Code hay que borrar la llamada entera, con sus llaves y todos sus parámetros.
 
 !!! tip "Regla de oro de las llaves"
     Al borrar a mano en *Code*, cuenta las llaves: cada componible abre `{` y cierra `}`. Si borras una de más o de menos, el error aparecerá al final del archivo (ya lo vivimos en el tema 1: *"Expecting ')'"* en la última línea suele significar una llave perdida más arriba).
@@ -107,7 +166,38 @@ println(c.area())              // 12.566...
 c.crecer()                     // radio pasa a 4.0
 ```
 
-Código 1. Estructura de una clase Kotlin: atributos en el constructor, métodos en el cuerpo. Es el equivalente Compose-friendly de la estructura clásica atributos-constructor-métodos.
+Código 4. Estructura de una clase Kotlin: atributos en el constructor, métodos en el cuerpo. Es el equivalente Compose-friendly de la estructura clásica atributos-constructor-métodos.
+
+Y un ejemplo directo de interfaz: una clase `Contacto` cuyos atributos alimentan una tarjeta visual. Fíjate cómo cada atributo del objeto acaba pintado en un componente de la interfaz:
+
+```kotlin
+class Contacto(
+    var nombre: String,          // atributo → Text(titleLarge)
+    var telefono: String,        // atributo → Text(bodyMedium)
+    var favorito: Boolean        // atributo → cambia el color del botón
+)
+
+@Composable
+fun TarjetaContacto(contacto: Contacto) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(contacto.nombre,                       // el atributo nombre
+                 style = MaterialTheme.typography.titleLarge)
+            Text(contacto.telefono,                     // el atributo telefono
+                 style = MaterialTheme.typography.bodyMedium)
+        }
+        Button(onClick = { contacto.favorito = !contacto.favorito }) {
+            // el atributo favorito decide el color del botón
+            Text(if (contacto.favorito) "★" else "☆")
+        }
+    }
+}
+
+// uso: crear el objeto (instanciar) y pasarlo a la interfaz
+TarjetaContacto(Contacto(nombre = "María", telefono = "600123456", favorito = true))
+```
+
+Código 5. Los atributos de un objeto alimentando la interfaz: `nombre` y `telefono` se pintan en los Text, y `favorito` decide qué muestra el botón. Los datos viven en el objeto; la interfaz los lee para dibujarse.
 
 !!! note "Por qué esto importa en Compose"
     El **estado** de una pantalla (`var contador by remember { mutableIntStateOf(0) }`) es exactamente esto: una propiedad que vive en un objeto observado, y que al cambiar provoca que la interfaz se redibuje. La POO no es repaso burocrático: es el motor del `remember` que usaremos en los casos prácticos.
@@ -137,7 +227,7 @@ fun MiPanel() {
 }
 ```
 
-Código 2. Contenedores anidados: un `Column` que contiene un `Row` con dos elementos. Cada nivel de anidamiento es un "panel" que agrupa y ordena.
+Código 5. Contenedores anidados: un `Column` que contiene un `Row` con dos elementos. Cada nivel de anidamiento es un "panel" que agrupa y ordena.
 
 Gracias a los contenedores podemos tener la interfaz mucho más organizada. La combinación de contenedores constituye un **sistema de capas** (el "layout" del que hablaremos en el apartado 8): Column dentro de Box, Row dentro de Column, y así hasta diseñar cualquier estructura.
 
@@ -175,7 +265,7 @@ fun MiPantalla() {
 }
 ```
 
-Código 3. Scaffold con cabecera. `innerPadding` entrega el espacio ocupado por topBar/bottomBar: si no lo aplicas, tu contenido queda tapado bajo la cabecera.
+Código 6. Scaffold con cabecera. `innerPadding` entrega el espacio ocupado por topBar/bottomBar: si no lo aplicas, tu contenido queda tapado bajo la cabecera.
 
 ## 5. Diálogos: AlertDialog
 
@@ -210,7 +300,7 @@ if (mostrarDialogo) {
 }
 ```
 
-Código 4. Diálogo modal con AlertDialog: el estado `mostrarDialogo` decide si se muestra; `onDismissRequest` lo cierra al pulsar fuera; los dos botones son composables completos.
+Código 7. Diálogo modal con AlertDialog: el estado `mostrarDialogo` decide si se muestra; `onDismissRequest` lo cierra al pulsar fuera; los dos botones son composables completos.
 
 !!! tip "La receta del diálogo"
     1. Una variable de estado (`mutableStateOf(false)`) que controla si se ve.
@@ -247,7 +337,7 @@ fun PantallaLogin(navController: NavController) {
 }
 ```
 
-Código 5. Navegación entre dos pantallas: el NavHost las registra por ruta; el onClick del botón dispara navigate(). Requiere añadir la dependencia `androidx.navigation:navigation-compose` en Gradle (más abajo, apartado de dependencias).
+Código 8. Navegación entre dos pantallas: el NavHost las registra por ruta; el onClick del botón dispara navigate(). Requiere añadir la dependencia `androidx.navigation:navigation-compose` en Gradle (más abajo, apartado de dependencias).
 
 **Los eventos en Compose** funcionan así: cada componente interactivo recibe su manejador como parámetro — `onClick` para botones y filas, `onValueChange` para campos de texto, `onCheckedChange` para casillas, `onDismissRequest` para diálogos. No hay que registrar listeners ni clases auxiliares: el evento es un parámetro más de la función, una lambda entre llaves que se ejecuta cuando ocurre la acción.
 
@@ -261,7 +351,7 @@ Button(onClick = {
 }
 ```
 
-Código 6. El evento como parámetro: onClick recibe una lambda con todas las acciones que se ejecutan al pulsar. Cambiar el estado (contador) redibuja la interfaz automáticamente.
+Código 9. El evento como parámetro: onClick recibe una lambda con todas las acciones que se ejecutan al pulsar. Cambiar el estado (contador) redibuja la interfaz automáticamente.
 
 !!! note "Dependencia de Navigation"
     Navigation Compose no viene incluida por defecto en la plantilla Empty Activity. Para usarla, añade en `gradle/libs.versions.toml` la línea de navigation-compose y en `build.gradle.kts (Module :app)` la dependencia (o directamente la línea `implementation("androidx.navigation:navigation-compose:2.8.x")`), y pulsa **Sync**. Android Studio te lo recuerda con Alt+Intro → Add dependency.
@@ -293,7 +383,7 @@ Button(
 }
 ```
 
-Código 7. Button con sus propiedades más usadas. El contenido (Text) se declara dentro de las llaves del botón.
+Código 10. Button con sus propiedades más usadas. El contenido (Text) se declara dentro de las llaves del botón.
 
 | Propiedad | Qué hace | Equivalencia visual |
 |-----------|----------|---------------------|
@@ -313,7 +403,7 @@ OutlinedButton(onClick = { }) { Text("Cancelar") }     // secundario: borde
 TextButton(onClick = { }) { Text("Saltar") }           // terciario: solo texto
 ```
 
-Código 8. Las tres jerarquías: principal (relleno), secundaria (borde) y terciaria (solo texto). Elegir bien cuál usar es decisión de diseño, no de capricho.
+Código 11. Las tres jerarquías: principal (relleno), secundaria (borde) y terciaria (solo texto). Elegir bien cuál usar es decisión de diseño, no de capricho.
 
 ### 7.2. Text
 
@@ -337,7 +427,7 @@ Text(
 )
 ```
 
-Código 9. Text con estilo: la buena práctica es usar los estilos del tema (titleLarge, bodyLarge...) en lugar de tamaños sueltos, para que toda la app sea coherente.
+Código 12. Text con estilo: la buena práctica es usar los estilos del tema (titleLarge, bodyLarge...) en lugar de tamaños sueltos, para que toda la app sea coherente.
 
 | Parámetro | Qué hace |
 |-----------|----------|
@@ -374,7 +464,7 @@ OutlinedTextField(
 )
 ```
 
-Código 10. OutlinedTextField con estado: `value` muestra el estado y `onValueChange` lo actualiza. Sin esta pareja, el campo no deja escribir.
+Código 13. OutlinedTextField con estado: `value` muestra el estado y `onValueChange` lo actualiza. Sin esta pareja, el campo no deja escribir.
 
 !!! warning "La pareja inseparable"
     `value` y `onValueChange` SON el corazón del componente: el valor mostrado vive en una variable de estado, y cada tecla que pulsa el usuario ejecuta `onValueChange` con el texto nuevo (`it`), que se guarda en la variable y redibuja el campo. Si te falta una de las dos, el campo no funciona. Es el patrón **estado → UI → evento → estado**.
@@ -393,7 +483,7 @@ OutlinedTextField(
 )
 ```
 
-Código 11. Campo de contraseña: PasswordVisualTransformation enmascara lo escrito y el teclado especializado. El valor real sigue estando en el estado.
+Código 14. Campo de contraseña: PasswordVisualTransformation enmascara lo escrito y el teclado especializado. El valor real sigue estando en el estado.
 
 ### 7.4. Checkbox
 
@@ -416,7 +506,7 @@ Row(verticalAlignment = Alignment.CenterVertically) {
 }
 ```
 
-Código 12. Checkbox con estado propio. El patrón value/onCheckedChange es el mismo de TextField: estado en pareja con el evento.
+Código 15. Checkbox con estado propio. El patrón value/onCheckedChange es el mismo de TextField: estado en pareja con el evento.
 
 **La lista de la compra con checkboxes:**
 
@@ -440,7 +530,7 @@ Column {
 }
 ```
 
-Código 13. Varios checkboxes con una lista de estado (mutableStateListOf): marcar y desmarcar actualiza el contador en vivo.
+Código 16. Varios checkboxes con una lista de estado (mutableStateListOf): marcar y desmarcar actualiza el contador en vivo.
 
 ### 7.5. RadioButton
 
@@ -469,7 +559,7 @@ Column {
 }
 ```
 
-Código 14. RadioButtons excluyentes: como todos leen y escriben la misma variable `elegida`, marcar uno desmarca automáticamente el anterior. Es el equivalente funcional del ButtonGroup clásico, sin necesidad de crear ningún grupo: la exclusividad la da compartir el estado.
+Código 17. RadioButtons excluyentes: como todos leen y escriben la misma variable `elegida`, marcar uno desmarca automáticamente el anterior. Es el equivalente funcional del ButtonGroup clásico, sin necesidad de crear ningún grupo: la exclusividad la da compartir el estado.
 
 !!! tip "CheckBox vs RadioButton en una línea"
     - Varias opciones **compatibles** ("extras de tu hamburguesa") → Checkbox, cada una con su estado.
@@ -518,7 +608,7 @@ ExposedDropdownMenuBox(
 }
 ```
 
-Código 15. Menú desplegable completo: la caja (readOnly, no se escribe), el estado `expandido` que abre/cierra y `seleccion` que guarda la opción elegida. El índice por defecto se controla eligiendo el valor inicial del estado (equivalente al selectedIndex clásico).
+Código 18. Menú desplegable completo: la caja (readOnly, no se escribe), el estado `expandido` que abre/cierra y `seleccion` que guarda la opción elegida. El índice por defecto se controla eligiendo el valor inicial del estado (equivalente al selectedIndex clásico).
 
 ## 8. Disposición: los layouts de Compose
 
@@ -545,7 +635,7 @@ Column(
 }
 ```
 
-Código 16. Column con espaciado (equivalente del vgaphgap clásico: aquí se llama spacedBy) y alineación.
+Código 19. Column con espaciado (equivalente del vgaphgap clásico: aquí se llama spacedBy) y alineación.
 
 ### 8.2. Row
 
@@ -563,7 +653,7 @@ Row(
 }
 ```
 
-Código 17. Row centrada con un Spacer entre botones. Row es el equivalente del FlowLayout clásico: los elementos fluyen en línea.
+Código 20. Row centrada con un Spacer entre botones. Row es el equivalente del FlowLayout clásico: los elementos fluyen en línea.
 
 !!! tip "weight: repartir el espacio"
     Dentro de Row/Column, el modificador `weight` reparte el espacio restante: `Modifier.weight(1f)` significa "dame una parte igual". Dos campos con weight(1f) cada uno ocupan el 50% exacto, se adapte la pantalla al tamaño que se adapte.
@@ -582,7 +672,7 @@ Box(
 }
 ```
 
-Código 18. Box centrando un Text sobre una Image: superposición con contentAlignment.
+Código 21. Box centrando un Text sobre una Image: superposición con contentAlignment.
 
 ### 8.4. LazyVerticalGrid
 
@@ -603,7 +693,7 @@ LazyVerticalGrid(
 }
 ```
 
-Código 19. LazyVerticalGrid con 3 columnas: cada elemento de la lista se convierte en un botón que ocupa su celda entera. Los huecos y separaciones se controlan con Arrangement.spacedBy.
+Código 22. LazyVerticalGrid con 3 columnas: cada elemento de la lista se convierte en un botón que ocupa su celda entera. Los huecos y separaciones se controlan con Arrangement.spacedBy.
 
 ```mermaid
 flowchart TD
@@ -681,7 +771,7 @@ fun PantallaLogin(navController: NavController) {
 }
 ```
 
-Código 20. Pantalla de login completa: dos campos con estado, botón con evento que comprueba credenciales y navega o marca error.
+Código 23. Pantalla de login completa: dos campos con estado, botón con evento que comprueba credenciales y navega o marca error.
 
 **Desenlace.** Al pulsar "Inicio" con datos correctos, la app navega a la pantalla de bienvenida; si son incorrectos, los campos se marcan en rojo y aparece el mensaje de error bajo el campo. No hay que crear ni destruir ventanas manualmente: el NavHost gestiona el cambio de pantalla, y `popBackStack()` permite volver atrás desde la bienvenida.
 
@@ -716,7 +806,7 @@ fun Reproductor() {
 }
 ```
 
-Código 21. Reproductor en rejilla 3×3: nueve botones colocados automáticamente por LazyVerticalGrid.
+Código 24. Reproductor en rejilla 3×3: nueve botones colocados automáticamente por LazyVerticalGrid.
 
 **Desenlace.** El resultado es una matriz de nueve botones dispuestos en tres filas y tres columnas que se adapta sola al tamaño de pantalla: si rotas el móvil o corres en una tablet, la rejilla sigue cuadrada y llena. Con seis líneas de contenedor hemos sustituido a las nueve inserciones posicionales manuales del enfoque clásico.
 
