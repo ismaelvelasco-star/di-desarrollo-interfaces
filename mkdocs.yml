@@ -15,6 +15,11 @@ nav:
         - '1.1.-Introducción a la confección de interfaces': 'section1/u01/teoria/DI-U1.1.-IntroduccionConfeccionInterfaces.md'
         - 'Ejercicios U1 (de menor a mayor)': 'section1/u01/ejercicios/DI-U1.-Ejercicios.md'
         - 'Solucionario U1 (con enunciados)': 'section1/u01/ejercicios/DI-U1.-Solucionario.md'
+    - 'UD 2 - Clases y componentes':
+        - 'section1/u02/index.md'
+        - '2.1.-Clases y componentes': 'section1/u02/teoria/DI-U2.1.-ClasesYComponentes.md'
+        - 'Ejercicios U2 (práctica progresiva)': 'section1/u02/ejercicios/DI-U2.-Ejercicios.md'
+        - 'Solucionario U2 (con enunciados)': 'section1/u02/ejercicios/DI-U2.-Solucionario.md'
   - 'Acerca de': 'about.md'
 
 theme:
