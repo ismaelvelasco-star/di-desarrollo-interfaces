@@ -221,19 +221,28 @@ A continuación se describen los diferentes grupos de herramientas que podemos e
 - **Component Tree**: muestra un resumen de todos los componentes colocados en el diseño, como si de un explorador de carpetas se tratase, pero con los elementos de la interfaz. Aparece el nombre de la función composable (por ejemplo `Button` o `Text`), que es el nombre del componente; el texto que se muestra al usuario puede ser diferente y, en la mayor parte de los casos, lo será.
 - **Attributes**: cada componente dispone de diferentes propiedades modificables desde este panel, entre ellas el texto mostrado, la alineación o el color de fondo. Propiedades típicas de un botón son su `text` (el contenido que ve el usuario) y `enabled`, que permite habilitar o deshabilitar su funcionalidad, entre otras de aspecto.
 
-**8.5. Tipos de proyecto nuevos.** Al crear un *New Project*, la galería de plantillas de Android Studio ofrece varios puntos de partida. Conviene saber qué es cada uno y en qué se diferencia de los demás:
+**8.5. Tipos de proyecto nuevos.** Al crear un *New Project*, la galería de plantillas de Android Studio ofrece varios puntos de partida. Estas son las plantillas disponibles para teléfono/tablet, que conviene saber distinguir:
+
+<figure markdown>
+![Galería de plantillas de nuevo proyecto en Android Studio: No Activity, Empty Activity, Gemini API, Navigation UI Activity, Basic Views Activity, Empty Views Activity, Responsive Views Activity, Game Activity y Native C++.](assets/plantillas-proyecto.png)
+<figcaption>Fig. 8. La galería de plantillas al crear un nuevo proyecto en Android Studio (captura del aula).</figcaption>
+</figure>
 
 | Plantilla | Qué genera | Cuándo usarla | Diferencia con las demás |
 |-----------|-----------|---------------|--------------------------|
-| **Empty Activity** | Una actividad con un composable vacío y Compose ya configurado | La de este módulo: partir de cero con la interfaz limpia | Es la más mínima: sin navegación ni componentes precolocados |
-| **Empty Views Activity** | Una actividad con layout XML (sistema clásico de vistas) | Solo para mantener apps antiguas que usan Views | La contraria a la anterior: UI imperativa con XML, sin Compose |
-| **Compose Activity** (Basic /_variantes de material) | Actividad con estructura Material ya montada (Scaffold, tema) | Cuando quieres arrancar con el esqueleto Material listo | Igual que Empty pero con más piezas preconstruidas |
-| **Bottom Navigation / Navigation Drawer / Navigation Views** | Actividad con menú de navegación inferior/lateral y varias pantallas ya conectadas | Apps con varias secciones (Inicio, Perfil, Ajustes...) | Incluye *navigation* ya montado: cambiar de pantalla sin escribirlo |
-| **Phone/Tablet, Wear OS, TV, Auto, Glass** | Proyectos para el factor de forma elegido | Apps para reloj, televisión, coche... | Cambia el tipo de dispositivo objetivo (y las librerías de UI asociadas) |
+| **No Activity** | Solo la estructura del proyecto, sin ninguna pantalla | Módulos de librería o proyectos donde las pantallas se añaden luego a mano | La única sin actividad inicial: el lienzo más vacío posible |
+| **Empty Activity** | Una actividad con una función composable vacía y Compose ya configurado | **La de este módulo**: partir de cero con la interfaz limpia | La mínima con Compose: sin navegación ni componentes precolocados |
+| **Gemini API** | Actividad con el ejemplo ya conectado a la IA de Google (Gemini) | Explorar integración de IA generativa en la app | Incluye dependencias y código de IA; no es para UI base |
+| **Navigation UI Activity** | Actividad con menú de navegación (barra inferior o lateral) y varias pantallas ya conectadas | Apps con varias secciones (Inicio, Perfil, Ajustes...) | Trae *navigation* ya montado: cambiar de pantalla sin escribirlo |
+| **Basic Views Activity** | Actividad con el sistema clásico de vistas (XML) y estructura básica de menú | Mantener apps antiguas que usan Views con XML | UI imperativa sin Compose: el sistema anterior al que usaremos |
+| **Empty Views Activity** | Una actividad con layout XML vacío (sistema clásico de vistas) | Solo para apps heredadas con Views | La versión "vacía" de la anterior: XML en vez de Compose |
+| **Responsive Views Activity** | Actividad con diseño adaptativo que se ajusta a móvil, tablet y escritorio | Apps que deben verse bien en cualquier tamaño de pantalla | Centrada en adaptabilidad con breakpoints, también con Views |
+| **Game Activity (C++)** | Proyecto de videojuego con el motor C++ (Native Game) | Juegos 2D/3D en C++ | Otro lenguaje y otro mundo: ni Kotlin ni UI de apps |
+| **Native C++** | Proyecto con código nativo C++ enlazado con Kotlin/Java | Apps que necesitan máximo rendimiento o librerías nativas | Añade capa C++ (NDK) sobre la app normal |
 
-Tabla 2. Tipos de plantilla de proyecto nuevo y sus diferencias.
+Tabla 2. Plantillas de proyecto nuevo (teléfono/tablet) y sus diferencias.
 
-Todas comparten la misma estructura de carpetas que vimos en el apartado 7.1; lo que cambia es el contenido inicial generado y las librerías incluidas. En este módulo usaremos **Empty Activity**, que nos deja el lienzo limpio para construir la interfaz desde cero.
+Fíjate en el criterio de elección: para **interfaces con Compose** la opción es *Empty Activity* (o *Navigation UI Activity* si la app tiene varias secciones desde el inicio); las *Views* son el sistema clásico anterior; y las de C++ cambian de lenguaje por completo. En este módulo usaremos **Empty Activity**, que nos deja el lienzo limpio para construir la interfaz desde cero.
 
 ## 9. Caso práctico 1: "Creación de una pantalla"
 
