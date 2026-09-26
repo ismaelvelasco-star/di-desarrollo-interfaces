@@ -18,7 +18,8 @@ Enfoque 2026/27: desarrollo de interfaces **100% Kotlin y Jetpack Compose**. Cad
 ## Acceso directo
 
 - [Módulo DI](section1/index.md) → unidades, presentaciones y normativa
-- [UD 1: Introducción a la confección de interfaces](section1/u01/index.md)
+- [UD 1: Introducción a la confección de interfaces](section1/u01/index.md) — [teoría](section1/u01/teoria/DI-U1.1.-IntroduccionConfeccionInterfaces.md) · [ejercicios](section1/u01/ejercicios/DI-U1.-Ejercicios.md) · [solucionario](section1/u01/ejercicios/DI-U1.-Solucionario.md) · [slides](https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/slides/section1-di/DI-U1.1.-IntroduccionConfeccionInterfaces.html)
+- [UD 2: Clases y componentes](section1/u02/index.md) — [teoría](section1/u02/teoria/DI-U2.1.-ClasesYComponentes.md) · [ejercicios](section1/u02/ejercicios/DI-U2.-Ejercicios.md) · [solucionario](section1/u02/ejercicios/DI-U2.-Solucionario.md) · [slides](https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/slides/section1-di/DI-U2.1.-ClasesYComponentes.html)
 
 ## Convenciones del repositorio
 
