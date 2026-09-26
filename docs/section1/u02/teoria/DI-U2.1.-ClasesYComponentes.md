@@ -227,7 +227,7 @@ fun MiPanel() {
 }
 ```
 
-Código 5. Contenedores anidados: un `Column` que contiene un `Row` con dos elementos. Cada nivel de anidamiento es un "panel" que agrupa y ordena.
+Código 6. Contenedores anidados: un `Column` que contiene un `Row` con dos elementos. Cada nivel de anidamiento es un "panel" que agrupa y ordena.
 
 Gracias a los contenedores podemos tener la interfaz mucho más organizada. La combinación de contenedores constituye un **sistema de capas** (el "layout" del que hablaremos en el apartado 8): Column dentro de Box, Row dentro de Column, y así hasta diseñar cualquier estructura.
 
