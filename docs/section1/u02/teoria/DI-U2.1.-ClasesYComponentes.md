@@ -265,7 +265,7 @@ fun MiPantalla() {
 }
 ```
 
-Código 6. Scaffold con cabecera. `innerPadding` entrega el espacio ocupado por topBar/bottomBar: si no lo aplicas, tu contenido queda tapado bajo la cabecera.
+Código 7. Scaffold con cabecera. `innerPadding` entrega el espacio ocupado por topBar/bottomBar: si no lo aplicas, tu contenido queda tapado bajo la cabecera.
 
 ## 5. Diálogos: AlertDialog
 
@@ -300,7 +300,7 @@ if (mostrarDialogo) {
 }
 ```
 
-Código 7. Diálogo modal con AlertDialog: el estado `mostrarDialogo` decide si se muestra; `onDismissRequest` lo cierra al pulsar fuera; los dos botones son composables completos.
+Código 8. Diálogo modal con AlertDialog: el estado `mostrarDialogo` decide si se muestra; `onDismissRequest` lo cierra al pulsar fuera; los dos botones son composables completos.
 
 !!! tip "La receta del diálogo"
     1. Una variable de estado (`mutableStateOf(false)`) que controla si se ve.
@@ -337,7 +337,7 @@ fun PantallaLogin(navController: NavController) {
 }
 ```
 
-Código 8. Navegación entre dos pantallas: el NavHost las registra por ruta; el onClick del botón dispara navigate(). Requiere añadir la dependencia `androidx.navigation:navigation-compose` en Gradle (más abajo, apartado de dependencias).
+Código 9. Navegación entre dos pantallas: el NavHost las registra por ruta; el onClick del botón dispara navigate(). Requiere añadir la dependencia `androidx.navigation:navigation-compose` en Gradle (más abajo, apartado de dependencias).
 
 **Los eventos en Compose** funcionan así: cada componente interactivo recibe su manejador como parámetro — `onClick` para botones y filas, `onValueChange` para campos de texto, `onCheckedChange` para casillas, `onDismissRequest` para diálogos. No hay que registrar listeners ni clases auxiliares: el evento es un parámetro más de la función, una lambda entre llaves que se ejecuta cuando ocurre la acción.
 
@@ -351,7 +351,7 @@ Button(onClick = {
 }
 ```
 
-Código 9. El evento como parámetro: onClick recibe una lambda con todas las acciones que se ejecutan al pulsar. Cambiar el estado (contador) redibuja la interfaz automáticamente.
+Código 10. El evento como parámetro: onClick recibe una lambda con todas las acciones que se ejecutan al pulsar. Cambiar el estado (contador) redibuja la interfaz automáticamente.
 
 !!! note "Dependencia de Navigation"
     Navigation Compose no viene incluida por defecto en la plantilla Empty Activity. Para usarla, añade en `gradle/libs.versions.toml` la línea de navigation-compose y en `build.gradle.kts (Module :app)` la dependencia (o directamente la línea `implementation("androidx.navigation:navigation-compose:2.8.x")`), y pulsa **Sync**. Android Studio te lo recuerda con Alt+Intro → Add dependency.
@@ -383,7 +383,7 @@ Button(
 }
 ```
 
-Código 10. Button con sus propiedades más usadas. El contenido (Text) se declara dentro de las llaves del botón.
+Código 11. Button con sus propiedades más usadas. El contenido (Text) se declara dentro de las llaves del botón.
 
 | Propiedad | Qué hace | Equivalencia visual |
 |-----------|----------|---------------------|
@@ -403,7 +403,7 @@ OutlinedButton(onClick = { }) { Text("Cancelar") }     // secundario: borde
 TextButton(onClick = { }) { Text("Saltar") }           // terciario: solo texto
 ```
 
-Código 11. Las tres jerarquías: principal (relleno), secundaria (borde) y terciaria (solo texto). Elegir bien cuál usar es decisión de diseño, no de capricho.
+Código 12. Las tres jerarquías: principal (relleno), secundaria (borde) y terciaria (solo texto). Elegir bien cuál usar es decisión de diseño, no de capricho.
 
 ### 7.2. Text
 
@@ -427,7 +427,7 @@ Text(
 )
 ```
 
-Código 12. Text con estilo: la buena práctica es usar los estilos del tema (titleLarge, bodyLarge...) en lugar de tamaños sueltos, para que toda la app sea coherente.
+Código 13. Text con estilo: la buena práctica es usar los estilos del tema (titleLarge, bodyLarge...) en lugar de tamaños sueltos, para que toda la app sea coherente.
 
 | Parámetro | Qué hace |
 |-----------|----------|
@@ -464,7 +464,7 @@ OutlinedTextField(
 )
 ```
 
-Código 13. OutlinedTextField con estado: `value` muestra el estado y `onValueChange` lo actualiza. Sin esta pareja, el campo no deja escribir.
+Código 14. OutlinedTextField con estado: `value` muestra el estado y `onValueChange` lo actualiza. Sin esta pareja, el campo no deja escribir.
 
 !!! warning "La pareja inseparable"
     `value` y `onValueChange` SON el corazón del componente: el valor mostrado vive en una variable de estado, y cada tecla que pulsa el usuario ejecuta `onValueChange` con el texto nuevo (`it`), que se guarda en la variable y redibuja el campo. Si te falta una de las dos, el campo no funciona. Es el patrón **estado → UI → evento → estado**.
@@ -483,7 +483,7 @@ OutlinedTextField(
 )
 ```
 
-Código 14. Campo de contraseña: PasswordVisualTransformation enmascara lo escrito y el teclado especializado. El valor real sigue estando en el estado.
+Código 15. Campo de contraseña: PasswordVisualTransformation enmascara lo escrito y el teclado especializado. El valor real sigue estando en el estado.
 
 ### 7.4. Checkbox
 
@@ -506,7 +506,7 @@ Row(verticalAlignment = Alignment.CenterVertically) {
 }
 ```
 
-Código 15. Checkbox con estado propio. El patrón value/onCheckedChange es el mismo de TextField: estado en pareja con el evento.
+Código 16. Checkbox con estado propio. El patrón value/onCheckedChange es el mismo de TextField: estado en pareja con el evento.
 
 **La lista de la compra con checkboxes:**
 
@@ -530,7 +530,7 @@ Column {
 }
 ```
 
-Código 16. Varios checkboxes con una lista de estado (mutableStateListOf): marcar y desmarcar actualiza el contador en vivo.
+Código 17. Varios checkboxes con una lista de estado (mutableStateListOf): marcar y desmarcar actualiza el contador en vivo.
 
 ### 7.5. RadioButton
 
@@ -559,7 +559,7 @@ Column {
 }
 ```
 
-Código 17. RadioButtons excluyentes: como todos leen y escriben la misma variable `elegida`, marcar uno desmarca automáticamente el anterior. Es el equivalente funcional del ButtonGroup clásico, sin necesidad de crear ningún grupo: la exclusividad la da compartir el estado.
+Código 18. RadioButtons excluyentes: como todos leen y escriben la misma variable `elegida`, marcar uno desmarca automáticamente el anterior. Es el equivalente funcional del ButtonGroup clásico, sin necesidad de crear ningún grupo: la exclusividad la da compartir el estado.
 
 !!! tip "CheckBox vs RadioButton en una línea"
     - Varias opciones **compatibles** ("extras de tu hamburguesa") → Checkbox, cada una con su estado.
@@ -608,7 +608,7 @@ ExposedDropdownMenuBox(
 }
 ```
 
-Código 18. Menú desplegable completo: la caja (readOnly, no se escribe), el estado `expandido` que abre/cierra y `seleccion` que guarda la opción elegida. El índice por defecto se controla eligiendo el valor inicial del estado (equivalente al selectedIndex clásico).
+Código 19. Menú desplegable completo: la caja (readOnly, no se escribe), el estado `expandido` que abre/cierra y `seleccion` que guarda la opción elegida. El índice por defecto se controla eligiendo el valor inicial del estado (equivalente al selectedIndex clásico).
 
 ## 8. Disposición: los layouts de Compose
 
@@ -635,7 +635,7 @@ Column(
 }
 ```
 
-Código 19. Column con espaciado (equivalente del vgaphgap clásico: aquí se llama spacedBy) y alineación.
+Código 20. Column con espaciado (equivalente del vgaphgap clásico: aquí se llama spacedBy) y alineación.
 
 ### 8.2. Row
 
@@ -653,7 +653,7 @@ Row(
 }
 ```
 
-Código 20. Row centrada con un Spacer entre botones. Row es el equivalente del FlowLayout clásico: los elementos fluyen en línea.
+Código 21. Row centrada con un Spacer entre botones. Row es el equivalente del FlowLayout clásico: los elementos fluyen en línea.
 
 !!! tip "weight: repartir el espacio"
     Dentro de Row/Column, el modificador `weight` reparte el espacio restante: `Modifier.weight(1f)` significa "dame una parte igual". Dos campos con weight(1f) cada uno ocupan el 50% exacto, se adapte la pantalla al tamaño que se adapte.
@@ -672,7 +672,7 @@ Box(
 }
 ```
 
-Código 21. Box centrando un Text sobre una Image: superposición con contentAlignment.
+Código 22. Box centrando un Text sobre una Image: superposición con contentAlignment.
 
 ### 8.4. LazyVerticalGrid
 
@@ -693,7 +693,7 @@ LazyVerticalGrid(
 }
 ```
 
-Código 22. LazyVerticalGrid con 3 columnas: cada elemento de la lista se convierte en un botón que ocupa su celda entera. Los huecos y separaciones se controlan con Arrangement.spacedBy.
+Código 23. LazyVerticalGrid con 3 columnas: cada elemento de la lista se convierte en un botón que ocupa su celda entera. Los huecos y separaciones se controlan con Arrangement.spacedBy.
 
 ```mermaid
 flowchart TD
@@ -771,7 +771,7 @@ fun PantallaLogin(navController: NavController) {
 }
 ```
 
-Código 23. Pantalla de login completa: dos campos con estado, botón con evento que comprueba credenciales y navega o marca error.
+Código 24. Pantalla de login completa: dos campos con estado, botón con evento que comprueba credenciales y navega o marca error.
 
 **Desenlace.** Al pulsar "Inicio" con datos correctos, la app navega a la pantalla de bienvenida; si son incorrectos, los campos se marcan en rojo y aparece el mensaje de error bajo el campo. No hay que crear ni destruir ventanas manualmente: el NavHost gestiona el cambio de pantalla, y `popBackStack()` permite volver atrás desde la bienvenida.
 
@@ -806,7 +806,7 @@ fun Reproductor() {
 }
 ```
 
-Código 24. Reproductor en rejilla 3×3: nueve botones colocados automáticamente por LazyVerticalGrid.
+Código 25. Reproductor en rejilla 3×3: nueve botones colocados automáticamente por LazyVerticalGrid.
 
 **Desenlace.** El resultado es una matriz de nueve botones dispuestos en tres filas y tres columnas que se adapta sola al tamaño de pantalla: si rotas el móvil o corres en una tablet, la rejilla sigue cuadrada y llena. Con seis líneas de contenedor hemos sustituido a las nueve inserciones posicionales manuales del enfoque clásico.
 
