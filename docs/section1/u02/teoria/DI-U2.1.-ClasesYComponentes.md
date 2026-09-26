@@ -47,9 +47,9 @@ flowchart LR
 - Analizar el código generado y modificarlo.
 - Desarrollar una aplicación completa que incluye la interfaz gráfica obtenida.
 
-## 2. Explotación del área de diseño
+## 2. El área de diseño en Compose: código y preview en vivo
 
-Conocer en profundidad todas las funcionalidades del área de la vista de diseño es fundamental para un correcto desarrollo. En el tema anterior recorrimos el entorno completo; aquí lo explotamos para construir de verdad.
+Conocer en profundidad el área de diseño (lo que en los entornos clásicos se llamaba "explotar el área de diseño") sigue siendo fundamental para un correcto desarrollo; lo que cambia es la mecánica. En el tema anterior recorrimos el entorno completo; aquí lo explotamos para construir de verdad.
 
 **Primero, una verdad incómoda que conviene saber desde el primer día: en Jetpack Compose no hay paleta de arrastrar y soltar.** Ese flujo de trabajo "visual" (abrir una paleta, arrastrar un botón al lienzo y que se genere código) era el del sistema clásico de Views con XML y el de los editores visuales históricos. Compose apuesta por lo contrario: **primero el código**. Tú escribes la llamada en Kotlin (`Text(`, `Button(`, `Column {`) y la **vista Split** renderiza la interfaz en vivo a tu lado, al segundo. Escribir código ya no significa "no ver nada hasta ejecutar".
 

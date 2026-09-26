@@ -38,7 +38,7 @@ Note: Segunda parte: el plato. Los 6 componentes con su código y su dibujo lado
 ---
 
 
-## El área de diseño en acción
+## El área de diseño en Compose
 
 Note: Recordatorio exprés del tema 1, ahora en modo uso intensivo. Y una VERDAD que desmonta el temario clásico: en Compose NO hay paleta de arrastrar y soltar (eso era de Views XML y de los editores clásicos). El flujo es code-first: escribes Kotlin y la vista Split renderiza en vivo. Las zonas reales: el editor Code (donde se escribe todo), la preview de Split/Design (que renderiza al segundo y al clicar un elemento salta a su línea de código) y el Component Tree (la jerarquía, para seleccionar y borrar sin fallar el clic). El autocompletado (Ctrl+Espacio) sustituye a la vieja paleta: escribes Butt y te ofrece Button con sus parámetros. **Definiciones:** *Code-first* = el código es la fuente de verdad y la vista previa se genera desde él. *Autocompletado* = sugerencias del IDE al escribir (Ctrl+Espacio). *Component Tree* = árbol jerárquico de los elementos de la pantalla.
 
