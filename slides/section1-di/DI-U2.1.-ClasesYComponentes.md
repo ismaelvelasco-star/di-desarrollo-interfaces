@@ -40,17 +40,17 @@ Note: Segunda parte: el plato. Los 6 componentes con su código y su dibujo lado
 
 ## El área de diseño en acción
 
-Note: Recordatorio exprés del tema 1, ahora en modo uso intensivo. Las cuatro zonas: la preview (el lienzo donde se colocan los componentes), la Palette (el catálogo para arrastrar), el Component Tree (la jerarquía de lo insertado) y Attributes (las propiedades de lo seleccionado). Mensaje: "insertar = arrastrar o escribir la llamada; borrar = Supr o borrar la llamada completa". **Definiciones:** *Palette* = catálogo de componentes del IDE. *Component Tree* = árbol jerárquico de los elementos de la pantalla. *Attributes* = panel de propiedades del elemento seleccionado.
+Note: Recordatorio exprés del tema 1, ahora en modo uso intensivo. Y una VERDAD que desmonta el temario clásico: en Compose NO hay paleta de arrastrar y soltar (eso era de Views XML y de los editores clásicos). El flujo es code-first: escribes Kotlin y la vista Split renderiza en vivo. Las zonas reales: el editor Code (donde se escribe todo), la preview de Split/Design (que renderiza al segundo y al clicar un elemento salta a su línea de código) y el Component Tree (la jerarquía, para seleccionar y borrar sin fallar el clic). El autocompletado (Ctrl+Espacio) sustituye a la vieja paleta: escribes Butt y te ofrece Button con sus parámetros. **Definiciones:** *Code-first* = el código es la fuente de verdad y la vista previa se genera desde él. *Autocompletado* = sugerencias del IDE al escribir (Ctrl+Espacio). *Component Tree* = árbol jerárquico de los elementos de la pantalla.
 
 
 ### Insertar y eliminar
 
-- Insertar: arrastrar desde **Palette** o escribir la llamada
-- El elemento cae **dentro** del contenedor donde lo sueltes
-- Eliminar: seleccionar + **Supr** (o borrar la llamada completa en Code)
+- Insertar: **escribir la llamada** en el contenedor (¡no hay paleta!)
+- Ayudas: **autocompletado** (Ctrl+Espacio) y clic en preview → salta al código
+- Eliminar: clic en preview/Tree + **Supr**, o borrar la llamada entera en Code
 - Las dos vistas son **espejos** del mismo código
 
-Note: La mecánica del día a día. Al arrastrar, el elemento entra en el contenedor señalado (Column, Row...) y aparece su llamada en Code. Al borrar, mejor desde el Tree o la preview con Supr que a mano en código. Y la regla de oro de las llaves del tema 1 sigue en vigor: si borras a mano, cuenta las llaves — el error "Expecting )" al final del archivo casi siempre es una llave perdida más arriba. Anécdota: les recuerdo su primer error de compilación.
+Note: La mecánica del día a día, versión honesta: se inserta ESCRIBIENDO la llamada (el autocompletado con Ctrl+Espacio es la nueva paleta: escribes Butt y te ofrece Button con todos sus parámetros) y se elimina clicando en la preview (o el Tree) y Supr, o borrando la llamada completa a mano. La regla de oro de las llaves del tema 1 sigue en vigor: si borras a mano, cuenta las llaves — el error "Expecting )" al final del archivo casi siempre es una llave perdida más arriba. Anécdota: les recuerdo su primer error de compilación.
 
 ---
 

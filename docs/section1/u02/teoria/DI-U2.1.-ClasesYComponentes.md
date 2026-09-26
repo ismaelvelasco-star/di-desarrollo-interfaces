@@ -51,37 +51,38 @@ flowchart LR
 
 Conocer en profundidad todas las funcionalidades del área de la vista de diseño es fundamental para un correcto desarrollo. En el tema anterior recorrimos el entorno completo; aquí lo explotamos para construir de verdad.
 
-El flujo de trabajo es siempre el mismo: escribes (o arrastras desde la paleta) un componible en la vista *Code* o *Design*, y la vista *Split* te muestra el resultado renderizándose en vivo. Recordemos las partes principales de la vista de diseño:
+**Primero, una verdad incómoda que conviene saber desde el primer día: en Jetpack Compose no hay paleta de arrastrar y soltar.** Ese flujo de trabajo "visual" (abrir una paleta, arrastrar un botón al lienzo y que se genere código) era el del sistema clásico de Views con XML y el de los editores visuales históricos. Compose apuesta por lo contrario: **primero el código**. Tú escribes la llamada en Kotlin (`Text(`, `Button(`, `Column {`) y la **vista Split** renderiza la interfaz en vivo a tu lado, al segundo. Escribir código ya no significa "no ver nada hasta ejecutar".
+
+El flujo de trabajo es siempre el mismo: escribes el componible en la vista *Code*, y la vista *Split* te muestra el resultado renderizándose en vivo (y si te equivocas, en rojo). Las zonas del entorno que sí usaremos a diario son:
 
 <figure markdown>
-![El área de diseño de Android Studio con sus cuatro zonas: Palette con el catálogo de componentes, Component Tree con la jerarquía, la Preview como lienzo y Attributes con las propiedades del elemento seleccionado.](assets/area-diseno-zonas.svg)
-<figcaption>Fig. 1. El área de diseño: las cuatro zonas y el flujo completo de un componente, desde que lo arrastras hasta que ajustas sus propiedades.</figcaption>
+![Vista Split de Android Studio: el código Kotlin a la izquierda y la preview de Compose renderizándose en vivo a la derecha.](assets/vista-split.png)
+<figcaption>Fig. 1. El área de diseño de Compose es la vista Split: escribes Kotlin a la izquierda y la interfaz se renderiza en vivo a la derecha, sin ejecutar la app.</figcaption>
 </figure>
 
-- **Zona de diseño (preview)**: el lienzo donde se sitúan los componentes de la interfaz. Las funciones anotadas con `@Preview` se renderizan aquí en vivo.
-- **Palette**: aquí se encuentran todos los elementos utilizados para la implementación de la interfaz (textos, botones, campos, contenedores...), listos para arrastrar. Cada vez que se coloca uno, aparece su código en la vista *Code*.
-- **Component Tree**: mapa de navegación que muestra un resumen de todos los elementos insertados en la zona de diseño, jerarquizados por contenedores, como un explorador de carpetas pero de la interfaz.
-- **Attributes**: si se selecciona cualquier componente en esta ventana, se muestran todas las propiedades del elemento que permiten definir su apariencia y comportamiento (texto, color, alineación, habilitado...). En cambio, si no se pulsa sobre ningún elemento aparece en blanco.
+- **Editor (Code)**: donde escribes las llamadas a los composables en Kotlin. Es el corazón del desarrollo Compose: aquí se inserta, se modifica y se elimina todo.
+- **Zona de preview (Split/Design)**: el lienzo donde se renderiza en vivo lo que escribes. Las funciones anotadas con `@Preview` se dibujan aquí sin ejecutar la app; al hacer clic sobre un elemento de la preview, Android Studio te lleva a su línea exacta de código (y al revés).
+- **Component Tree**: el mapa jerárquico de los elementos en pantalla, como un explorador de carpetas pero de la interfaz. Aparece en la vista Design al lado de la preview y sirve para seleccionar (y borrar) elementos sin acertar a clicarlos en el dibujo.
 
-Por ejemplo, si arrastramos un `Button` desde la paleta hasta un `Column` de la preview, el *Component Tree* gana esa rama, el panel *Attributes* pasa a mostrar sus propiedades (`text: "Púlsame"`, `enabled: true`, `onClick: { }`...) y en la vista *Code* aparece su llamada exactamente igual que si la hubiéramos escrito a mano:
+Por ejemplo, si escribimos un `Button` dentro de un `Column`, en la preview aparece el botón renderizado al segundo, el *Component Tree* gana esa rama y al hacer clic sobre el botón (en la preview o en el árbol) el editor salta a su línea exacta:
 
 ```kotlin
 @Composable
 fun EjemploAreaDiseno() {
     Column {
         Text("Hola")                    // ya estaba en el árbol
-        Button(onClick = { }) {         // recién insertado desde la paleta
+        Button(onClick = { }) {         // lo escribimos: aparece en la preview al segundo
             Text("Púlsame")             // el texto del botón, dentro de sus llaves
         }
     }
 }
 ```
 
-Código 1. Lo que genera arrastrar un Button a un Column: la llamada aparece en Code, la rama en el Component Tree y sus propiedades en Attributes. Las tres vistas son espejos del mismo código.
+Código 1. Lo que pasa al escribir un Button dentro de un Column: aparece en la preview al segundo, gana su rama en el Component Tree y al clicar sobre él (preview o árbol) el editor salta a su línea. Las dos vistas son espejos del mismo código.
 
 ### 2.1. Insertar elementos
 
-Para colocar cualquier elemento basta con pulsar sobre él en la paleta de componentes y arrastrarlo hasta la posición exacta de la zona de diseño. Al soltarlo sobre un contenedor (Column, Row, Box...), el elemento queda insertado **dentro** de ese contenedor y su llamada aparece automáticamente en la vista *Code*. También puedes escribir la llamada directamente en Kotlin: el resultado es idéntico, porque las dos vistas son espejos del mismo código.
+En Compose, insertar un elemento es **escribir su llamada** dentro del contenedor adecuado: añades `Button(onClick = { }) { Text("Púlsame") }` dentro de las llaves de un `Column` y listo — la preview lo renderiza al segundo. Dos ayudas del IDE que sustituyen a la vieja paleta: el **autocompletado** (escribes `Butt` + Ctrl+Espacio y te ofrece Button, ButtonDefaults, OutlinedButton... con sus parámetros visibles) y la **paleta de plantillas del editor** (en la vista Design, Android Studio ofrece insertar composables habituales con un clic). El elemento queda insertado **dentro** del contenedor donde escribas la llamada: las dos vistas son espejos del mismo código.
 
 ```kotlin
 // ANTES: un Column con un solo Text
@@ -89,7 +90,7 @@ Column {
     Text("Hola")
 }
 
-// DESPUÉS de insertar un TextField desde la paleta (o a mano: idéntico)
+// DESPUÉS de insertar un TextField (escribir su llamada: la preview lo pinta al segundo)
 Column {
     Text("Hola")
     OutlinedTextField(                  // insertado dentro del Column
@@ -100,11 +101,11 @@ Column {
 }
 ```
 
-Código 2. Insertar un elemento es añadir su llamada dentro del contenedor: arrastrándolo en Design o escribiéndola en Code produce exactamente el mismo resultado.
+Código 2. Insertar un elemento es escribir su llamada dentro del contenedor: la preview lo pinta al segundo. El autocompletado (Ctrl+Espacio) te guía con los parámetros.
 
 ### 2.2. Eliminar elementos
 
-Para eliminar un elemento, ya sea componente o contenedor, basta con seleccionarlo desde la zona de diseño o desde el *Component Tree*, pulsar **Supr** (o clic derecho → Delete). También puede hacerse desde la vista *Code*, localizando la llamada al componible y eliminándola completa. La primera opción es mucho más rápida y segura, porque el IDE se asegura de borrar todo el bloque (llaves incluidas).
+Para eliminar un elemento hay dos caminos. El rápido: hacer clic sobre él en la **preview** (o seleccionarlo en el *Component Tree*) y pulsar **Supr** — el IDE localiza su llamada y la borra completa. El manual: ir a la vista *Code*, localizar la llamada del componible y eliminarla entera (con sus llaves y parámetros). El primero es más rápido y seguro porque el IDE se asegura de borrar todo el bloque.
 
 ```kotlin
 // ANTES: el Column con el TextField insertado
@@ -117,7 +118,7 @@ Column {
     )
 }
 
-// DESPUÉS de eliminar el TextField (Supr sobre él en Design o el Tree):
+// DESPUÉS de eliminar el TextField (clic en la preview + Supr, o borrar la llamada entera):
 Column {
     Text("Hola")
 }
@@ -820,7 +821,7 @@ Código 25. Reproductor en rejilla 3×3: nueve botones colocados automáticament
 
 ## 11. Resumen y resolución del caso práctico de la unidad
 
-En este tema hemos estudiado **Jetpack Compose**, el kit que contiene todas las funciones necesarias para programar todo tipo de componentes visuales. Aunque el número de elementos que incorpora la paleta es muy amplio, aquí se han descrito los más usuales con sus principales parámetros: Button, Text, TextField, Checkbox, RadioButton y el menú desplegable ExposedDropdownMenuBox. El abanico permite infinitas combinaciones que se adecuarán en cada caso a las especificaciones finales de la aplicación.
+En este tema hemos estudiado **Jetpack Compose**, el kit que contiene todas las funciones necesarias para programar todo tipo de componentes visuales. Aunque el número de componentes que ofrece la librería es muy amplio, aquí se han descrito los más usuales con sus principales parámetros: Button, Text, TextField, Checkbox, RadioButton y el menú desplegable ExposedDropdownMenuBox. El abanico permite infinitas combinaciones que se adecuarán en cada caso a las especificaciones finales de la aplicación.
 
 También hemos visto que distinguir entre la **pantalla principal** (actividad) y las **secundarias** (navegación entre composables) y los **diálogos modales** (AlertDialog) es fundamental, no tanto por su implementación como por el uso que se les va a dar: confirmaciones críticas van en diálogo modal; flujos completos, en pantallas navegables.
 
