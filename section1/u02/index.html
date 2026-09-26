@@ -6,37 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Ejercicios graduados de menor a mayor dificultad sobre el entorno Android Studio, Kotlin y Jetpack Compose.">
+        <meta name="description" content="Índice de la unidad 2: teoría, ejercicios y solucionario de componentes, contenedores, diálogos y navegación en Jetpack Compose.">
       
       
         <meta name="author" content="Ismael Velasco">
       
       
-        <link rel="canonical" href="https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/section1/u01/ejercicios/DI-U1.-Ejercicios/">
+        <link rel="canonical" href="https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/section1/u02/">
       
       
-        <link rel="prev" href="../../teoria/DI-U1.1.-IntroduccionConfeccionInterfaces/">
+        <link rel="prev" href="../u01/ejercicios/DI-U1.-Solucionario/">
       
       
-        <link rel="next" href="../DI-U1.-Solucionario/">
+        <link rel="next" href="teoria/DI-U2.1.-ClasesYComponentes/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>UD 1 - Ejercicios: Introducción a la confección de interfaces - DI — Desarrollo de Interfaces</title>
+        <title>UD 2 - Clases y componentes - DI — Desarrollo de Interfaces</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ejercicios-de-la-unidad-1" class="md-skip">
+        <a href="#ud-2-clases-y-componentes" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
-    <a href="../../../.." title="DI — Desarrollo de Interfaces" class="md-header__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
+    <a href="../.." title="DI — Desarrollo de Interfaces" class="md-header__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UD 1 - Ejercicios: Introducción a la confección de interfaces
+              UD 2 - Clases y componentes
             
           </span>
         </div>
@@ -227,7 +227,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -252,7 +252,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -270,7 +270,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../about/" class="md-tabs__link">
+      <a href="../../about/" class="md-tabs__link">
         
   
   
@@ -305,7 +305,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="DI — Desarrollo de Interfaces" class="md-nav__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
+    <a href="../.." title="DI — Desarrollo de Interfaces" class="md-nav__button md-logo" aria-label="DI — Desarrollo de Interfaces" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -335,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -421,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -448,8 +448,6 @@
                 
   
   
-    
-  
   
   
     
@@ -465,11 +463,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
@@ -490,7 +488,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -508,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../u01/" class="md-nav__link">
         
   
   
@@ -538,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../teoria/DI-U1.1.-IntroduccionConfeccionInterfaces/" class="md-nav__link">
+      <a href="../u01/teoria/DI-U1.1.-IntroduccionConfeccionInterfaces/" class="md-nav__link">
         
   
   
@@ -565,39 +563,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h4v-1.91L12.09 18H6v-2h8.09l2-2H6v-2h12.09L20 10.09V8l-6-6zm7 1.5L18.5 9H13zm7.15 9.5a.55.55 0 0 0-.4.16l-1.02 1.02 2.09 2.08 1.02-1.01c.21-.22.21-.58 0-.79l-1.3-1.3a.54.54 0 0 0-.39-.16m-2.01 1.77L12 20.92V23h2.08l6.15-6.15z"/></svg>
-  
-  <span class="md-ellipsis">
-    
-  
-    Ejercicios U1 (de menor a mayor)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../u01/ejercicios/DI-U1.-Ejercicios/" class="md-nav__link">
         
   
   
@@ -615,70 +584,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Tabla de contenidos
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#bloque-a-conceptos-del-tema-nivel-calentamiento" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bloque A — Conceptos del tema (nivel: calentamiento)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bloque-b-el-entorno-nivel-medio-bajo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bloque B — El entorno (nivel: medio-bajo)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bloque-c-primer-proyecto-nivel-medio" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bloque C — Primer proyecto (nivel: medio)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#entrega" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Entrega
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -691,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../DI-U1.-Solucionario/" class="md-nav__link">
+      <a href="../u01/ejercicios/DI-U1.-Solucionario/" class="md-nav__link">
         
   
   
@@ -726,6 +631,8 @@
                 
   
   
+    
+  
   
   
     
@@ -741,11 +648,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
@@ -766,7 +673,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -781,10 +688,39 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../u02/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 3v6h8V3m-8 18h8V11h-8M3 21h8v-6H3m0-2h8V3H3z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    UD 2 - Clases y componentes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -802,6 +738,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contenido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenido
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presentaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presentaciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-aprenderas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué aprenderás
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -814,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../u02/teoria/DI-U2.1.-ClasesYComponentes/" class="md-nav__link">
+      <a href="teoria/DI-U2.1.-ClasesYComponentes/" class="md-nav__link">
         
   
   
@@ -844,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../u02/ejercicios/DI-U2.-Ejercicios/" class="md-nav__link">
+      <a href="ejercicios/DI-U2.-Ejercicios/" class="md-nav__link">
         
   
   
@@ -874,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../u02/ejercicios/DI-U2.-Solucionario/" class="md-nav__link">
+      <a href="ejercicios/DI-U2.-Solucionario/" class="md-nav__link">
         
   
   
@@ -919,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         
   
   
@@ -968,10 +957,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bloque-a-conceptos-del-tema-nivel-calentamiento" class="md-nav__link">
+  <a href="#contenido" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bloque A — Conceptos del tema (nivel: calentamiento)
+        Contenido
       
     </span>
   </a>
@@ -979,10 +968,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bloque-b-el-entorno-nivel-medio-bajo" class="md-nav__link">
+  <a href="#presentaciones" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bloque B — El entorno (nivel: medio-bajo)
+        Presentaciones
       
     </span>
   </a>
@@ -990,21 +979,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bloque-c-primer-proyecto-nivel-medio" class="md-nav__link">
+  <a href="#que-aprenderas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bloque C — Primer proyecto (nivel: medio)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#entrega" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Entrega
+        Qué aprenderás
       
     </span>
   </a>
@@ -1031,66 +1009,25 @@
   
 
 
-<h1 id="ejercicios-de-la-unidad-1">Ejercicios de la Unidad 1</h1>
-<p>Ejercicios ordenados <strong>de menor a mayor dificultad</strong>. Los bloques A y B son individuales y cortos; el C monta el primer proyecto. El solucionario está en <a href="../DI-U1.-Solucionario/"><code>DI-U1.-Solucionario.md</code></a> — intenta cada ejercicio antes de mirarlo.</p>
-<h2 id="bloque-a-conceptos-del-tema-nivel-calentamiento">Bloque A — Conceptos del tema (nivel: calentamiento)</h2>
-<p><strong>A1.</strong> Clasifica los siguientes lenguajes en imperativo o declarativo: SQL, Kotlin, HTML, CSS, Java, Python.</p>
-<p><strong>A2.</strong> Explica con una frase cada uno de los tres modelos clave para interfaces: orientado a objetos, basado en eventos y basado en componentes.</p>
-<p><strong>A3.</strong> Di si cada afirmación es verdadera o falsa, corrigiendo las falsas:</p>
-<ol>
-<li>Kotlin es un lenguaje de bajo nivel porque controla el hardware directamente.</li>
-<li>En el modelo declarativo se describe el problema (el resultado), no los pasos.</li>
-<li>Una función <code>@Composable</code> es un componente reutilizable que describe un trozo de interfaz.</li>
-<li>En Jetpack Compose, la vista <em>Design</em> genera código que no se puede editar a mano.</li>
-</ol>
-<p><strong>A4.</strong> Completa la tabla con el elemento adecuado de nuestro entorno de trabajo:</p>
-<table>
-<thead>
-<tr>
-<th>Necesidad</th>
-<th>Elemento</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Mostrar un texto en pantalla</td>
-<td></td>
-</tr>
-<tr>
-<td>Botón con acción al pulsarlo</td>
-<td></td>
-</tr>
-<tr>
-<td>Colocar elementos en horizontal</td>
-<td></td>
-</tr>
-<tr>
-<td>Librería de interfaces que usamos</td>
-<td></td>
-</tr>
-<tr>
-<td>IDE que usamos en el módulo</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><strong>A5.</strong> Según la tabla comparativa del tema (apartado 4), indica la licencia de MonoDevelop, Glade y Android Studio, y el enlace de descarga de Android Studio.</p>
-<h2 id="bloque-b-el-entorno-nivel-medio-bajo">Bloque B — El entorno (nivel: medio-bajo)</h2>
-<p><strong>B1.</strong> Enumera los tres pasos imprescindibles de la instalación de Android Studio según el tema y di qué dos componentes NO hay que instalar aparte (a diferencia de lo que ocurría con Eclipse y el JDK).</p>
-<p><strong>B2.</strong> En el análisis del entorno de diseño (apartado 8 del tema), explica para qué sirven: la <em>Toolbar</em>, la vista <em>Split</em>, la <em>Palette</em> y el <em>Component Tree</em>.</p>
-<p><strong>B3.</strong> ¿Qué diferencia hay entre una <strong>actividad</strong> (<code>ComponentActivity</code>) y una <strong>función composable</strong>? ¿Cuál de las dos "monta" a la otra y con qué sentencia?</p>
-<p><strong>B4.</strong> ¿Qué hay que escribir para importar en Kotlin solo el componente <code>Button</code> de Material 3? ¿Y para importar toda la librería Material 3?</p>
-<h2 id="bloque-c-primer-proyecto-nivel-medio">Bloque C — Primer proyecto (nivel: medio)</h2>
-<p><strong>C1.</strong> Instala Android Studio (si no lo tienes ya) siguiendo los pasos del apartado 6 del tema, captura la pantalla de bienvenida y crea un proyecto nuevo <em>Empty Activity</em> llamado <code>MiPrimeraInterfaz</code>.</p>
-<p><strong>C2.</strong> Localiza en el proyecto generado el archivo donde vive la interfaz (<code>MainActivity.kt</code>) y las tres vistas del editor (<em>Code</em>, <em>Split</em>, <em>Design</em>). Haz una captura de cada modo.</p>
-<p><strong>C3.</strong> Modifica el composable de ejemplo para que, en lugar del saludo por defecto, muestre tu nombre y tu ciclo en dos <code>Text</code>, centrados en pantalla (como el caso práctico 1 del tema). Ejecuta en el emulador y comprueba el resultado.</p>
-<p><strong>C4.</strong> Sustituye el contenido por una fila con dos botones <strong>Aceptar</strong> y <strong>Cancelar</strong> (como el caso práctico 2 del tema). Hazlo primero desde la vista <em>Code</em> y luego prueba a arrastrar un componente desde la paleta en la vista <em>Design</em>. Comenta qué observas.</p>
-<p><strong>C5.</strong> Añade una función <code>@Preview</code> a tu composable y comprueba que la previsualización aparece sin ejecutar la app. ¿Qué ventaja tiene respecto a ejecutar el emulador para cada cambio?</p>
-<h2 id="entrega">Entrega</h2>
+<h1 id="ud-2-clases-y-componentes">UD 2 — Clases y componentes</h1>
+<p>La unidad que convierte la pantalla en un catálogo de piezas: componentes que recogen datos del usuario, contenedores que los ordenan, diálogos que confirman y navegación que conecta pantallas.</p>
+<h2 id="contenido">Contenido</h2>
 <ul>
-<li>Bloques A y B: respuestas en un documento.</li>
-<li>Bloque C: capturas y proyecto Android Studio comprimido (sin carpetas <code>build/</code> ni <code>.gradle/</code>) o enlace al repositorio de GitHub.</li>
-<li>Plazo y canal: el que indique la programación de aula.</li>
+<li><a href="teoria/DI-U2.1.-ClasesYComponentes/">Teoría 2.1 — Clases y componentes</a></li>
+<li><a href="ejercicios/DI-U2.-Ejercicios/">Ejercicios UD 2</a></li>
+<li><a href="ejercicios/DI-U2.-Solucionario/">Solucionario UD 2</a></li>
+</ul>
+<h2 id="presentaciones">Presentaciones</h2>
+<ul>
+<li><a href="../../../../slides/section1-di/DI-U2.1.-ClasesYComponentes.html">DI-U2.1 — Clases y componentes (slides)</a></li>
+</ul>
+<h2 id="que-aprenderas">Qué aprenderás</h2>
+<ul>
+<li>El repaso exprés de POO que usa Compose (clases, atributos, métodos) y por qué el estado es POO en acción.</li>
+<li>Los contenedores: Column, Row, Box, LazyVerticalGrid y Scaffold (la pantalla con huecos preparados).</li>
+<li>Los 6 componentes esenciales con código y visual: Button, Text, TextField, Checkbox, RadioButton y menú desplegable.</li>
+<li>Diálogos modales con AlertDialog y la conexión entre pantallas con Navigation Compose.</li>
+<li>Dos casos prácticos completos: login con navegación y reproductor en rejilla.</li>
 </ul>
 
 
@@ -1150,10 +1087,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
