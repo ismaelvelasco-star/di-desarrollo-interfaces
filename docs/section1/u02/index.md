@@ -25,7 +25,7 @@ La unidad que convierte la pantalla en un catálogo de piezas: componentes que r
 
 ## Presentaciones
 
-- [DI-U2.1 — Clases y componentes (slides)](../../../../slides/section1-di/DI-U2.1.-ClasesYComponentes.html)
+- [DI-U2.1 — Clases y componentes](https://ismaelvelasco-star.github.io/di-desarrollo-interfaces/slides/section1-di/DI-U2.1.-ClasesYComponentes.html)
 
 ## Qué aprenderás
 
