@@ -244,6 +244,14 @@ Tabla 2. Plantillas de proyecto nuevo (teléfono/tablet) y sus diferencias.
 
 Fíjate en el criterio de elección: para **interfaces con Compose** la opción es *Empty Activity* (o *Navigation UI Activity* si la app tiene varias secciones desde el inicio); las *Views* son el sistema clásico anterior; y las de C++ cambian de lenguaje por completo. En este módulo usaremos **Empty Activity**, que nos deja el lienzo limpio para construir la interfaz desde cero.
 
+**8.6. ¿Y si quiero mi app en TODOS los sistemas operativos? Kotlin Multiplatform.** Las plantillas anteriores generan proyectos **Android**. Si el objetivo es una app que compile a la vez para Android, iOS, escritorio (Windows/macOS/Linux), web y servidor, JetBrains ofrece el **asistente de Kotlin Multiplatform** (kmp.jetbrains.com): marcas las plataformas objetivo y te genera el proyecto con la estructura compartida ya montada.
+
+```text
+kmp.jetbrains.com/?android=true&ios=true&iosui=compose&desktop=true&web=true&webui=compose&server=true
+```
+
+La idea de KMP: compartes en Kotlin lo común (lógica, datos, reglas de negocio) y decides si la UI también se comparte con **Compose Multiplatform** (la misma forma de escribir interfaces que aprendemos en este módulo, funcionando además en iOS, escritorio y web). No lo usaremos en el módulo — el objetivo es dominar Android con Compose —, pero conviene conocerlo: es la respuesta actual a "un solo proyecto, todos los SO", y todo lo que aprendas aquí de componibles te sirve directamente allí.
+
 ## 9. Caso práctico 1: "Creación de una pantalla"
 
 **Planteamiento.** Los pasos imprescindibles para la creación de una pantalla con Compose son: declarar la función composable, describir su contenido y asignarla a la actividad con `setContent`. Implementa una pantalla desde cero utilizando solo el código de programación, es decir, sin utilizar la vista *Design*. Tras realizar este desarrollo, ¿cuál es una de las grandes diferencias que puedes observar entre las dos formas de creación descritas?
@@ -345,5 +353,7 @@ Hemos comprobado también que, durante el desarrollo de una interfaz, podemos se
 - Android Developers. *Jetpack Compose documentation*. <https://developer.android.com/develop/ui/compose>
 - Android Developers. *Thinking in Compose*. <https://developer.android.com/develop/ui/compose/mental-model>
 - Kotlin Foundation. *Kotlin docs*. <https://kotlinlang.org/docs/home.html>
+- JetBrains. *Kotlin Multiplatform — asistente de proyecto*. <https://kmp.jetbrains.com/>
+- JetBrains. *Compose Multiplatform*. <https://www.jetbrains.com/compose/multiplatform/>
 - Real Decreto 450/2010. Módulo profesional 0488 Desarrollo de interfaces.
 - Temario del módulo como base conceptual de la adaptación.

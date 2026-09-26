@@ -155,6 +155,16 @@ Note: Momento estrella: crear el primer proyecto EN DIRECTO si hay proyector. Pa
 Note: La galería de plantillas del New Project. La nuestra: Empty Activity (la básica con Compose, lienzo limpio). Mencionar el criterio de elección sin entrar en la tabla completa (está en la teoría): las "Views" son el sistema clásico anterior (XML), Navigation UI trae menús de navegación ya montados, las de C++ son otro mundo (juegos y código nativo). Regla simple para ellos: "App nueva con Compose → Empty Activity."
 
 
+### ¿Y para todos los SO? KMP
+
+- Proyecto Android → plantillas de Android Studio
+- Proyecto **Android + iOS + escritorio + web** → kmp.jetbrains.com
+- Marcas plataformas y genera la estructura compartida
+- Compose Multiplatform: la misma UI en todos
+
+Note: Pregunta que siempre saldrá: "¿y si quiero mi app también en iPhone?" Respuesta de 2026: Kotlin Multiplatform, el asistente de JetBrains (kmp.jetbrains.com) donde marcas Android, iOS, escritorio y web y te genera el proyecto compartido. Comparte la lógica en Kotlin y, si quieres, la UI con Compose Multiplatform — lo mismo que están aprendiendo aquí, corriendo en todos los SO. No lo usamos en el módulo (primero dominar Android), pero que sepan que existe: es "un solo proyecto, todos los sistemas operativos". **Definiciones:** *KMP (Kotlin Multiplatform)* = tecnología de JetBrains para compartir código Kotlin entre plataformas. *Compose Multiplatform* = extensión de Compose que además de Android compila la UI a iOS, escritorio y web.
+
+
 ### Actividad y función composable
 
 - **Actividad**: la pantalla del sistema que aloja
